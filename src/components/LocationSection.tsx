@@ -45,7 +45,9 @@ export default function LocationSection() {
             <h2 className="text-[26px] font-medium leading-[1.55] tracking-[-0.02em] text-[#2d2d2d] md:text-[32px]">
               Location connected
               <br />
-              <span className="inline-block pl-[2.7em]">to the city Raipur.</span>
+              <span className="inline-block pl-[0.75em] sm:pl-[2.7em]">
+                - to the city Raipur.
+              </span>
               <span className="block">Opened out to life.</span>
             </h2>
 

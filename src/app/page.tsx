@@ -9,21 +9,24 @@ import LocationSection from "@/components/LocationSection";
 import LayoutSection from "@/components/LayoutSection";
 import ContactSection from "@/components/ContactSection";
 import Footer from "@/components/Footer";
+import { EnquiryProvider } from "@/components/EnquiryPanel";
 
 export default function Home() {
   return (
-    <main className="min-h-screen bg-white">
-      <Header />
-      <HeroSection />
-      <OverviewSection />
-      <WalkthroughSection />
-      <AmenitiesSection />
-      <GallerySection />
-      <PlanSection />
-      <LocationSection />
-      <LayoutSection />
-      <ContactSection />
-      <Footer />
-    </main>
+    <EnquiryProvider>
+      <main className="min-h-screen bg-white">
+        <Header />
+        <HeroSection />
+        <OverviewSection />
+        <WalkthroughSection />
+        <AmenitiesSection />
+        <GallerySection />
+        <PlanSection />
+        <LocationSection />
+        <LayoutSection />
+        <ContactSection />
+        <Footer />
+      </main>
+    </EnquiryProvider>
   );
 }

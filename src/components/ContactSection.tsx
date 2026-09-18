@@ -1,3 +1,5 @@
+import { EnquiryButton } from "@/components/EnquiryPanel";
+
 const fieldClassName =
   "h-14 w-full rounded-[7px] border border-transparent bg-[#B14A45] px-5 text-[15px] font-normal text-white caret-white outline-none transition-colors placeholder:text-white/95 focus:border-white/70 focus:bg-[#AA433F] sm:h-[60px] sm:px-6 sm:text-base";
 
@@ -58,18 +60,16 @@ export default function ContactSection() {
             </dl>
 
             <div className="mt-9 flex flex-col gap-3 min-[460px]:flex-row min-[460px]:gap-4 sm:mt-10">
-              <a
-                href="#contact-form"
+              <EnquiryButton
                 className="inline-flex min-h-12 items-center justify-center rounded-[6px] bg-white px-7 text-[15px] font-medium text-[#D46051] transition-colors hover:bg-[#FFF5F1] sm:min-w-[152px] sm:text-base"
               >
                 Inquire now
-              </a>
-              <a
-                href="#contact-form"
+              </EnquiryButton>
+              <EnquiryButton
                 className="inline-flex min-h-12 items-center justify-center rounded-[6px] border border-white px-7 text-center text-[15px] font-medium text-white transition-colors hover:bg-white/10 sm:min-w-[212px] sm:text-base"
               >
                 Download Brochure
-              </a>
+              </EnquiryButton>
             </div>
           </div>
 

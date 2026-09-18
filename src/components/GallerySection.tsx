@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import { useEffect, useState } from "react";
+import { EnquiryButton } from "@/components/EnquiryPanel";
 
 const galleryImages = [
   {
@@ -148,12 +149,11 @@ export default function GallerySection() {
         </div>
 
         <div className="mt-14 flex justify-center px-6">
-          <a
-            href="#contact"
+          <EnquiryButton
             className="inline-flex items-center justify-center whitespace-nowrap rounded-md bg-[#C8503E] px-9 py-4 text-base font-bold tracking-wide text-white shadow-[0_10px_24px_rgba(130,40,28,0.18)] transition-all duration-300 hover:-translate-y-0.5 hover:bg-[#B94535] md:px-11 md:text-lg"
           >
             REVEAL THE PRICE
-          </a>
+          </EnquiryButton>
         </div>
       </section>
 

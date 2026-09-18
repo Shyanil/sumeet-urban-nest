@@ -1,60 +1,63 @@
 import Image from "next/image";
+import { EnquiryButton } from "@/components/EnquiryPanel";
 
 export default function OverviewSection() {
   return (
-    <section id="overview" className="relative isolate overflow-hidden bg-white py-16 md:py-24">
+    <section
+      id="overview"
+      className="relative isolate overflow-hidden bg-white py-14 sm:py-16 lg:py-20 2xl:py-24"
+    >
       <Image
         src="/images/exterior/overview-rings.webp"
         alt=""
         width={1336}
         height={1177}
         aria-hidden="true"
-        className="pointer-events-none absolute -right-[2%] top-20 -z-10 hidden h-auto w-[clamp(500px,43vw,720px)] select-none lg:block"
+        className="pointer-events-none absolute bottom-0 -right-[12rem] -z-10 hidden h-auto w-[560px] select-none xl:block 2xl:-right-[3%] 2xl:w-[clamp(620px,38vw,720px)]"
       />
 
-      <div className="relative z-10 mx-auto max-w-[1680px] px-6 md:px-[9vw]">
+      <div className="relative z-10 mx-auto max-w-[1680px] px-5 sm:px-8 md:px-[7vw] xl:px-[9vw]">
         {/* Section Title */}
-        <div className="flex items-center gap-4 mb-12">
-          <div className="w-12 h-[2px] bg-gray-400" />
-          <h2 className="text-2xl md:text-[30px] font-normal tracking-wider text-gray-800">
+        <div className="mb-10 flex items-center gap-3 sm:mb-12 sm:gap-4">
+          <div className="h-[2px] w-9 bg-gray-400 sm:w-12" />
+          <h2 className="text-[22px] font-normal tracking-wider text-gray-800 sm:text-2xl md:text-[30px]">
             OVERVIEW
           </h2>
         </div>
 
         {/* Two Column Layout */}
-        <div className="grid grid-cols-1 gap-12 lg:grid-cols-[0.82fr_1.18fr] lg:gap-16">
+        <div className="grid grid-cols-1 gap-12 lg:gap-14 xl:grid-cols-[minmax(0,0.82fr)_minmax(0,1.18fr)] xl:gap-16">
           {/* Left Column - Introducing */}
-          <div>
-            <p className="text-sm md:text-base font-medium tracking-[0.3em] text-gray-500 mb-6">
+          <div className="max-w-2xl xl:max-w-none">
+            <p className="mb-5 text-xs font-medium tracking-[0.28em] text-gray-500 sm:mb-6 sm:text-sm md:text-base md:tracking-[0.3em]">
               I N T R O D U C I N G
             </p>
 
-            <h3 className="mb-1 text-xl font-medium text-gray-800 md:text-2xl">
+            <h3 className="mb-1 text-[19px] font-medium leading-snug text-gray-800 sm:text-xl md:text-2xl">
               The newest concept of living
             </h3>
-            <h3 className="mb-1 text-xl font-semibold text-gray-800 md:text-2xl">
+            <h3 className="mb-1 text-[19px] font-semibold leading-snug text-gray-800 sm:text-xl md:text-2xl">
               at Khamardih, Shankar Nagar
             </h3>
-            <h3 className="mb-8 mt-7 text-xl font-semibold text-coral md:text-2xl">
+            <h3 className="mb-7 mt-6 text-[19px] font-semibold text-coral sm:text-xl md:mb-8 md:mt-7 md:text-2xl">
               BOHK Homes.
             </h3>
 
-            <p className="text-base md:text-lg text-gray-600 leading-relaxed mb-2">
+            <p className="mb-2 text-[15px] leading-relaxed text-gray-600 sm:text-base md:text-lg">
               What if your home didn&apos;t end at the walls?
             </p>
-            <p className="text-base md:text-lg text-gray-600 leading-relaxed mb-2">
+            <p className="mb-2 text-[15px] leading-relaxed text-gray-600 sm:text-base md:text-lg">
               At Sumeet Urban Nest, every home opens into more, more light, more
               air, more flexibility,
             </p>
-            <p className="text-base md:text-lg text-gray-600 leading-relaxed mb-10">
+            <p className="mb-8 text-[15px] leading-relaxed text-gray-600 sm:text-base md:mb-10 md:text-lg">
               and more room to live the way modern families truly want to.
             </p>
 
             {/* Request Plans Button */}
             <div className="flex flex-col items-start gap-4 sm:flex-row sm:items-center sm:gap-6">
-              <a
-                href="#contact"
-                className="group inline-flex shrink-0 items-center justify-center gap-2 whitespace-nowrap rounded-md bg-coral px-8 py-4 text-sm font-bold tracking-[0.08em] text-white shadow-[0_10px_24px_rgba(232,115,74,0.24)] transition-all duration-300 hover:-translate-y-0.5 hover:bg-coral-dark hover:shadow-[0_14px_30px_rgba(232,115,74,0.32)] md:text-base"
+              <EnquiryButton
+                className="group inline-flex w-full shrink-0 items-center justify-center gap-2 whitespace-nowrap rounded-md bg-coral px-7 py-4 text-sm font-bold tracking-[0.08em] text-white shadow-[0_10px_24px_rgba(232,115,74,0.24)] transition-all duration-300 hover:-translate-y-0.5 hover:bg-coral-dark hover:shadow-[0_14px_30px_rgba(232,115,74,0.32)] sm:w-auto sm:px-8 md:text-base"
               >
                 REQUEST PLANS
                 <svg
@@ -67,17 +70,17 @@ export default function OverviewSection() {
                 >
                   <path strokeLinecap="round" strokeLinejoin="round" d="M5 12h14m-5-5 5 5-5 5" />
                 </svg>
-              </a>
-              <p className="whitespace-nowrap text-center text-[11px] font-normal leading-none text-gray-500 sm:text-left xl:text-xs">
+              </EnquiryButton>
+              <p className="max-w-full text-left text-[10px] font-normal leading-relaxed text-gray-500 sm:whitespace-nowrap sm:text-[11px] xl:text-xs">
                 RERA No.: PCGRERA190326002064 | rera.cgstate.gov.in
               </p>
             </div>
           </div>
 
           {/* Right Column - Stats */}
-          <div className="space-y-6">
+          <div className="rounded-3xl border border-[#f1e4dc] bg-[#fffaf7] p-5 shadow-[0_16px_40px_rgba(71,49,38,0.06)] sm:p-7 xl:rounded-none xl:border-0 xl:bg-transparent xl:p-0 xl:shadow-none">
             {/* Stats Grid */}
-            <div className="grid grid-cols-1 gap-x-12 gap-y-8 sm:grid-cols-2">
+            <div className="grid grid-cols-1 gap-x-8 gap-y-7 sm:grid-cols-2 lg:gap-x-12 lg:gap-y-8">
               <div className="flex items-start gap-3">
                 <div className="flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-full bg-coral">
                   <svg
