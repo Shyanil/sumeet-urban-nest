@@ -7,23 +7,50 @@ export const metadata = {
     "A new residential address is opening out at Khamardih, Shankar Nagar, Raipur. Register to reveal the price.",
 };
 
-const locationHighlights = [
-  "Khamardih, Shankar Nagar",
-  "Connected to central Raipur",
-  "Everyday essentials close by",
+const locationDistances = [
+  { place: "Expressway", distance: "1.8", unit: "km", category: "City access" },
+  { place: "SMC Hospital", distance: "2.1", unit: "km", category: "Healthcare" },
+  { place: "Civil Lines", distance: "3.7", unit: "km", category: "City centre" },
+  { place: "Ambuja Mall", distance: "3.8", unit: "km", category: "Shopping" },
+  { place: "Pandri", distance: "3.9", unit: "km", category: "Retail district" },
+  { place: "Raipur Railway Station", distance: "6.8", unit: "km", category: "Rail" },
+  { place: "Swami Vivekananda Airport", distance: "13.7", unit: "km", category: "Air travel" },
 ];
 
 const heroFieldClassName =
-  "h-12 w-full rounded-xl border border-[#eaded7] bg-[#fffaf7] px-4 text-sm text-[#302c2a] outline-none transition placeholder:text-[#9b918c] focus:border-coral focus:bg-white focus:ring-4 focus:ring-coral/10 sm:h-14 sm:text-[15px]";
+  "h-12 w-full rounded-lg border border-[#e8e2da] bg-[#faf9f6] px-4 text-sm text-[#302c2a] outline-none transition placeholder:text-[#99938a] focus:border-coral focus:bg-white focus:ring-4 focus:ring-coral/10";
 
 export default function Home2() {
   return (
-    <main className="overflow-hidden bg-white text-[#292827]">
+    <main className="relative overflow-hidden bg-white text-[#292827]">
+          <header className="absolute inset-x-0 top-0 z-20 bg-transparent">
+            <div className="mx-auto flex h-[80px] max-w-[1680px] items-center justify-between gap-3 px-4 sm:h-[96px] sm:gap-5 sm:px-8 md:px-12 xl:px-16">
+              <Link
+                href="/home-2"
+                aria-label="Sumeet Infracon home"
+                className="block w-[62px] shrink-0 transition-transform duration-200 hover:scale-[1.03] focus-visible:rounded-md focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-white sm:w-[88px]"
+              >
+                <Image
+                  src="/images/sumeet-infracon-logo-transparent.png"
+                  alt="Sumeet Infracon"
+                  width={1268}
+                  height={1241}
+                  className="h-auto w-full object-contain"
+                  priority
+                />
+              </Link>
+              <nav aria-label="Main navigation" className="flex shrink-0 items-center gap-0 rounded-full border border-white/20 bg-[#13221f]/35 p-0.5 shadow-[0_8px_28px_rgba(0,0,0,0.16)] backdrop-blur-md sm:gap-1.5 sm:p-1.5">
+                <a href="#location" className="whitespace-nowrap rounded-full px-2 py-2.5 text-[9px] font-medium tracking-wide text-white/90 transition hover:bg-white/12 hover:text-white focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white sm:px-5 sm:text-xs">Location</a>
+                <a href="#developer" className="whitespace-nowrap rounded-full px-2 py-2.5 text-[9px] font-medium tracking-wide text-white/90 transition hover:bg-white/12 hover:text-white focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white sm:px-5 sm:text-xs">About Developer</a>
+              </nav>
+            </div>
+          </header>
+
         {/* Section 1: Hero */}
-        <section id="home" className="relative isolate min-h-[100svh] overflow-hidden">
+        <section id="home" className="relative isolate min-h-[100svh] overflow-hidden bg-[#25332f]">
           <Image
-            src="/images/exterior/elevation-view-1.webp"
-            alt="Sumeet Urban Nest residential exterior"
+            src="/images/home2-hero-unsplash.jpg"
+            alt="Contemporary residential homes framed by palm trees at sunset"
             fill
             priority
             className="-z-20 object-cover object-[62%_center] sm:object-center"
@@ -33,57 +60,9 @@ export default function Home2() {
           <div className="absolute inset-0 -z-10 bg-gradient-to-r from-black/75 via-black/35 to-black/15" />
           <div className="absolute inset-0 -z-10 bg-gradient-to-t from-black/70 via-transparent to-black/25" />
 
-          <header className="absolute inset-x-0 top-0 z-20">
-            <div className="mx-auto flex h-[116px] max-w-[1680px] items-center justify-between px-5 sm:h-[132px] sm:px-8 md:px-[7vw] xl:px-[9vw]">
-              <Link
-                href="/home-2"
-                aria-label="Sumeet Infracon home"
-                className="block w-[82px] sm:w-[100px]"
-              >
-                <Image
-                  src="/images/interior/sumeet-infracon-logo.webp"
-                  alt="Sumeet Infracon"
-                  width={1268}
-                  height={1241}
-                  className="h-auto w-full object-contain drop-shadow-[0_2px_5px_rgba(255,255,255,0.8)]"
-                  priority
-                />
-              </Link>
-
-              <div className="flex flex-col items-end gap-1.5 text-white sm:gap-2">
-                <a
-                  href="tel:+917247724800"
-                  className="flex items-center gap-2 text-xs font-semibold drop-shadow-sm transition hover:text-[#f49a76] sm:text-sm md:text-base"
-                >
-                  <svg
-                    aria-hidden="true"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="currentColor"
-                    strokeWidth="1.8"
-                    className="h-4 w-4 text-[#f49a76]"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      d="M3.8 5.7c0 8 6.5 14.5 14.5 14.5.8 0 1.5-.5 1.8-1.2l1-2.4-4.3-2-1.6 2c-3.3-1.4-5.9-4-7.3-7.3l2-1.6-2-4.3-2.4 1c-.7.3-1.2 1-1.2 1.8Z"
-                    />
-                  </svg>
-                  7247 7248 00
-                </a>
-                <a
-                  href="mailto:sales@sumeetinfraventurs.com"
-                  className="hidden text-xs font-medium text-white/85 transition hover:text-white min-[390px]:block sm:text-sm"
-                >
-                  sales@sumeetinfraventurs.com
-                </a>
-              </div>
-            </div>
-          </header>
-
-          <div className="mx-auto grid min-h-[100svh] w-full max-w-[1680px] gap-10 px-5 pb-14 pt-[138px] sm:px-8 sm:pb-16 sm:pt-[156px] md:px-[7vw] lg:grid-cols-[minmax(0,1.15fr)_minmax(390px,0.85fr)] lg:items-center lg:gap-16 lg:pb-20 lg:pt-[150px] xl:gap-24 xl:px-[9vw]">
+          <div className="mx-auto grid min-h-[100svh] w-full max-w-[1680px] items-center gap-8 px-4 pb-10 pt-24 sm:gap-10 sm:px-8 sm:pb-16 sm:pt-28 md:px-12 lg:grid-cols-[minmax(0,1.15fr)_minmax(360px,0.85fr)] lg:gap-12 lg:pb-14 lg:pt-32 xl:grid-cols-[minmax(0,1.15fr)_minmax(390px,0.85fr)] xl:gap-16 xl:px-16">
             <div className="max-w-[760px] self-end pb-1 lg:self-auto lg:pb-0">
-              <div className="rounded-[26px] border border-white/15 bg-black/28 p-5 shadow-[0_22px_65px_rgba(0,0,0,0.16)] backdrop-blur-[2px] sm:p-7 lg:border-0 lg:bg-transparent lg:p-0 lg:shadow-none lg:backdrop-blur-none">
+              <div>
                 <p className="mb-5 flex items-center gap-3 text-[11px] font-semibold tracking-[0.3em] text-white sm:text-xs">
                   <span className="h-px w-9 bg-[#f49a76] sm:w-12" />
                   OPENING OUT SOON
@@ -96,38 +75,53 @@ export default function Home2() {
                   A thoughtfully planned residential address at Khamardih,
                   Shankar Nagar, Raipur.
                 </p>
+                <div className="mt-7 grid max-w-[590px] grid-cols-3 overflow-hidden rounded-xl border border-white/30 bg-black/25 shadow-[0_12px_36px_rgba(0,0,0,0.15)] backdrop-blur-sm sm:mt-9">
+                  <div className="px-3 py-4 sm:px-5 sm:py-5">
+                    <p className="text-xl font-semibold tracking-tight text-white sm:text-2xl">2 &amp; 3</p>
+                    <p className="mt-1 text-[9px] leading-4 text-white/75 sm:text-xs">BHK Homes</p>
+                  </div>
+                  <div className="border-x border-white/20 px-3 py-4 sm:px-5 sm:py-5">
+                    <p className="text-xl font-semibold tracking-tight text-white sm:text-2xl">1.76</p>
+                    <p className="mt-1 text-[9px] leading-4 text-white/75 sm:text-xs">Acres</p>
+                  </div>
+                  <div className="px-3 py-4 sm:px-5 sm:py-5">
+                    <p className="text-xl font-semibold tracking-tight text-white sm:text-2xl">Raipur</p>
+                    <p className="mt-1 text-[9px] leading-4 text-white/75 sm:text-xs">Prime location</p>
+                  </div>
+                </div>
               </div>
             </div>
 
             <div
               id="home2-form"
-              className="scroll-mt-6 rounded-[28px] border border-white/60 bg-white/95 p-5 shadow-[0_24px_70px_rgba(24,12,6,0.28)] backdrop-blur-md sm:p-8 lg:p-9"
+              className="relative scroll-mt-6 overflow-hidden rounded-[26px] border border-white/80 bg-[#fffefa] p-5 shadow-[0_28px_80px_rgba(0,0,0,0.3)] sm:p-7 lg:p-8"
             >
-              <p className="text-[11px] font-semibold tracking-[0.25em] text-coral">
-                PRIVATE PREVIEW
+              <div className="absolute inset-x-0 top-0 h-1 bg-gradient-to-r from-coral via-[#e9b27b] to-[#405f49]" />
+              <p className="mt-1 text-[10px] font-bold tracking-[0.22em] text-coral">
+                YOUR PRIVATE PREVIEW
               </p>
-              <h2 className="mt-3 text-[27px] font-semibold leading-tight tracking-[-0.03em] text-[#302c2a] sm:text-[32px]">
+              <h2 className="mt-3 text-[26px] font-semibold leading-tight tracking-[-0.035em] text-[#302c2a] sm:text-[30px]">
                 Reveal the price.
               </h2>
-              <p className="mt-2 text-sm leading-6 text-[#746b66]">
-                Register for pricing and availability.
+              <p className="mt-2 border-b border-[#eee8df] pb-5 text-sm leading-6 text-[#746b66]">
+                Leave your details for pricing and availability.
               </p>
 
-              <form className="mt-6 space-y-3.5 sm:mt-7 sm:space-y-4">
+              <form className="mt-5 space-y-3.5">
                 <div>
-                  <label htmlFor="home2-name" className="sr-only">Full Name</label>
+                  <label htmlFor="home2-name" className="mb-1.5 block text-[11px] font-semibold text-[#514c46]">Full name</label>
                   <input
                     required
                     id="home2-name"
                     name="fullName"
                     type="text"
                     autoComplete="name"
-                    placeholder="Full Name"
+                    placeholder="Enter your name"
                     className={heroFieldClassName}
                   />
                 </div>
                 <div>
-                  <label htmlFor="home2-phone" className="sr-only">Phone Number</label>
+                  <label htmlFor="home2-phone" className="mb-1.5 block text-[11px] font-semibold text-[#514c46]">Mobile number</label>
                   <input
                     required
                     id="home2-phone"
@@ -135,24 +129,24 @@ export default function Home2() {
                     type="tel"
                     inputMode="tel"
                     autoComplete="tel"
-                    placeholder="Phone Number"
+                    placeholder="Enter your mobile number"
                     className={heroFieldClassName}
                   />
                 </div>
                 <div>
-                  <label htmlFor="home2-email" className="sr-only">Email Address</label>
+                  <label htmlFor="home2-email" className="mb-1.5 block text-[11px] font-semibold text-[#514c46]">Email address</label>
                   <input
                     required
                     id="home2-email"
                     name="emailAddress"
                     type="email"
                     autoComplete="email"
-                    placeholder="Email Address"
+                    placeholder="Enter your email address"
                     className={heroFieldClassName}
                   />
                 </div>
                 <div>
-                  <label htmlFor="home2-interest" className="sr-only">Interested In</label>
+                  <label htmlFor="home2-interest" className="mb-1.5 block text-[11px] font-semibold text-[#514c46]">Home preference</label>
                   <select
                     required
                     id="home2-interest"
@@ -160,7 +154,7 @@ export default function Home2() {
                     defaultValue=""
                     className={`${heroFieldClassName} appearance-none text-[#746b66]`}
                   >
-                    <option value="" disabled>Interested In</option>
+                    <option value="" disabled>Select a home type</option>
                     <option value="2-bhk">2 BHK Home</option>
                     <option value="3-bhk">3 BHK Home</option>
                     <option value="both">2 &amp; 3 BHK Homes</option>
@@ -168,12 +162,13 @@ export default function Home2() {
                 </div>
                 <button
                   type="submit"
-                  className="group flex min-h-13 w-full items-center justify-center gap-3 rounded-xl bg-coral px-6 text-sm font-bold tracking-[0.08em] text-white shadow-[0_12px_28px_rgba(232,115,74,0.24)] transition hover:-translate-y-0.5 hover:bg-coral-dark sm:min-h-14 sm:text-[15px]"
+                  className="group flex min-h-13 w-full items-center justify-between rounded-lg bg-coral px-5 text-sm font-bold tracking-[0.04em] text-white shadow-[0_10px_24px_rgba(232,115,74,0.24)] transition hover:-translate-y-0.5 hover:bg-coral-dark focus-visible:outline-2 focus-visible:outline-offset-3 focus-visible:outline-coral sm:min-h-14 sm:px-6"
                 >
                   REVEAL THE PRICE
                   <span className="transition-transform group-hover:translate-x-1">&rarr;</span>
                 </button>
-                <p className="pt-1 text-center text-[10px] leading-4 text-[#9b918c] sm:text-[11px]">
+                <p className="flex items-start justify-center gap-1.5 pt-1 text-center text-[10px] leading-4 text-[#8a8279]">
+                  <svg aria-hidden="true" viewBox="0 0 20 20" fill="none" stroke="currentColor" strokeWidth="1.5" className="mt-0.5 h-3.5 w-3.5 shrink-0"><rect x="4" y="8" width="12" height="9" rx="2"/><path d="M7 8V6a3 3 0 0 1 6 0v2"/></svg>
                   By submitting, you agree to be contacted about this project.
                 </p>
               </form>
@@ -181,159 +176,136 @@ export default function Home2() {
           </div>
         </section>
 
-        {/* Section 2: A restrained preview */}
-        <section id="preview" className="relative isolate overflow-hidden bg-white py-16 sm:py-20 lg:py-28">
-          <Image
-            src="/images/exterior/overview-rings.webp"
-            alt=""
-            width={1336}
-            height={1177}
-            aria-hidden="true"
-            className="pointer-events-none absolute -bottom-32 -right-40 -z-10 hidden h-auto w-[560px] opacity-55 lg:block xl:-right-24 xl:w-[650px]"
-          />
-
-          <div className="mx-auto grid max-w-[1680px] items-center gap-12 px-5 sm:px-8 md:px-[7vw] lg:grid-cols-[1.05fr_0.95fr] lg:gap-16 xl:gap-24 xl:px-[9vw]">
-            <div className="relative aspect-[4/3] overflow-hidden rounded-[30px] sm:rounded-[38px] lg:aspect-[1.06/1]">
-              <Image
-                src="/images/exterior/podium-closeup.webp"
-                alt="Landscaped spaces at Sumeet Urban Nest"
-                fill
-                className="object-cover"
-                sizes="(min-width: 1024px) 50vw, 100vw"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/35 via-transparent to-transparent" />
-            </div>
-
-            <div className="max-w-xl">
-              <p className="flex items-center gap-3 text-xs font-semibold tracking-[0.3em] text-[#8a817c]">
-                <span className="h-px w-10 bg-coral" />
-                A GLIMPSE
-              </p>
-              <h2 className="mt-7 text-[32px] font-medium leading-[1.15] tracking-[-0.035em] text-[#292827] sm:text-[38px] lg:text-[46px]">
-                More room for
-                <span className="block text-coral">everyday life.</span>
-              </h2>
-              <p className="mt-6 max-w-lg text-sm leading-7 text-[#746f6c] sm:text-base sm:leading-8">
-                Homes shaped around light, air and the freedom to live a little
-                more openly.
-              </p>
-
-              <div className="mt-8 grid grid-cols-3 divide-x divide-[#e7ddd7] border-y border-[#e7ddd7] py-5 sm:mt-10 sm:py-6">
-                <div className="pr-3 sm:pr-5">
-                  <p className="text-lg font-semibold text-coral sm:text-2xl">2 &amp; 3</p>
-                  <p className="mt-1 text-[10px] leading-4 text-[#827a75] sm:text-xs">BHK Homes</p>
-                </div>
-                <div className="px-3 sm:px-5">
-                  <p className="text-lg font-semibold text-coral sm:text-2xl">1.76</p>
-                  <p className="mt-1 text-[10px] leading-4 text-[#827a75] sm:text-xs">Acres</p>
-                </div>
-                <div className="pl-3 sm:pl-5">
-                  <p className="text-lg font-semibold text-coral sm:text-2xl">Raipur</p>
-                  <p className="mt-1 text-[10px] leading-4 text-[#827a75] sm:text-xs">Prime location</p>
-                </div>
-              </div>
-
-              <a href="#home2-form" className="group mt-8 inline-flex min-h-13 w-full items-center justify-center gap-3 rounded-md border border-coral bg-white px-7 text-sm font-bold tracking-[0.08em] text-coral transition hover:bg-coral hover:text-white sm:mt-10 sm:w-auto sm:min-w-[220px]">
-                REVEAL MORE
-                <span className="transition-transform group-hover:translate-x-1">&rarr;</span>
-              </a>
-            </div>
-          </div>
-        </section>
-
-        {/* Section 3: Location */}
-        <section id="location" className="bg-[#fff5e8]">
-          <div className="mx-auto grid max-w-[1680px] items-stretch lg:grid-cols-2">
-            <div className="flex items-center px-5 py-16 sm:px-8 sm:py-20 md:px-[7vw] lg:px-[8vw] lg:py-24 xl:px-[9vw]">
-              <div className="max-w-xl">
-                <p className="flex items-center gap-3 text-xs font-semibold tracking-[0.3em] text-[#8a817c]">
-                  <span className="h-px w-10 bg-coral" />
-                  LOCATION
-                </p>
-                <h2 className="mt-7 text-[32px] font-medium leading-[1.18] tracking-[-0.035em] text-[#292827] sm:text-[38px] lg:text-[46px]">
-                  Connected to Raipur.
-                  <span className="block text-coral">Opened out to life.</span>
-                </h2>
-                <p className="mt-6 text-sm leading-7 text-[#746f6c] sm:text-base sm:leading-8">
-                  Khamardih, Shankar Nagar, Raipur, Chhattisgarh.
-                </p>
-
-                <ul className="mt-8 space-y-4 sm:mt-10">
-                  {locationHighlights.map((item) => (
-                    <li
-                      key={item}
-                      className="flex items-center gap-3 text-sm text-[#4f4a47] sm:text-base"
-                    >
-                      <span className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-coral/12 text-coral">
-                        <svg
-                          aria-hidden="true"
-                          viewBox="0 0 20 20"
-                          fill="none"
-                          stroke="currentColor"
-                          strokeWidth="2"
-                          className="h-3.5 w-3.5"
-                        >
-                          <path strokeLinecap="round" strokeLinejoin="round" d="m5 10 3 3 7-7" />
-                        </svg>
-                      </span>
-                      {item}
-                    </li>
-                  ))}
-                </ul>
-
-                <a href="#home2-form" className="group mt-9 inline-flex min-h-14 w-full items-center justify-center gap-3 rounded-md bg-coral px-8 text-sm font-bold tracking-[0.09em] text-white shadow-[0_12px_28px_rgba(232,115,74,0.22)] transition hover:-translate-y-0.5 hover:bg-coral-dark sm:w-auto sm:min-w-[230px] sm:text-base">
-                  REVEAL THE PRICE
-                  <span className="transition-transform group-hover:translate-x-1">&rarr;</span>
-                </a>
-              </div>
-            </div>
-
-            <div className="relative min-h-[430px] overflow-hidden sm:min-h-[540px] lg:min-h-[680px]">
-              <Image
-                src="/images/exterior/aerial-view.webp"
-                alt="Aerial view of Sumeet Urban Nest and its surroundings"
-                fill
-                className="object-cover"
-                sizes="(min-width: 1024px) 50vw, 100vw"
-              />
-            </div>
-          </div>
-        </section>
-
-        <footer className="border-t border-[#e7ddd7] bg-[#f7f3ee] py-9 text-[#302c2a] sm:py-11">
-          <div className="mx-auto flex max-w-[1680px] flex-col items-center justify-between gap-7 px-5 text-center sm:px-8 md:flex-row md:px-[7vw] md:text-left xl:px-[9vw]">
-            <div className="flex items-center gap-4">
-              <div className="w-[76px]">
-                <Image
-                  src="/images/interior/sumeet-infracon-logo.webp"
-                  alt="Sumeet Infracon"
-                  width={1268}
-                  height={1241}
-                  className="h-auto w-full object-contain"
-                />
-              </div>
+        {/* Location */}
+        <section id="location" className="relative isolate overflow-hidden bg-[#f4f0e9] py-16 sm:py-20 lg:py-28">
+          <div className="mx-auto max-w-[1680px] px-4 sm:px-8 md:px-12 xl:px-16">
+            <div className="mb-9 flex flex-wrap items-end justify-between gap-4 sm:mb-12">
               <div>
-                <p className="text-sm font-medium">Sumeet Infracon</p>
-                <p className="mt-1 text-xs text-[#847b76]">Building spaces for better living.</p>
+                <p className="flex items-center gap-3 text-[10px] font-semibold tracking-[0.26em] text-[#897b6d] sm:text-xs">
+                  <span className="h-px w-10 bg-coral" />
+                  YOUR ADDRESS IN RAIPUR
+                </p>
+                <h2 className="mt-4 text-[30px] font-medium tracking-[-0.04em] text-[#292827] sm:text-[38px]">Well placed for everyday life.</h2>
+              </div>
+              <p className="max-w-sm text-xs leading-6 text-[#82796f] sm:text-sm">A connected neighbourhood, with the city’s key destinations within easy reach.</p>
+            </div>
+
+            <div className="grid gap-5 lg:grid-cols-[0.82fr_1.18fr] lg:gap-7">
+              <div className="relative isolate flex min-h-[390px] flex-col justify-between overflow-hidden rounded-[26px] border border-[#f1e4dc] bg-[#fffaf7] p-7 text-[#292827] shadow-[0_18px_50px_rgba(71,49,38,0.06)] sm:min-h-[440px] sm:p-10 lg:p-11">
+                <div aria-hidden="true" className="absolute -right-24 -top-24 -z-10 h-72 w-72 rounded-full border border-coral/10"><div className="m-8 h-56 rounded-full border border-coral/10"><div className="m-8 h-40 rounded-full border border-coral/10" /></div></div>
+                <div>
+                  <p className="text-[10px] font-semibold tracking-[0.23em] text-coral">KHAMARDIH · SHANKAR NAGAR</p>
+                  <h3 className="mt-8 text-[34px] font-medium leading-[1.08] tracking-[-0.045em] sm:text-[42px]">The city close by.<span className="mt-1 block font-serif font-normal italic text-coral">Life at your pace.</span></h3>
+                  <p className="mt-6 max-w-sm text-sm leading-7 text-[#746f6c] sm:text-base sm:leading-8">
+                    Sumeet Urban Nest is set in a location that keeps the city close
+                    without letting it close in on you. Healthcare, shopping and
+                    everyday connections stay comfortably accessible.
+                  </p>
+                </div>
+                <div className="mt-10 flex items-center gap-3 border-t border-[#f1e4dc] pt-5 text-xs font-medium text-[#514b45] sm:text-sm">
+                  <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" className="h-5 w-5 text-coral"><path d="M20 10c0 6-8 11-8 11S4 16 4 10a8 8 0 1 1 16 0Z"/><circle cx="12" cy="10" r="2.5"/></svg>
+                  Raipur, Chhattisgarh
+                </div>
+              </div>
+
+              <div className="rounded-[26px] border border-[#e5ddd3] bg-white p-5 shadow-[0_18px_50px_rgba(50,38,25,0.06)] sm:p-8 lg:p-9">
+                <div className="mb-2 flex items-end justify-between gap-4 border-b border-[#eee8e1] pb-5">
+                  <div>
+                    <p className="text-[10px] font-semibold tracking-[0.22em] text-coral">NEARBY DESTINATIONS</p>
+                    <h3 className="mt-2 text-xl font-medium tracking-tight text-[#302c2a] sm:text-2xl">A little closer to everything.</h3>
+                  </div>
+                  <span className="hidden text-[9px] font-semibold uppercase tracking-[0.16em] text-[#a0988f] sm:block">Distance</span>
+                </div>
+                <div className="grid sm:grid-cols-2 sm:gap-x-8">
+                  {locationDistances.map((item, index) => (
+                    <div key={item.place} className={`group flex items-center justify-between gap-3 border-b border-[#f0ebe5] py-3.5 ${index === locationDistances.length - 1 ? "sm:col-span-2 sm:border-b-0" : ""}`}>
+                      <div className="min-w-0">
+                        <p className="truncate text-sm font-medium text-[#403a34]">{item.place}</p>
+                        <p className="mt-1 text-[9px] font-medium uppercase tracking-[0.13em] text-[#a0988f]">{item.category}</p>
+                      </div>
+                      <p className="shrink-0 text-right text-lg font-semibold tracking-tight text-[#26382e] sm:text-xl">{item.distance}<span className="ml-1 text-[10px] font-medium text-[#8d857c]">{item.unit}</span></p>
+                    </div>
+                  ))}
+                </div>
               </div>
             </div>
 
-            <div className="flex flex-col items-center gap-2 text-sm text-[#6f6762] sm:flex-row sm:gap-5 md:items-end">
-              <a href="tel:+917247724800" className="transition hover:text-coral">
-                7247 7248 00
-              </a>
-              <span className="hidden h-4 w-px bg-[#cfc3bc] sm:block" />
-              <a
-                href="mailto:sales@sumeetinfraventurs.com"
-                className="transition hover:text-coral"
-              >
-                sales@sumeetinfraventurs.com
-              </a>
+            <a href="#home2-form" className="group mt-8 inline-flex min-h-12 items-center gap-4 rounded-md bg-coral px-6 text-xs font-semibold tracking-[0.08em] text-white shadow-[0_10px_24px_rgba(232,115,74,0.16)] transition hover:-translate-y-0.5 hover:bg-coral-dark focus-visible:outline-2 focus-visible:outline-offset-3 focus-visible:outline-coral">
+              REVEAL THE PRICE <span className="transition-transform group-hover:translate-x-1">&rarr;</span>
+            </a>
+          </div>
+        </section>
+
+        <section id="developer" className="scroll-mt-8 bg-[#fff8f0] py-14 sm:py-18 lg:py-24">
+          <div className="mx-auto max-w-[1500px] px-4 sm:px-8 md:px-12 xl:px-16">
+            <div className="mb-10 border-b border-[#e9dfd4] pb-6 sm:mb-14 sm:pb-8">
+              <p className="flex items-center gap-3 text-[10px] font-semibold tracking-[0.24em] text-coral sm:text-xs">
+                <span className="h-px w-9 bg-coral" /> ABOUT THE DEVELOPER
+              </p>
+              <h2 className="mt-5 max-w-4xl text-[clamp(2rem,4.4vw,3.75rem)] font-medium leading-[1.08] tracking-[-0.045em] text-[#292827]">
+                A beacon of changing skylines <span className="text-coral">and lifestyles.</span>
+              </h2>
             </div>
+
+            <div className="grid gap-10 lg:grid-cols-[0.8fr_1.2fr] lg:gap-16 xl:gap-24">
+              <div>
+                <Image
+                  src="/images/sumeet-infracon-developer-transparent.png"
+                  alt="Sumeet Infracon logo"
+                  width={340}
+                  height={540}
+                  className="h-auto w-[136px] object-contain sm:w-[160px]"
+                />
+                <p className="mt-8 max-w-sm text-[10px] font-semibold tracking-[0.2em] text-[#8c8176]">ROOTED IN RAIPUR. BUILDING FOR THE FUTURE.</p>
+                <div className="mt-8 border-t border-[#e9dfd4] pt-5">
+                  <p className="text-[10px] font-semibold tracking-[0.2em] text-coral">PAST PROJECTS</p>
+                  <ul className="mt-3 divide-y divide-[#e9dfd4]">
+                    {["Sumeet Trade Centre", "Sumeet Avenues", "Sumeet Landscape", "Sumeet City of Dreams"].map((project, index) => (
+                      <li key={project} className="flex items-center gap-4 py-3 text-sm font-medium text-[#47413b]">
+                        <span className="font-mono text-[10px] text-[#b4a89b]">0{index + 1}</span>{project}
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              </div>
+
+              <div className="lg:border-l lg:border-[#e9dfd4] lg:pl-10 xl:pl-14">
+                <p className="text-[10px] font-semibold tracking-[0.2em] text-coral">ABOUT THE COMPANY</p>
+                <p className="mt-4 text-sm leading-7 text-[#655e56] sm:text-[15px] sm:leading-8">
+                  Sumeet Infracon Pvt. Ltd. is a Raipur-based real estate development company with a strong foothold in Chhattisgarh&apos;s growing property landscape. Known for delivering premium residential and commercial developments, the company has built a reputation for quality construction, modern amenities, and strategically chosen locations that offer residents and businesses seamless connectivity and lasting value.
+                </p>
+                <p className="mt-4 text-sm leading-7 text-[#655e56] sm:text-[15px] sm:leading-8">
+                  With landmark projects like Sumeet City of Dreams, Sumeet Landscape, and the iconic Sumeet Trade Centre at Pachpedi Naka — Raipur&apos;s first ultra-premium corporate hub — Sumeet Infracon continues to redefine the standards of living and working spaces across the region.
+                </p>
+                <p className="mt-4 text-sm leading-7 text-[#655e56] sm:text-[15px] sm:leading-8">
+                  Driven by integrity, innovation, and a customer-first philosophy, the group remains committed to crafting sustainable, functional spaces that elevate lifestyles and create enduring value for every stakeholder.
+                </p>
+              </div>
+            </div>
+
+            <div className="mt-12 grid gap-px overflow-hidden rounded-2xl border border-[#e9dfd4] bg-[#e9dfd4] sm:grid-cols-2 xl:grid-cols-3">
+              <div className="bg-[#fffaf7] p-5 sm:p-6">
+                <p className="text-[10px] font-semibold tracking-[0.17em] text-coral">CORPORATE ADDRESS</p>
+                <p className="mt-3 text-sm leading-6 text-[#514b45]">Sumeet Business Park, Pachpedi Naka, Raipur, Chhattisgarh</p>
+              </div>
+              <div className="bg-[#fffaf7] p-5 sm:p-6">
+                <p className="text-[10px] font-semibold tracking-[0.17em] text-coral">SITE ADDRESS</p>
+                <p className="mt-3 text-sm leading-6 text-[#514b45]">Khamardih, Raipur, Chhattisgarh</p>
+              </div>
+              <div className="bg-[#fffaf7] p-5 sm:col-span-2 sm:p-6 xl:col-span-1">
+                <p className="text-[10px] font-semibold tracking-[0.17em] text-coral">RERA REGISTRATION</p>
+                <p className="mt-3 text-sm font-medium text-[#514b45]">PCGRERA190326002064</p>
+                <a href="https://rera.cgstate.gov.in" target="_blank" rel="noreferrer" className="mt-1 inline-block text-xs text-[#887d72] underline decoration-[#cfc3b7] underline-offset-4 transition hover:text-coral">rera.cgstate.gov.in</a>
+              </div>
+            </div>
+            <p className="mt-5 max-w-4xl text-[10px] leading-5 text-[#8a8279]">
+              Disclaimer: All specifications, plans and images are indicative and subject to approval by authorities.
+            </p>
           </div>
-          <div className="mx-auto mt-8 max-w-[1680px] border-t border-[#ddd3cc] px-5 pt-5 text-center text-[11px] text-[#9a918b] sm:px-8 md:px-[7vw] md:text-left xl:px-[9vw]">
-            &copy; 2026 Sumeet Infracon. All renderings are indicative.
-          </div>
+        </section>
+
+        <footer className="border-t border-[#e7ddd7] bg-white py-5 text-center text-[11px] text-[#847b76]">
+          &copy; 2026 Sumeet Infracon. All renderings are indicative.
         </footer>
     </main>
   );
