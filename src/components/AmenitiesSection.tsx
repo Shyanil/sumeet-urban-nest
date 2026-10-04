@@ -2,85 +2,98 @@ import Image from "next/image";
 
 const podiumAmenities = [
   {
+    name: "Walking / Jogging Track",
+    icon: (
+      <svg
+        className="h-11 w-11 text-[#D6AC70] md:h-12 md:w-12"
+        viewBox="0 0 48 48"
+        fill="none"
+        stroke="currentColor"
+        strokeWidth={1.6}
+        aria-hidden="true"
+      >
+        <rect x="4" y="12" width="40" height="24" rx="12" />
+        <rect x="10" y="16" width="28" height="16" rx="8" />
+        <rect x="16" y="20" width="16" height="8" rx="4" />
+        <line x1="24" y1="12" x2="24" y2="16" />
+        <line x1="24" y1="32" x2="24" y2="36" />
+      </svg>
+    ),
+  },
+  {
     name: "Landscaped Garden",
     icon: (
-      <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z" />
+      <svg
+        className="h-11 w-11 text-[#D6AC70] md:h-12 md:w-12"
+        viewBox="0 0 48 48"
+        fill="none"
+        stroke="currentColor"
+        strokeWidth={1.6}
+        aria-hidden="true"
+      >
+        <circle cx="36" cy="12" r="4.5" strokeDasharray="2 2" />
+        <path d="M12 28c-4 0-7-3-7-7a7 7 0 0113-3 6 6 0 0111 2c0 4-3 8-7 8" />
+        <line x1="18" y1="28" x2="18" y2="40" />
+        <path d="M26 34h16M28 30v10M40 30v10" />
+        <line x1="4" y1="40" x2="44" y2="40" />
       </svg>
     ),
   },
   {
     name: "Children's Play Area",
     icon: (
-      <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M14.828 14.828a4 4 0 01-5.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
-      </svg>
-    ),
-  },
-  {
-    name: "Walking / Jogging Track",
-    icon: (
-      <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6" />
+      <svg
+        className="h-11 w-11 text-[#D6AC70] md:h-12 md:w-12"
+        viewBox="0 0 48 48"
+        fill="none"
+        stroke="currentColor"
+        strokeWidth={1.6}
+        aria-hidden="true"
+      >
+        <path d="M18 10l6-6 6 6v28H18V10z" />
+        <line x1="18" y1="20" x2="30" y2="20" />
+        <line x1="18" y1="28" x2="30" y2="28" />
+        <path d="M30 18c6 0 10 10 14 20" />
+        <path d="M18 20L10 38" />
+        <line x1="6" y1="38" x2="44" y2="38" />
       </svg>
     ),
   },
   {
     name: "Temple",
     icon: (
-      <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M3 21h18M5 21V7l8-4 8 4v14M9 21v-6h6v6" />
+      <svg
+        className="h-11 w-11 text-[#D6AC70] md:h-12 md:w-12"
+        viewBox="0 0 48 48"
+        fill="none"
+        stroke="currentColor"
+        strokeWidth={1.6}
+        aria-hidden="true"
+      >
+        <line x1="24" y1="4" x2="24" y2="8" />
+        <path d="M21 8h6l-3-4-3 4z" />
+        <path d="M24 8c-6 8-8 16-10 22h20c-2-6-4-14-10-22z" />
+        <path d="M10 30h28v10H10V30z" />
+        <path d="M20 40v-6a4 4 0 018 0v6" />
+        <line x1="6" y1="40" x2="42" y2="40" />
       </svg>
     ),
   },
   {
     name: "Open Recreational Zones",
     icon: (
-      <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
-      </svg>
-    ),
-  },
-];
-
-const clubAmenities = [
-  {
-    name: "Gymnasium",
-    icon: (
-      <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M4 6h4v12H4V6zm12 0h4v12h-4V6zM8 10h8v4H8v-4z" />
-      </svg>
-    ),
-  },
-  {
-    name: "Indoor Games",
-    icon: (
-      <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M14 10l-2 1m0 0l-2-1m2 1v2.5M20 7l-2 1m2-1l-2-1m2 1v2.5M14 4l-2-1-2 1M4 7l2-1M4 7l2 1M4 7v2.5M12 21l-2-1m2 1l2-1m-2 1v-2.5M6 18l-2-1v-2.5M18 18l2-1v-2.5" />
-      </svg>
-    ),
-  },
-  {
-    name: "Community Hall",
-    icon: (
-      <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
-      </svg>
-    ),
-  },
-  {
-    name: "Kids' Play Zone",
-    icon: (
-      <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M14.828 14.828a4 4 0 01-5.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
-      </svg>
-    ),
-  },
-  {
-    name: "Swimming Pool",
-    icon: (
-      <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M3 15c2.483 0 4.345-1 6-3 1.655 2 3.517 3 6 3s4.345-1 6-3M3 19c2.483 0 4.345-1 6-3 1.655 2 3.517 3 6 3s4.345-1 6-3M12 3v6m-3-3h6" />
+      <svg
+        className="h-11 w-11 text-[#D6AC70] md:h-12 md:w-12"
+        viewBox="0 0 48 48"
+        fill="none"
+        stroke="currentColor"
+        strokeWidth={1.6}
+        aria-hidden="true"
+      >
+        <circle cx="36" cy="18" r="8" />
+        <line x1="36" y1="26" x2="36" y2="38" />
+        <path d="M8 26h18M8 31h18M11 22v16M23 22v16" />
+        <line x1="4" y1="38" x2="44" y2="38" />
       </svg>
     ),
   },
@@ -90,120 +103,275 @@ const rooftopAmenities = [
   {
     name: "Jogging / Walking Track",
     icon: (
-      <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6" />
+      <svg
+        className="h-11 w-11 text-[#D6AC70] md:h-12 md:w-12"
+        viewBox="0 0 48 48"
+        fill="none"
+        stroke="currentColor"
+        strokeWidth={1.6}
+        aria-hidden="true"
+      >
+        <circle cx="20" cy="12" r="4" />
+        <path d="M16 22l4-4 4 4-2 7 6 5" />
+        <path d="M18 29l-4 9" />
+        <path d="M12 24l4-3" />
+        <path d="M30 18c3-3 8-3 10 2 2 4 1 8-2 10" />
+        <line x1="36" y1="30" x2="36" y2="40" />
+        <path d="M4 42c12-3 24-3 40 0" />
       </svg>
     ),
   },
   {
     name: "Seating & Relaxation Areas",
     icon: (
-      <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z" />
+      <svg
+        className="h-11 w-11 text-[#D6AC70] md:h-12 md:w-12"
+        viewBox="0 0 48 48"
+        fill="none"
+        stroke="currentColor"
+        strokeWidth={1.6}
+        aria-hidden="true"
+      >
+        <circle cx="26" cy="12" r="3.5" />
+        <path d="M18 20c4-2 8 0 10 4l-4 6 8 8" />
+        <path d="M14 26l6-4" />
+        <path d="M10 26l8 12h14" />
+        <line x1="16" y1="38" x2="12" y2="42" />
+        <line x1="30" y1="38" x2="34" y2="42" />
       </svg>
     ),
   },
   {
     name: "Open Sky Recreation Zones",
     icon: (
-      <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+      <svg
+        className="h-11 w-11 text-[#D6AC70] md:h-12 md:w-12"
+        viewBox="0 0 48 48"
+        fill="none"
+        stroke="currentColor"
+        strokeWidth={1.6}
+        aria-hidden="true"
+      >
+        <path d="M8 20L24 8l16 12" />
+        <line x1="12" y1="20" x2="12" y2="40" />
+        <line x1="36" y1="20" x2="36" y2="40" />
+        <line x1="8" y1="28" x2="40" y2="28" />
+        <circle cx="24" cy="22" r="3" />
+        <line x1="4" y1="40" x2="44" y2="40" />
       </svg>
     ),
   },
 ];
 
-const orderedPodiumAmenities = [
-  podiumAmenities[2],
-  podiumAmenities[0],
-  podiumAmenities[1],
-  podiumAmenities[3],
-  podiumAmenities[4],
+const clubAmenities = [
+  {
+    name: "Gymnasium",
+    icon: (
+      <svg
+        className="h-11 w-11 text-[#D6AC70] md:h-12 md:w-12"
+        viewBox="0 0 48 48"
+        fill="none"
+        stroke="currentColor"
+        strokeWidth={1.6}
+        aria-hidden="true"
+      >
+        <circle cx="28" cy="12" r="3.5" />
+        <path d="M22 24l5-4 4 3-2 7 5 6" />
+        <path d="M24 29l-5 8" />
+        <path d="M38 16v22" />
+        <path d="M34 16h6" />
+        <path d="M10 38l28-4" />
+        <line x1="8" y1="40" x2="42" y2="40" />
+      </svg>
+    ),
+  },
+  {
+    name: "Indoor Games",
+    icon: (
+      <svg
+        className="h-11 w-11 text-[#D6AC70] md:h-12 md:w-12"
+        viewBox="0 0 48 48"
+        fill="none"
+        stroke="currentColor"
+        strokeWidth={1.6}
+        aria-hidden="true"
+      >
+        <circle cx="14" cy="14" r="3.5" />
+        <circle cx="34" cy="14" r="3.5" />
+        <path d="M10 30v-6a4 4 0 014-4h2" />
+        <path d="M38 30v-6a4 4 0 00-4-4h-2" />
+        <path d="M18 26h12v12H18z" />
+        <line x1="10" y1="36" x2="10" y2="40" />
+        <line x1="38" y1="36" x2="38" y2="40" />
+        <line x1="24" y1="26" x2="24" y2="38" />
+      </svg>
+    ),
+  },
+  {
+    name: "Community Hall",
+    icon: (
+      <svg
+        className="h-11 w-11 text-[#D6AC70] md:h-12 md:w-12"
+        viewBox="0 0 48 48"
+        fill="none"
+        stroke="currentColor"
+        strokeWidth={1.6}
+        aria-hidden="true"
+      >
+        <path d="M8 12h32v4H8z" />
+        <path d="M8 16v24M40 16v24" />
+        <path d="M8 16c6 8 8 16 8 24M40 16c-6 8-8 16-8 24" />
+        <line x1="16" y1="24" x2="32" y2="24" />
+        <line x1="6" y1="40" x2="42" y2="40" />
+      </svg>
+    ),
+  },
+  {
+    name: "Kids' Play Zone",
+    icon: (
+      <svg
+        className="h-11 w-11 text-[#D6AC70] md:h-12 md:w-12"
+        viewBox="0 0 48 48"
+        fill="none"
+        stroke="currentColor"
+        strokeWidth={1.6}
+        aria-hidden="true"
+      >
+        <circle cx="16" cy="14" r="3.5" />
+        <circle cx="34" cy="14" r="3.5" />
+        <path d="M12 28v-6a4 4 0 014-4h2" />
+        <path d="M38 28v-6a4 4 0 00-4-4h-2" />
+        <rect x="20" y="30" width="8" height="8" />
+        <rect x="28" y="32" width="6" height="6" />
+        <circle cx="16" cy="38" r="2" />
+        <circle cx="22" cy="38" r="2" />
+        <line x1="8" y1="40" x2="40" y2="40" />
+      </svg>
+    ),
+  },
+  {
+    name: "Swimming Pool",
+    icon: (
+      <svg
+        className="h-11 w-11 text-[#D6AC70] md:h-12 md:w-12"
+        viewBox="0 0 48 48"
+        fill="none"
+        stroke="currentColor"
+        strokeWidth={1.6}
+        aria-hidden="true"
+      >
+        <circle cx="36" cy="14" r="3.5" />
+        <path d="M26 22l6-4 4 2" />
+        <path d="M22 28l6-4" />
+        <path d="M6 30c4-2 8-2 12 0s8 2 12 0 8-2 12 0" />
+        <path d="M6 36c4-2 8-2 12 0s8 2 12 0 8-2 12 0" />
+      </svg>
+    ),
+  },
 ];
 
 export default function AmenitiesSection() {
   return (
-    <section id="amenities" className="relative isolate overflow-hidden bg-[#DF6E5A] py-16 text-white md:py-24">
-      <Image
-        src="/images/exterior/amenities-rings.webp"
-        alt=""
-        width={2034}
-        height={773}
-        aria-hidden="true"
-        className="pointer-events-none absolute -right-20 -top-2 -z-10 hidden h-auto w-[520px] opacity-45 lg:block"
-      />
+    <section
+      id="amenities"
+      className="relative scroll-mt-20 overflow-hidden bg-[#f7f4f1] py-20 text-[#1a1a1a] sm:py-24 md:py-28"
+    >
+      <div className="pointer-events-none absolute left-1/2 top-0 h-72 w-72 -translate-x-1/2 rounded-full bg-coral/10 blur-[110px]" />
 
-      <div className="mx-auto max-w-[1680px] px-6 md:px-[9vw]">
-        <div className="mb-16 grid gap-8 lg:grid-cols-[0.9fr_1.1fr] lg:gap-20">
-          <div>
-            <div className="mb-4 flex items-center gap-3">
-              <div className="h-px w-14 bg-white/80" />
-              <h2 className="text-xl font-semibold tracking-[0.06em] md:text-[26px]">
-                AMENITIES
-              </h2>
-            </div>
-            <h3 className="text-2xl font-normal leading-[1.35] md:text-[30px]">
-              Amenities planned for leisure.
-              <br />
-              Opened to the outdoors.
-            </h3>
-          </div>
-
-          <p className="max-w-[650px] self-end text-base leading-[1.65] text-white/95 md:text-lg">
-            From the courtyard to the podium greens up to rooftop skies,
-            <br className="hidden xl:block" /> every space at Sumeet Urban Nest is designed to extend your
-            <br className="hidden xl:block" /> day beyond the indoors.
+      <div className="relative mx-auto w-full max-w-[1760px] px-5 sm:px-8 lg:px-12 xl:px-14 2xl:px-16">
+        {/* Section Header */}
+        <div className="mx-auto mb-12 max-w-[760px] text-center md:mb-16">
+          <h2 className="mb-6 text-xl font-bold tracking-[0.34em] text-coral md:text-[26px] lg:text-[30px]">
+            A M E N I T I E S
+          </h2>
+          <p className="mx-auto max-w-[680px] text-sm leading-relaxed text-[#6d625c] sm:text-base md:text-[17px]">
+            From the courtyard to the podium greens up to rooftop skies, every
+            space at Sumeet Urban Nest is designed to extend your day beyond the
+            indoors.
           </p>
         </div>
 
-        <div className="space-y-7">
-          <div className="grid min-h-[200px] items-center gap-8 rounded-[28px] bg-[#C8503E] px-7 py-8 md:px-10 lg:grid-cols-[300px_1fr]">
-            <h4 className="text-2xl font-medium tracking-wide md:text-[30px]">
-              Podium + Ground
-            </h4>
-            <div className="grid grid-cols-2 gap-6 sm:grid-cols-3 lg:grid-cols-5">
-              {orderedPodiumAmenities.map((amenity) => (
-                <div key={amenity.name} className="flex flex-col items-center gap-3 text-center [&_svg]:h-12 [&_svg]:w-12">
-                  <div className="text-white">{amenity.icon}</div>
-                  <p className="max-w-[150px] text-sm font-medium leading-tight text-white md:text-[15px]">
+        <div className="grid gap-5 lg:grid-cols-3 lg:gap-6">
+          {/* 1. Podium + Ground Card */}
+          <article className="group overflow-hidden rounded-[26px] border border-[#e8ded7] bg-white shadow-[0_12px_35px_rgba(83,55,39,0.08)] transition duration-300 hover:-translate-y-1 hover:shadow-[0_22px_50px_rgba(83,55,39,0.14)]">
+            <div className="relative aspect-[16/9] overflow-hidden">
+              <Image src="/images/exterior/podium-kids-play.webp" alt="Podium and ground amenities" fill className="object-cover transition-transform duration-700 group-hover:scale-105" sizes="(max-width: 1024px) 100vw, 33vw" />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/75 via-black/5 to-transparent" />
+              <div className="absolute inset-x-0 bottom-0 flex items-end justify-between p-5 text-white">
+                <div><p className="mb-1 text-[10px] font-bold uppercase tracking-[0.22em] text-[#ffc79b]">Outdoor living</p><h4 className="text-xl font-semibold sm:text-2xl">Podium + Ground</h4></div>
+                <span className="rounded-full border border-white/30 bg-black/25 px-3 py-1 text-xs font-bold backdrop-blur-md">05 spaces</span>
+              </div>
+            </div>
+            <div className="grid grid-cols-1 gap-1 p-4 sm:grid-cols-2 sm:p-5 lg:grid-cols-1">
+              {podiumAmenities.map((amenity) => (
+                <div
+                  key={amenity.name}
+                  className="flex items-center gap-4 rounded-2xl p-3 transition-colors hover:bg-[#fff5ee]"
+                >
+                  <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-[#f8f1e8] [&>svg]:h-8 [&>svg]:w-8">
+                    {amenity.icon}
+                  </div>
+                  <p className="text-sm font-medium leading-snug text-[#3c3632]">
                     {amenity.name}
                   </p>
                 </div>
               ))}
             </div>
-          </div>
+          </article>
 
-          <div className="grid min-h-[200px] items-center gap-8 rounded-[28px] bg-[#DD6453] px-7 py-8 md:px-10 lg:grid-cols-[1fr_250px]">
-            <div className="grid grid-cols-1 gap-8 sm:grid-cols-3">
+          {/* 2. Rooftop Card */}
+          <article className="group overflow-hidden rounded-[26px] border border-[#e8ded7] bg-white shadow-[0_12px_35px_rgba(83,55,39,0.08)] transition duration-300 hover:-translate-y-1 hover:shadow-[0_22px_50px_rgba(83,55,39,0.14)]">
+            <div className="relative aspect-[16/9] overflow-hidden">
+              <Image src="/images/exterior/terrace-sitting.webp" alt="Rooftop amenities" fill className="object-cover transition-transform duration-700 group-hover:scale-105" sizes="(max-width: 1024px) 100vw, 33vw" />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/75 via-black/5 to-transparent" />
+              <div className="absolute inset-x-0 bottom-0 flex items-end justify-between p-5 text-white">
+                <div><p className="mb-1 text-[10px] font-bold uppercase tracking-[0.22em] text-[#ffc79b]">Under open skies</p><h4 className="text-xl font-semibold sm:text-2xl">Rooftop</h4></div>
+                <span className="rounded-full border border-white/30 bg-black/25 px-3 py-1 text-xs font-bold backdrop-blur-md">03 spaces</span>
+              </div>
+            </div>
+            <div className="grid grid-cols-1 gap-1 p-4 sm:grid-cols-2 sm:p-5 lg:grid-cols-1">
               {rooftopAmenities.map((amenity) => (
-                <div key={amenity.name} className="flex flex-col items-center gap-3 text-center [&_svg]:h-12 [&_svg]:w-12">
-                  <div className="text-white">{amenity.icon}</div>
-                  <p className="max-w-[170px] text-sm font-medium leading-tight text-white md:text-[15px]">
+                <div
+                  key={amenity.name}
+                  className="flex items-center gap-4 rounded-2xl p-3 transition-colors hover:bg-[#fff5ee]"
+                >
+                  <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-[#f8f1e8] [&>svg]:h-8 [&>svg]:w-8">
+                    {amenity.icon}
+                  </div>
+                  <p className="text-sm font-medium leading-snug text-[#3c3632]">
                     {amenity.name}
                   </p>
                 </div>
               ))}
             </div>
-            <h4 className="text-center text-2xl font-medium tracking-wide md:text-[30px] lg:order-2">
-              Rooftop
-            </h4>
-          </div>
+          </article>
 
-          <div className="grid min-h-[200px] items-center gap-8 rounded-[28px] bg-[#C8503E] px-7 py-8 md:px-10 lg:grid-cols-[180px_1fr]">
-            <h4 className="text-2xl font-medium tracking-wide md:text-[30px]">
-              Club
-            </h4>
-            <div className="grid grid-cols-2 gap-6 sm:grid-cols-3 lg:grid-cols-5">
+          {/* 3. Club Card */}
+          <article className="group overflow-hidden rounded-[26px] border border-[#e8ded7] bg-white shadow-[0_12px_35px_rgba(83,55,39,0.08)] transition duration-300 hover:-translate-y-1 hover:shadow-[0_22px_50px_rgba(83,55,39,0.14)]">
+            <div className="relative aspect-[16/9] overflow-hidden">
+              <Image src="/images/interior/community-hall.webp" alt="Club amenities" fill className="object-cover transition-transform duration-700 group-hover:scale-105" sizes="(max-width: 1024px) 100vw, 33vw" />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/75 via-black/5 to-transparent" />
+              <div className="absolute inset-x-0 bottom-0 flex items-end justify-between p-5 text-white">
+                <div><p className="mb-1 text-[10px] font-bold uppercase tracking-[0.22em] text-[#ffc79b]">Wellness + community</p><h4 className="text-xl font-semibold sm:text-2xl">Club</h4></div>
+                <span className="rounded-full border border-white/30 bg-black/25 px-3 py-1 text-xs font-bold backdrop-blur-md">05 spaces</span>
+              </div>
+            </div>
+            <div className="grid grid-cols-1 gap-1 p-4 sm:grid-cols-2 sm:p-5 lg:grid-cols-1">
               {clubAmenities.map((amenity) => (
-                <div key={amenity.name} className="flex flex-col items-center gap-3 text-center [&_svg]:h-12 [&_svg]:w-12">
-                  <div className="text-white">{amenity.icon}</div>
-                  <p className="max-w-[150px] text-sm font-medium leading-tight text-white md:text-[15px]">
+                <div
+                  key={amenity.name}
+                  className="flex items-center gap-4 rounded-2xl p-3 transition-colors hover:bg-[#fff5ee]"
+                >
+                  <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-[#f8f1e8] [&>svg]:h-8 [&>svg]:w-8">
+                    {amenity.icon}
+                  </div>
+                  <p className="text-sm font-medium leading-snug text-[#3c3632]">
                     {amenity.name}
                   </p>
                 </div>
               ))}
             </div>
-          </div>
+          </article>
         </div>
       </div>
     </section>

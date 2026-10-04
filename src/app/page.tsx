@@ -4,8 +4,8 @@ import OverviewSection from "@/components/OverviewSection";
 import WalkthroughSection from "@/components/WalkthroughSection";
 import AmenitiesSection from "@/components/AmenitiesSection";
 import GallerySection from "@/components/GallerySection";
-import PlanSection from "@/components/PlanSection";
 import LocationSection from "@/components/LocationSection";
+import PlanSection from "@/components/PlanSection";
 import LayoutSection from "@/components/LayoutSection";
 import ContactSection from "@/components/ContactSection";
 import Footer from "@/components/Footer";
@@ -21,8 +21,8 @@ export default function Home() {
         <WalkthroughSection />
         <AmenitiesSection />
         <GallerySection />
-        <PlanSection />
         <LocationSection />
+        <PlanSection />
         <LayoutSection />
         <ContactSection />
         <Footer />

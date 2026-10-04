@@ -1,5 +1,41 @@
 @import "tailwindcss";
 
+@keyframes luminaReveal {
+  from { opacity: 0; transform: translateY(24px); filter: blur(8px); }
+  to { opacity: 1; transform: translateY(0); filter: blur(0); }
+}
+
+@keyframes luminaProgress {
+  from { width: 0; }
+  to { width: 100%; }
+}
+
+@keyframes specificationsMarquee {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+
+.specifications-track {
+  animation: specificationsMarquee 28s linear infinite;
+}
+
+.specifications-track:hover {
+  animation-play-state: paused;
+}
+
+.masterplan-scrollbar {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(232, 115, 74, 0.6) transparent;
+}
+
+.masterplan-scrollbar::-webkit-scrollbar {
+  width: 5px;
+}
+
+.masterplan-scrollbar::-webkit-scrollbar-thumb {
+  background: rgba(232, 115, 74, 0.6);
+}
+
 @theme {
   --color-coral: #E8734A;
   --color-coral-dark: #D4613A;

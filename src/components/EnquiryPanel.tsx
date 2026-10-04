@@ -207,6 +207,21 @@ export function EnquiryProvider({ children }: { children: ReactNode }) {
                     </select>
                   </div>
 
+                  <div>
+                    <label htmlFor="sticky-location" className="sr-only">
+                      Location / Pincode
+                    </label>
+                    <input
+                      required
+                      type="text"
+                      id="sticky-location"
+                      name="locationPincode"
+                      autoComplete="postal-code"
+                      placeholder="Location / Pincode"
+                      className={fieldClassName}
+                    />
+                  </div>
+
                   <button
                     type="submit"
                     className="group flex min-h-13 w-full items-center justify-center gap-3 rounded-xl bg-coral px-6 text-sm font-bold tracking-[0.08em] text-white shadow-[0_12px_30px_rgba(232,115,74,0.25)] transition hover:-translate-y-0.5 hover:bg-coral-dark hover:shadow-[0_16px_34px_rgba(232,115,74,0.32)] sm:min-h-14 sm:text-[15px]"
@@ -231,7 +246,7 @@ export function EnquiryProvider({ children }: { children: ReactNode }) {
                 </a>
                 <span className="h-4 w-px bg-[#ddd1ca]" />
                 <a
-                  href="mailto:sales@sumeetinfraventurs.com"
+                  href="mailto:sales@sumeetinfraventures.com"
                   className="transition hover:text-coral"
                 >
                   Email us

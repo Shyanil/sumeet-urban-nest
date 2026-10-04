@@ -2,7 +2,7 @@ import Image from "next/image";
 
 export default function WalkthroughSection() {
   return (
-    <section className="bg-[#FFF0DE] py-16 md:py-20 lg:py-24">
+    <section id="walkthrough" className="scroll-mt-20 bg-[#FFF0DE] py-16 md:py-20 lg:py-24">
       <div className="mx-auto w-[calc(100%-3rem)] max-w-[1566px] md:w-[82%]">
         {/* Section Title */}
         <div className="mb-12 flex justify-center md:mb-14">
