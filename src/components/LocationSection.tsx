@@ -11,17 +11,6 @@ const distances = [
   { place: "Swami Vivekananda Airport", distance: "13.7 km" },
 ];
 
-const specificationLabels = [
-  "Flooring",
-  "Doors",
-  "Windows",
-  "Toilet",
-  "Plumbing",
-  "Kitchen",
-  "Wall Finish",
-  "Electrical",
-];
-
 export default function LocationSection() {
   return (
     <section id="location" className="scroll-mt-20 bg-[#fff8f0] py-20 sm:py-24 md:py-28">
@@ -70,30 +59,6 @@ export default function LocationSection() {
         </div>
       </div>
 
-      <div id="specifications" className="mt-16 w-full scroll-mt-20 sm:mt-20">
-        <h2 className="mb-8 text-center text-xl font-bold tracking-[0.34em] text-coral md:text-[26px] lg:text-[30px]">
-          SPECIFICATIONS
-        </h2>
-
-        <div className="overflow-hidden border-y border-[#cfc4bc] bg-transparent">
-          <div className="specifications-track flex w-max items-stretch">
-            {[0, 1].map((copy) => (
-              <div key={copy} className="flex shrink-0 items-stretch">
-                {specificationLabels.map((label, index) => (
-                  <div key={`${label}-${copy}`} className="flex min-w-[220px] flex-col justify-center border-r border-[#d9cec6] px-7 py-6 sm:min-w-[270px] sm:px-9 sm:py-8 lg:min-w-[310px]">
-                    <span className="mb-2 text-[10px] font-bold tracking-[0.2em] text-coral sm:text-xs">
-                      {String(index + 1).padStart(2, "0")}
-                    </span>
-                    <span className="text-xl font-medium tracking-[-0.02em] text-[#302a27] sm:text-2xl">
-                      {label}
-                    </span>
-                  </div>
-                ))}
-              </div>
-            ))}
-          </div>
-        </div>
-      </div>
     </section>
   );
 }

@@ -32,8 +32,10 @@ const amenities = [
 function MasterPlanExperience({ fullscreen = false, onClose }: { fullscreen?: boolean; onClose?: () => void }) {
   const [activeAmenity, setActiveAmenity] = useState<number | null>(null);
   const [legendOpen, setLegendOpen] = useState(false);
+  const [legendPage, setLegendPage] = useState(0);
   const mapRef = useRef<HTMLDivElement>(null);
   const active = amenities.find((item) => item.id === activeAmenity);
+  const legendPages = [amenities.slice(0, 10), amenities.slice(10, 20), amenities.slice(20)];
 
   const selectFromLegend = (id: number) => {
     setActiveAmenity(id);
@@ -44,7 +46,7 @@ function MasterPlanExperience({ fullscreen = false, onClose }: { fullscreen?: bo
   };
 
   return (
-    <div className={`relative overflow-hidden ${fullscreen ? "flex h-screen items-center bg-[#2B2623]" : "bg-[#F7F5F0] lg:pb-[520px] xl:pb-[390px] 2xl:pb-[330px]"}`}>
+    <div className={`relative overflow-hidden ${fullscreen ? "flex h-screen items-center bg-[#2B2623]" : "bg-[#F7F5F0]"}`}>
       <div ref={mapRef} className="relative w-full">
         <Image src="/images/exterior/top-view.webp" alt="Sumeet Urban Nest aerial master plan" width={1920} height={1080} priority className="block h-auto w-full" sizes="100vw" />
         <div className="absolute left-3 top-3 bg-[#2B2623]/80 px-3 py-2 text-[10px] font-semibold uppercase tracking-[0.18em] text-white backdrop-blur-sm sm:left-5 sm:top-5 sm:text-xs">Aerial master plan</div>
@@ -75,17 +77,35 @@ function MasterPlanExperience({ fullscreen = false, onClose }: { fullscreen?: bo
           </div>
         )}
 
-        <aside className={`z-30 hidden overflow-y-auto border border-[#2B2623]/15 bg-[#F7F5F0]/[0.98] shadow-[0_18px_45px_rgba(43,38,35,0.16)] lg:block masterplan-scrollbar ${fullscreen ? "absolute bottom-[4%] right-[2%] top-[4%] w-[25%] max-w-[430px] rounded-[4px] backdrop-blur-sm" : "absolute left-0 top-full max-h-[70vh] w-full"}`}>
-          <div className="sticky top-0 z-10 border-b border-[#2B2623]/15 bg-[#F7F5F0]/95 px-5 py-4 xl:px-6">
-            <p className="text-[11px] font-bold uppercase tracking-[0.24em] text-coral">Legend</p>
+        <aside className="absolute bottom-[3%] right-[2%] z-30 hidden w-[72%] max-w-[1100px] overflow-hidden rounded-md border border-white/30 bg-[#F7F5F0]/90 shadow-[0_18px_45px_rgba(43,38,35,0.24)] backdrop-blur-md lg:block">
+          <div className="flex items-center justify-between gap-5 border-b border-[#2B2623]/15 px-5 py-2.5 xl:px-6">
+            <div className="flex items-center gap-4">
+              <p className="text-[11px] font-bold uppercase tracking-[0.24em] text-coral">Legend</p>
+              <span className="h-4 w-px bg-[#2B2623]/15" aria-hidden="true" />
+              <p className="text-[9px] font-semibold uppercase tracking-[0.16em] text-[#2B2623]/45">Select a point</p>
+            </div>
+            <div className="grid w-[240px] grid-cols-3 gap-1" role="tablist" aria-label="Legend pages">
+              {["01–10", "11–20", "21–23"].map((label, index) => (
+                <button
+                  key={label}
+                  type="button"
+                  role="tab"
+                  aria-selected={legendPage === index}
+                  onClick={() => setLegendPage(index)}
+                  className={`px-2 py-1.5 text-[9px] font-bold tracking-[0.12em] transition ${legendPage === index ? "bg-[#2B2623] text-white" : "bg-white/60 text-[#2B2623]/55 hover:text-coral"}`}
+                >
+                  {label}
+                </button>
+              ))}
+            </div>
           </div>
-          <div className={fullscreen ? "" : "grid grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4"}>
-            {amenities.map((item) => {
+          <div className="grid grid-cols-5">
+            {legendPages[legendPage].map((item) => {
               const isActive = activeAmenity === item.id;
               return (
-                <button key={item.id} type="button" onMouseEnter={() => setActiveAmenity(item.id)} onMouseLeave={() => setActiveAmenity(null)} onFocus={() => setActiveAmenity(item.id)} onBlur={() => setActiveAmenity(null)} onClick={() => selectFromLegend(item.id)} className={`flex w-full items-center gap-4 border-b border-r border-[#2B2623]/10 px-5 py-2.5 text-left transition xl:px-6 xl:py-3 ${isActive ? "bg-coral/15" : "hover:bg-white/80"}`}>
-                  <span className="w-6 shrink-0 text-xs font-semibold text-coral">{String(item.id).padStart(2, "0")}</span>
-                  <span className={`text-xs leading-snug xl:text-[13px] ${isActive ? "font-semibold text-[#2B2623]" : "font-medium text-[#2B2623]/80"}`}>{item.name}</span>
+                <button key={item.id} type="button" onMouseEnter={() => setActiveAmenity(item.id)} onMouseLeave={() => setActiveAmenity(null)} onFocus={() => setActiveAmenity(item.id)} onBlur={() => setActiveAmenity(null)} onClick={() => selectFromLegend(item.id)} className={`flex min-h-[52px] w-full items-center gap-2 border-b border-r border-[#2B2623]/10 px-3 py-2 text-left transition xl:min-h-[58px] xl:px-4 ${isActive ? "bg-coral/15" : "hover:bg-white/80"}`}>
+                  <span className="w-5 shrink-0 text-[10px] font-semibold text-coral xl:text-xs">{String(item.id).padStart(2, "0")}</span>
+                  <span className={`text-[9px] leading-snug xl:text-[11px] ${isActive ? "font-semibold text-[#2B2623]" : "font-medium text-[#2B2623]/80"}`}>{item.name}</span>
                 </button>
               );
             })}
@@ -103,7 +123,10 @@ function MasterPlanExperience({ fullscreen = false, onClose }: { fullscreen?: bo
         <div className="fixed inset-0 z-[110] flex items-end bg-[#2B2623]/55 lg:hidden" onClick={() => setLegendOpen(false)}>
           <div className="max-h-[72vh] w-full overflow-y-auto rounded-t-[4px] bg-[#F7F5F0] shadow-2xl masterplan-scrollbar" onClick={(event) => event.stopPropagation()}>
             <div className="sticky top-0 z-10 flex items-center justify-between border-b border-[#2B2623]/15 bg-[#F7F5F0] px-5 py-4"><p className="text-xs font-bold uppercase tracking-[0.24em] text-coral">Legend</p><button type="button" onClick={() => setLegendOpen(false)} aria-label="Close legend" className="text-2xl text-[#2B2623]">×</button></div>
-            {amenities.map((item) => <button key={item.id} type="button" onClick={() => selectFromLegend(item.id)} className={`flex w-full items-center gap-4 border-b border-[#2B2623]/10 px-5 py-3.5 text-left ${activeAmenity === item.id ? "bg-coral/15" : ""}`}><span className="w-7 text-xs font-bold text-coral">{String(item.id).padStart(2, "0")}</span><span className="text-sm font-medium text-[#2B2623]">{item.name}</span></button>)}
+            <div className="grid grid-cols-3 gap-1 border-b border-[#2B2623]/15 p-3">
+              {["01–10", "11–20", "21–23"].map((label, index) => <button key={label} type="button" onClick={() => setLegendPage(index)} className={`px-2 py-2 text-[10px] font-bold tracking-wider ${legendPage === index ? "bg-[#2B2623] text-white" : "bg-white text-[#2B2623]/60"}`}>{label}</button>)}
+            </div>
+            {legendPages[legendPage].map((item) => <button key={item.id} type="button" onClick={() => selectFromLegend(item.id)} className={`flex w-full items-center gap-4 border-b border-[#2B2623]/10 px-5 py-3.5 text-left ${activeAmenity === item.id ? "bg-coral/15" : ""}`}><span className="w-7 text-xs font-bold text-coral">{String(item.id).padStart(2, "0")}</span><span className="text-sm font-medium text-[#2B2623]">{item.name}</span></button>)}
           </div>
         </div>
       )}

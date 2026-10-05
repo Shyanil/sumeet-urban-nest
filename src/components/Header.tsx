@@ -3,7 +3,6 @@
 import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useState } from "react";
-import { EnquiryButton } from "@/components/EnquiryPanel";
 
 const navLinks = [
   { name: "Walkthrough", href: "#walkthrough", id: "walkthrough" },
@@ -12,7 +11,6 @@ const navLinks = [
   { name: "Location", href: "#location", id: "location" },
   { name: "Specifications", href: "#specifications", id: "specifications" },
   { name: "Floor Plans", href: "#plan", id: "plan" },
-  { name: "Construction Update", href: "#contact", id: "contact" },
 ];
 
 export default function Header() {
@@ -35,16 +33,7 @@ export default function Header() {
         return;
       }
 
-      // 2. If scrolled near the bottom of the page, highlight the last section (Construction Update)
-      if (
-        window.innerHeight + window.scrollY >=
-        document.documentElement.scrollHeight - 80
-      ) {
-        setActiveSection("contact");
-        return;
-      }
-
-      // 3. Detect which section is currently active based on scroll position
+      // 2. Detect which section is currently active based on scroll position
       const scrollPosition = scrollY + Math.min(window.innerHeight * 0.32, 280);
       let current = "";
 
@@ -108,14 +97,12 @@ export default function Header() {
             className="shrink-0 transition-opacity hover:opacity-90"
           >
             <Image
-              src="/logo.webp"
+              src={isScrolled ? "/logo.webp" : "/sumeet-urban-nest-logo-white.webp"}
               alt="Sumeet Urban Nest"
               width={1921}
               height={819}
               priority
-              className={`h-auto w-[105px] transition-all min-[380px]:w-[115px] sm:w-[130px] md:w-[145px] lg:w-[155px] ${
-                !isScrolled ? "drop-shadow-[0_1px_3px_rgba(255,255,255,0.85)]" : ""
-              }`}
+              className={`h-auto w-[105px] transition-all min-[380px]:w-[115px] sm:w-[130px] md:w-[145px] lg:w-[155px] ${!isScrolled ? "drop-shadow-[0_2px_5px_rgba(0,0,0,0.35)]" : ""}`}
             />
           </Link>
 
@@ -208,28 +195,6 @@ export default function Header() {
         )}
       </header>
 
-      {/* Floating Vertical "ENQUIRE NOW" Tab on Right Edge (PDF Style) */}
-      <EnquiryButton
-        ariaLabel="Open enquiry form"
-        className="group fixed right-0 top-1/2 z-40 flex -translate-y-1/2 flex-col items-center gap-2.5 rounded-l-xl bg-coral px-2 py-4 shadow-[-4px_4px_18px_rgba(232,115,74,0.35)] transition-all duration-300 hover:bg-coral-dark hover:px-2.5 hover:shadow-[-6px_6px_24px_rgba(232,115,74,0.45)] sm:px-2.5 sm:py-5"
-      >
-        <span
-          className="select-none text-[11px] font-bold tracking-[0.2em] text-white [writing-mode:vertical-rl] sm:text-[12px] sm:tracking-[0.24em]"
-          style={{ textOrientation: "mixed" }}
-        >
-          ENQUIRE NOW
-        </span>
-        <svg
-          className="h-3.5 w-3.5 rotate-90 text-white transition-transform duration-200 group-hover:translate-y-1"
-          fill="none"
-          stroke="currentColor"
-          viewBox="0 0 24 24"
-          strokeWidth="2.5"
-          aria-hidden="true"
-        >
-          <path strokeLinecap="round" strokeLinejoin="round" d="M13 5l7 7-7 7M5 5l7 7-7 7" />
-        </svg>
-      </EnquiryButton>
     </>
   );
 }

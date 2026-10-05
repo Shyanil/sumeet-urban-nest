@@ -51,8 +51,20 @@ export default function Footer() {
         </div>
 
         <div className="mt-10 border-t border-[#e2ded6] pt-6 text-center md:mt-12">
-          <p className="text-xs text-[#aaa49c] md:text-sm">
-            &copy; 2026 Sumeet Infraventures. All renderings indicative.
+          <p className="text-xs font-medium tracking-wide text-[#777169] md:text-sm">
+            RERA No.: PCGRERA190326002064
+            <span className="mx-2 text-[#c7c0b7]" aria-hidden="true">|</span>
+            <a
+              href="https://rera.cgstate.gov.in"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="transition-colors hover:text-coral"
+            >
+              rera.cgstate.gov.in
+            </a>
+          </p>
+          <p className="mt-3 text-xs text-[#aaa49c] md:text-sm">
+            &copy; 2026 Sumeet Infraventures. All renderings are indicative and subject to change.
           </p>
         </div>
       </div>

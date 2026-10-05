@@ -1,44 +1,67 @@
 "use client";
 
 import Image from "next/image";
-import { useEffect, useState } from "react";
 
 export type LuminaSlide = { title: string; description: string; media: string };
 
 export function LuminaInteractiveList({ slides, onOpen }: { slides: LuminaSlide[]; onOpen?: (index: number) => void }) {
-  const [activeIndex, setActiveIndex] = useState(0);
-  const [progressKey, setProgressKey] = useState(0);
-
-  useEffect(() => {
-    const timer = window.setInterval(() => {
-      setActiveIndex((index) => (index + 1) % slides.length);
-      setProgressKey((key) => key + 1);
-    }, 5000);
-    return () => window.clearInterval(timer);
-  }, [slides.length]);
-
-  const selectSlide = (index: number) => { setActiveIndex(index); setProgressKey((key) => key + 1); };
-
   return (
-    <div className="relative min-h-[680px] overflow-hidden bg-[#171412] text-white sm:min-h-[760px] lg:min-h-[850px]">
-      <div className="absolute inset-0">
-        {slides.map((slide, index) => <Image key={slide.media} src={slide.media} alt={slide.title} fill priority={index === 0} sizes="100vw" className={`object-cover transition-all duration-[1800ms] ease-[cubic-bezier(.22,.61,.36,1)] ${index === activeIndex ? "scale-100 opacity-100" : "scale-110 opacity-0"}`} />)}
-        <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(8,7,6,.82)_0%,rgba(8,7,6,.18)_60%,rgba(8,7,6,.35)_100%)]" />
-        <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-transparent to-black/35" />
-      </div>
-      <div className="relative z-10 mx-auto flex min-h-[680px] w-full max-w-[1760px] flex-col px-5 py-16 sm:min-h-[760px] sm:px-8 sm:py-20 lg:min-h-[850px] lg:px-12 xl:px-14 2xl:px-16">
-        <div className="flex items-start justify-between">
-          <h2 className="text-xl font-bold tracking-[0.34em] text-coral md:text-[26px] lg:text-[30px]">G A L L E R Y</h2>
-          <p className="font-mono text-xs tracking-[0.25em] text-white/65">{String(activeIndex + 1).padStart(2, "0")} / {String(slides.length).padStart(2, "0")}</p>
+    <div className="overflow-hidden bg-[#f5f2ed] py-20 text-[#292522] sm:py-24 lg:py-32">
+      <div className="mx-auto w-full max-w-[1680px] px-5 sm:px-8 lg:px-12">
+        <div className="mb-10 flex flex-col gap-5 border-b border-[#292522]/15 pb-8 sm:mb-14 sm:flex-row sm:items-end sm:justify-between">
+          <div>
+            <p className="mb-3 text-[10px] font-semibold uppercase tracking-[0.28em] text-[#292522]/45">
+              Spaces crafted for living
+            </p>
+            <h2 className="text-xl font-bold tracking-[0.34em] text-coral md:text-[26px] lg:text-[30px]">
+              G A L L E R Y
+            </h2>
+          </div>
+          <p className="max-w-md text-sm font-light leading-relaxed text-[#292522]/65 sm:text-right sm:text-base">
+            A closer look at the considered spaces, refined details and everyday experiences of Sumeet Urban Nest.
+          </p>
         </div>
-        <button type="button" onClick={() => onOpen?.(activeIndex)} className="my-auto max-w-[920px] py-20 text-left" aria-label={`Open ${slides[activeIndex].title}`}>
-          <p className="mb-5 text-[11px] font-semibold uppercase tracking-[0.3em] text-white/60">Sumeet Urban Nest</p>
-          <h3 key={`title-${activeIndex}`} className="animate-[luminaReveal_.9s_ease-out] text-[clamp(2.8rem,8vw,7.5rem)] font-light leading-[0.88] tracking-[-0.045em]">{slides[activeIndex].title}</h3>
-          <p key={`desc-${activeIndex}`} className="mt-7 max-w-lg animate-[luminaReveal_1s_ease-out] text-sm leading-relaxed text-white/70 sm:text-base">{slides[activeIndex].description}</p>
-        </button>
-        <nav className="grid grid-cols-2 gap-x-4 gap-y-5 sm:grid-cols-3 lg:grid-cols-6" aria-label="Gallery images">
-          {slides.map((slide, index) => <button key={slide.media} type="button" onClick={() => selectSlide(index)} className="group text-left"><span className="mb-3 block h-px overflow-hidden bg-white/25">{index === activeIndex && <span key={progressKey} className="block h-full animate-[luminaProgress_5s_linear] bg-coral" />}</span><span className={`block text-[10px] font-semibold uppercase tracking-[0.18em] transition-colors sm:text-xs ${index === activeIndex ? "text-white" : "text-white/45 group-hover:text-white/80"}`}>{slide.title}</span></button>)}
-        </nav>
+
+        <div className="grid auto-rows-[220px] grid-cols-1 gap-3 sm:auto-rows-[260px] sm:grid-cols-2 lg:auto-rows-[280px] lg:grid-cols-4">
+          {slides.map((slide, index) => (
+            <button
+              key={slide.media}
+              type="button"
+              onClick={() => onOpen?.(index)}
+              aria-label={`Open ${slide.title}`}
+              className={`group relative overflow-hidden bg-[#1b1816] text-left ${
+                index === 0
+                  ? "sm:row-span-2 lg:col-span-2"
+                  : index === 1
+                    ? "lg:col-span-2"
+                    : ""
+              }`}
+            >
+              <Image
+                src={slide.media}
+                alt={slide.title}
+                fill
+                priority={index === 0}
+                sizes={index === 0 ? "(min-width: 1024px) 50vw, 100vw" : "(min-width: 1024px) 25vw, 50vw"}
+                className="object-cover transition duration-700 ease-out group-hover:scale-[1.035]"
+              />
+              <span className="absolute inset-0 bg-gradient-to-t from-black/75 via-black/5 to-transparent transition-colors group-hover:from-black/85" />
+              <span className="absolute inset-x-0 bottom-0 flex items-end justify-between gap-4 p-5 sm:p-6">
+                <span>
+                  <span className="mb-2 block text-[9px] font-semibold uppercase tracking-[0.24em] text-white/55">
+                    {String(index + 1).padStart(2, "0")}
+                  </span>
+                  <span className={`${index === 0 ? "text-2xl sm:text-3xl" : "text-lg"} block font-light tracking-wide text-white`}>
+                    {slide.title}
+                  </span>
+                </span>
+                <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full border border-white/45 text-lg text-white transition group-hover:border-coral group-hover:bg-coral">
+                  +
+                </span>
+              </span>
+            </button>
+          ))}
+        </div>
       </div>
     </div>
   );
