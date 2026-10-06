@@ -89,11 +89,24 @@ export default function SiteVisitBar() {
               <Field name="name" placeholder="Name" autoComplete="name" error={errors.name} className={`${inputClassName} w-full`} wrapperClassName="min-w-[120px] flex-1" />
               <Field name="phone" placeholder="Phone" type="tel" inputMode="tel" autoComplete="tel" error={errors.phone} className={`${inputClassName} w-full`} wrapperClassName="min-w-[120px] flex-1" />
               <Field name="email" placeholder="Email" type="email" autoComplete="email" error={errors.email} className={`${inputClassName} w-full`} wrapperClassName="min-w-[150px] flex-[1.2]" />
-              <label className="relative w-[100px] min-w-[100px] shrink-0">
+              <label className="relative w-[110px] min-w-[110px] shrink-0">
                 <span className="sr-only">BOHK preference</span>
-                <select name="bhk" defaultValue="" aria-invalid={Boolean(errors.bhk)} className={`${inputClassName} w-full appearance-none ${errors.bhk ? "border-red-500" : ""}`}>
-                  <option value="" disabled>BOHK</option><option value="2-bhk">2 BOHK</option><option value="3-bhk">3 BOHK</option><option value="both">2 &amp; 3 BOHK</option>
+                <select
+                  name="bhk"
+                  defaultValue=""
+                  aria-invalid={Boolean(errors.bhk)}
+                  className={`${inputClassName} w-full appearance-none pr-7 ${errors.bhk ? "border-red-500" : ""}`}
+                >
+                  <option value="" disabled>BOHK</option>
+                  <option value="2-bhk">2 BOHK</option>
+                  <option value="3-bhk">3 BOHK</option>
+                  <option value="both">2 &amp; 3 BOHK</option>
                 </select>
+                <span className="pointer-events-none absolute right-3 top-1/2 -translate-y-1/2 text-[#2B2623]/50">
+                  <svg className="h-3.5 w-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                  </svg>
+                </span>
                 {errors.bhk && <span className="mt-1 block pl-3 text-[9px] text-red-600 xl:absolute xl:left-3 xl:top-full xl:whitespace-nowrap xl:pl-0">{errors.bhk}</span>}
               </label>
               <Field name="pincode" placeholder="Pincode" inputMode="numeric" autoComplete="postal-code" error={errors.pincode} className={`${inputClassName} w-full`} wrapperClassName="w-[118px] min-w-[118px] shrink-0" />
@@ -117,7 +130,26 @@ export default function SiteVisitBar() {
                 <Field name="name" placeholder="Name" autoComplete="name" error={errors.name} className={`${inputClassName} w-full`} />
                 <Field name="phone" placeholder="Phone" type="tel" inputMode="tel" autoComplete="tel" error={errors.phone} className={`${inputClassName} w-full`} />
                 <Field name="email" placeholder="Email" type="email" autoComplete="email" error={errors.email} className={`${inputClassName} col-span-2 w-full`} />
-                <label><span className="sr-only">BOHK preference</span><select name="bhk" defaultValue="" aria-invalid={Boolean(errors.bhk)} className={`${inputClassName} w-full appearance-none ${errors.bhk ? "border-red-500" : ""}`}><option value="" disabled>BOHK</option><option value="2-bhk">2 BOHK</option><option value="3-bhk">3 BOHK</option><option value="both">2 &amp; 3 BOHK</option></select>{errors.bhk && <span className="mt-1 block pl-3 text-[9px] text-red-600">{errors.bhk}</span>}</label>
+                <label className="relative block">
+                  <span className="sr-only">BOHK preference</span>
+                  <select
+                    name="bhk"
+                    defaultValue=""
+                    aria-invalid={Boolean(errors.bhk)}
+                    className={`${inputClassName} w-full appearance-none pr-8 ${errors.bhk ? "border-red-500" : ""}`}
+                  >
+                    <option value="" disabled>BOHK</option>
+                    <option value="2-bhk">2 BOHK</option>
+                    <option value="3-bhk">3 BOHK</option>
+                    <option value="both">2 &amp; 3 BOHK</option>
+                  </select>
+                  <span className="pointer-events-none absolute right-3.5 top-1/2 -translate-y-1/2 text-[#2B2623]/50">
+                    <svg className="h-3.5 w-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                    </svg>
+                  </span>
+                  {errors.bhk && <span className="mt-1 block pl-3 text-[9px] text-red-600">{errors.bhk}</span>}
+                </label>
                 <Field name="pincode" placeholder="Pincode" inputMode="numeric" autoComplete="postal-code" error={errors.pincode} className={`${inputClassName} w-full`} />
                 <button type="submit" className="group col-span-2 flex h-12 items-center justify-between rounded-full bg-coral py-1.5 pl-6 pr-1.5 text-xs font-bold tracking-[0.16em] text-white shadow-[0_10px_26px_rgba(232,115,74,0.3)] transition active:scale-[0.99]">
                   <span className="flex-1 text-center">CONFIRM</span>
