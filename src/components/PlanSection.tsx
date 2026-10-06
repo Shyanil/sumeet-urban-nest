@@ -32,10 +32,10 @@ const amenities = [
 function MasterPlanExperience({ fullscreen = false, onClose }: { fullscreen?: boolean; onClose?: () => void }) {
   const [activeAmenity, setActiveAmenity] = useState<number | null>(null);
   const [legendOpen, setLegendOpen] = useState(false);
-  const [legendPage, setLegendPage] = useState(0);
   const mapRef = useRef<HTMLDivElement>(null);
   const active = amenities.find((item) => item.id === activeAmenity);
-  const legendPages = [amenities.slice(0, 10), amenities.slice(10, 20), amenities.slice(20)];
+  const group1 = amenities.slice(0, 12);
+  const group2 = amenities.slice(12);
 
   const selectFromLegend = (id: number) => {
     setActiveAmenity(id);
@@ -43,6 +43,40 @@ function MasterPlanExperience({ fullscreen = false, onClose }: { fullscreen?: bo
     if (!fullscreen) {
       window.setTimeout(() => mapRef.current?.scrollIntoView({ behavior: "smooth", block: "center" }), 80);
     }
+  };
+
+  const renderLegendItem = (item: { id: number; name: string }) => {
+    const isActive = activeAmenity === item.id;
+    return (
+      <button
+        key={item.id}
+        type="button"
+        onMouseEnter={() => setActiveAmenity(item.id)}
+        onMouseLeave={() => setActiveAmenity(null)}
+        onFocus={() => setActiveAmenity(item.id)}
+        onBlur={() => setActiveAmenity(null)}
+        onClick={() => selectFromLegend(item.id)}
+        className={`flex h-[38px] xl:h-[42px] w-full items-center gap-2 border-b border-[#2B2623]/8 px-2.5 xl:px-3 text-left transition ${
+          isActive ? "bg-coral/20" : "hover:bg-white/80"
+        }`}
+      >
+        <span
+          className={`flex h-4 w-4 xl:h-[18px] xl:w-[18px] shrink-0 items-center justify-center rounded-full text-[9px] font-bold transition ${
+            isActive ? "bg-coral text-white" : "bg-coral/10 text-coral"
+          }`}
+        >
+          {String(item.id).padStart(2, "0")}
+        </span>
+        <span
+          className={`truncate text-[10px] xl:text-[11px] leading-tight ${
+            isActive ? "font-bold text-[#2B2623]" : "font-medium text-[#2B2623]/80"
+          }`}
+          title={item.name}
+        >
+          {item.name}
+        </span>
+      </button>
+    );
   };
 
   return (
@@ -77,38 +111,69 @@ function MasterPlanExperience({ fullscreen = false, onClose }: { fullscreen?: bo
           </div>
         )}
 
-        <aside className="absolute bottom-[3%] right-[2%] z-30 hidden w-[72%] max-w-[1100px] overflow-hidden rounded-md border border-white/30 bg-[#F7F5F0]/90 shadow-[0_18px_45px_rgba(43,38,35,0.24)] backdrop-blur-md lg:block">
-          <div className="flex items-center justify-between gap-5 border-b border-[#2B2623]/15 px-5 py-2.5 xl:px-6">
-            <div className="flex items-center gap-4">
-              <p className="text-[11px] font-bold uppercase tracking-[0.24em] text-coral">Legend</p>
-              <span className="h-4 w-px bg-[#2B2623]/15" aria-hidden="true" />
-              <p className="text-[9px] font-semibold uppercase tracking-[0.16em] text-[#2B2623]/45">Select a point</p>
+        {/* Twin Square Legend Boxes (01–12 & 13–23) */}
+        <aside className="absolute bottom-[2.5%] right-[8%] xl:bottom-[3%] xl:right-[10%] 2xl:right-[12%] z-30 hidden lg:flex items-end gap-2.5 xl:gap-3.5">
+          {/* Box 1: Podium & Outdoors (01–12) */}
+          <div className="w-[275px] xl:w-[305px] 2xl:w-[320px] overflow-hidden rounded-xl border border-white/60 bg-[#F7F5F0]/95 shadow-[0_16px_40px_rgba(43,38,35,0.22)] backdrop-blur-md">
+            <div className="flex items-center justify-between border-b border-[#2B2623]/12 px-3 py-2 xl:px-3.5">
+              <div className="flex items-center gap-1.5">
+                <span className="h-1.5 w-1.5 rounded-full bg-coral animate-pulse" />
+                <p className="text-[10px] xl:text-[11px] font-bold uppercase tracking-[0.2em] text-[#2B2623]">
+                  Legend · 01–12
+                </p>
+              </div>
+              <span className="text-[9px] font-semibold uppercase tracking-wider text-coral">
+                Podium & Greens
+              </span>
             </div>
-            <div className="grid w-[240px] grid-cols-3 gap-1" role="tablist" aria-label="Legend pages">
-              {["01–10", "11–20", "21–23"].map((label, index) => (
-                <button
-                  key={label}
-                  type="button"
-                  role="tab"
-                  aria-selected={legendPage === index}
-                  onClick={() => setLegendPage(index)}
-                  className={`px-2 py-1.5 text-[9px] font-bold tracking-[0.12em] transition ${legendPage === index ? "bg-[#2B2623] text-white" : "bg-white/60 text-[#2B2623]/55 hover:text-coral"}`}
-                >
-                  {label}
-                </button>
-              ))}
+
+            <div className="grid grid-cols-2 divide-x divide-[#2B2623]/10">
+              <div className="flex flex-col">
+                {group1.slice(0, 6).map(renderLegendItem)}
+              </div>
+              <div className="flex flex-col">
+                {group1.slice(6, 12).map(renderLegendItem)}
+              </div>
             </div>
           </div>
-          <div className="grid grid-cols-5">
-            {legendPages[legendPage].map((item) => {
-              const isActive = activeAmenity === item.id;
-              return (
-                <button key={item.id} type="button" onMouseEnter={() => setActiveAmenity(item.id)} onMouseLeave={() => setActiveAmenity(null)} onFocus={() => setActiveAmenity(item.id)} onBlur={() => setActiveAmenity(null)} onClick={() => selectFromLegend(item.id)} className={`flex min-h-[52px] w-full items-center gap-2 border-b border-r border-[#2B2623]/10 px-3 py-2 text-left transition xl:min-h-[58px] xl:px-4 ${isActive ? "bg-coral/15" : "hover:bg-white/80"}`}>
-                  <span className="w-5 shrink-0 text-[10px] font-semibold text-coral xl:text-xs">{String(item.id).padStart(2, "0")}</span>
-                  <span className={`text-[9px] leading-snug xl:text-[11px] ${isActive ? "font-semibold text-[#2B2623]" : "font-medium text-[#2B2623]/80"}`}>{item.name}</span>
-                </button>
-              );
-            })}
+
+          {/* Box 2: Club & Wellness (13–23) */}
+          <div className="w-[275px] xl:w-[305px] 2xl:w-[320px] overflow-hidden rounded-xl border border-white/60 bg-[#F7F5F0]/95 shadow-[0_16px_40px_rgba(43,38,35,0.22)] backdrop-blur-md">
+            <div className="flex items-center justify-between border-b border-[#2B2623]/12 px-3 py-2 xl:px-3.5">
+              <div className="flex items-center gap-1.5">
+                <span className="h-1.5 w-1.5 rounded-full bg-coral animate-pulse" />
+                <p className="text-[10px] xl:text-[11px] font-bold uppercase tracking-[0.2em] text-[#2B2623]">
+                  Legend · 13–23
+                </p>
+              </div>
+              <span className="text-[9px] font-semibold uppercase tracking-wider text-coral">
+                Club & Wellness
+              </span>
+            </div>
+
+            <div className="grid grid-cols-2 divide-x divide-[#2B2623]/10">
+              <div className="flex flex-col">
+                {group2.slice(0, 6).map(renderLegendItem)}
+              </div>
+              <div className="flex flex-col">
+                {group2.slice(6).map(renderLegendItem)}
+                {/* 12th Slot in 6x2 grid: Clear selection or Status badge */}
+                {active ? (
+                  <button
+                    type="button"
+                    onClick={() => setActiveAmenity(null)}
+                    className="flex h-[38px] xl:h-[42px] w-full items-center justify-center gap-1.5 bg-coral/15 px-2 text-[10px] font-bold uppercase tracking-wider text-coral transition hover:bg-coral hover:text-white"
+                  >
+                    <span>Clear #{String(active.id).padStart(2, "0")}</span>
+                    <span className="text-xs">✕</span>
+                  </button>
+                ) : (
+                  <div className="flex h-[38px] xl:h-[42px] w-full items-center justify-center border-b border-transparent px-2 text-[9px] font-semibold uppercase tracking-wider text-[#2B2623]/40">
+                    All 23 Highlights
+                  </div>
+                )}
+              </div>
+            </div>
           </div>
         </aside>
 
@@ -121,12 +186,40 @@ function MasterPlanExperience({ fullscreen = false, onClose }: { fullscreen?: bo
 
       {legendOpen && (
         <div className="fixed inset-0 z-[110] flex items-end bg-[#2B2623]/55 lg:hidden" onClick={() => setLegendOpen(false)}>
-          <div className="max-h-[72vh] w-full overflow-y-auto rounded-t-[4px] bg-[#F7F5F0] shadow-2xl masterplan-scrollbar" onClick={(event) => event.stopPropagation()}>
-            <div className="sticky top-0 z-10 flex items-center justify-between border-b border-[#2B2623]/15 bg-[#F7F5F0] px-5 py-4"><p className="text-xs font-bold uppercase tracking-[0.24em] text-coral">Legend</p><button type="button" onClick={() => setLegendOpen(false)} aria-label="Close legend" className="text-2xl text-[#2B2623]">×</button></div>
-            <div className="grid grid-cols-3 gap-1 border-b border-[#2B2623]/15 p-3">
-              {["01–10", "11–20", "21–23"].map((label, index) => <button key={label} type="button" onClick={() => setLegendPage(index)} className={`px-2 py-2 text-[10px] font-bold tracking-wider ${legendPage === index ? "bg-[#2B2623] text-white" : "bg-white text-[#2B2623]/60"}`}>{label}</button>)}
+          <div className="max-h-[75vh] w-full overflow-y-auto rounded-t-xl bg-[#F7F5F0] pb-6 shadow-2xl masterplan-scrollbar" onClick={(event) => event.stopPropagation()}>
+            <div className="sticky top-0 z-10 flex items-center justify-between border-b border-[#2B2623]/15 bg-[#F7F5F0]/95 px-5 py-3.5 backdrop-blur-md">
+              <div className="flex items-center gap-2">
+                <span className="h-2 w-2 rounded-full bg-coral" />
+                <p className="text-xs font-bold uppercase tracking-[0.24em] text-[#2B2623]">Master Plan Legend</p>
+              </div>
+              <button type="button" onClick={() => setLegendOpen(false)} aria-label="Close legend" className="text-2xl leading-none text-[#2B2623]">×</button>
             </div>
-            {legendPages[legendPage].map((item) => <button key={item.id} type="button" onClick={() => selectFromLegend(item.id)} className={`flex w-full items-center gap-4 border-b border-[#2B2623]/10 px-5 py-3.5 text-left ${activeAmenity === item.id ? "bg-coral/15" : ""}`}><span className="w-7 text-xs font-bold text-coral">{String(item.id).padStart(2, "0")}</span><span className="text-sm font-medium text-[#2B2623]">{item.name}</span></button>)}
+
+            {/* Zone 1: 01-12 */}
+            <div className="px-5 pt-4 pb-2">
+              <p className="text-[10px] font-bold uppercase tracking-[0.2em] text-coral">01–12 · Podium & Greens</p>
+            </div>
+            <div className="grid grid-cols-1 divide-y divide-[#2B2623]/10 border-t border-b border-[#2B2623]/10 sm:grid-cols-2">
+              {group1.map((item) => (
+                <button key={item.id} type="button" onClick={() => selectFromLegend(item.id)} className={`flex w-full items-center gap-3 px-5 py-3 text-left transition ${activeAmenity === item.id ? "bg-coral/15" : "hover:bg-white/80"}`}>
+                  <span className="flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-coral/10 text-[10px] font-bold text-coral">{String(item.id).padStart(2, "0")}</span>
+                  <span className="text-xs font-medium text-[#2B2623]">{item.name}</span>
+                </button>
+              ))}
+            </div>
+
+            {/* Zone 2: 13-23 */}
+            <div className="px-5 pt-5 pb-2">
+              <p className="text-[10px] font-bold uppercase tracking-[0.2em] text-coral">13–23 · Club & Wellness</p>
+            </div>
+            <div className="grid grid-cols-1 divide-y divide-[#2B2623]/10 border-t border-b border-[#2B2623]/10 sm:grid-cols-2">
+              {group2.map((item) => (
+                <button key={item.id} type="button" onClick={() => selectFromLegend(item.id)} className={`flex w-full items-center gap-3 px-5 py-3 text-left transition ${activeAmenity === item.id ? "bg-coral/15" : "hover:bg-white/80"}`}>
+                  <span className="flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-coral/10 text-[10px] font-bold text-coral">{String(item.id).padStart(2, "0")}</span>
+                  <span className="text-xs font-medium text-[#2B2623]">{item.name}</span>
+                </button>
+              ))}
+            </div>
           </div>
         </div>
       )}
@@ -149,10 +242,29 @@ export default function PlanSection() {
 
   return (
     <section id="plan" className="scroll-mt-20 bg-white pt-14 pb-8 md:py-24">
-      <div className="mx-auto mb-10 w-full max-w-[1760px] px-5 sm:px-8 md:mb-14 lg:px-12 xl:px-14 2xl:px-16">
-        <div className="flex items-center justify-between gap-5">
-          <h2 className="text-xl font-bold tracking-[0.34em] text-coral md:text-[26px] lg:text-[30px]">MASTER PLAN</h2>
-          <button type="button" onClick={() => setFullscreen(true)} className="border border-[#2B2623]/25 px-4 py-2 text-[10px] font-bold uppercase tracking-[0.14em] text-[#2B2623] transition hover:border-coral hover:text-coral sm:text-xs">Fullscreen</button>
+      <div className="mx-auto mb-10 w-full max-w-[1720px] px-6 sm:px-10 md:px-14 md:mb-14 lg:px-20 xl:px-28 2xl:px-36">
+        <div className="flex flex-col gap-5 sm:flex-row sm:items-end sm:justify-between">
+          <div>
+            {/* Top Editorial Eyebrow */}
+            <div className="mb-3 flex items-center gap-3 sm:mb-4">
+              <span className="h-px w-8 bg-[#2c2b29]/25 sm:w-12" />
+              <span className="text-[10px] font-semibold uppercase tracking-[0.32em] text-[#2c2b29] sm:text-xs">
+                Architectural Layout · 07
+              </span>
+            </div>
+
+            <h2 className="text-3xl font-light tracking-[0.28em] text-coral sm:text-4xl md:text-5xl uppercase">
+              M A S T E R &nbsp; P L A N
+            </h2>
+          </div>
+
+          <button
+            type="button"
+            onClick={() => setFullscreen(true)}
+            className="self-start rounded-full border border-[#2B2623]/25 px-5 py-2.5 text-[10px] font-semibold uppercase tracking-[0.18em] text-[#2B2623] transition hover:border-coral hover:bg-coral hover:text-white sm:self-auto sm:text-xs"
+          >
+            Expand Fullscreen
+          </button>
         </div>
       </div>
       <MasterPlanExperience />

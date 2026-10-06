@@ -11,6 +11,8 @@ const navLinks = [
   { name: "Location", href: "#location", id: "location" },
   { name: "Specifications", href: "#specifications", id: "specifications" },
   { name: "Floor Plans", href: "#plan", id: "plan" },
+  { name: "Contact", href: "#contact", id: "contact" },
+  { name: "About Developer", href: "#developer", id: "developer" },
 ];
 
 export default function Header() {
@@ -89,8 +91,8 @@ export default function Header() {
             : "bg-transparent py-4 sm:py-6"
         }`}
       >
-        <div className="mx-auto flex max-w-[1720px] items-center justify-between px-4 sm:px-6 md:px-8 lg:px-10 xl:px-12">
-          {/* Logo shifted towards the left */}
+        <div className="mx-auto flex w-full max-w-[1720px] items-center justify-between px-6 sm:px-10 md:px-14 lg:px-20 xl:px-28 2xl:px-36">
+          {/* Logo aligned to the left content edge */}
           <Link
             href="/"
             aria-label="Sumeet Urban Nest home"
@@ -102,14 +104,14 @@ export default function Header() {
               width={1921}
               height={819}
               priority
-              className={`h-auto w-[105px] transition-all min-[380px]:w-[115px] sm:w-[130px] md:w-[145px] lg:w-[155px] ${!isScrolled ? "drop-shadow-[0_2px_5px_rgba(0,0,0,0.35)]" : ""}`}
+              className={`h-auto w-[105px] transition-all min-[380px]:w-[115px] sm:w-[122px] md:w-[125px] lg:w-[125px] xl:w-[130px] 2xl:w-[155px] ${!isScrolled ? "drop-shadow-[0_2px_5px_rgba(0,0,0,0.35)]" : ""}`}
             />
           </Link>
 
-          {/* Desktop Navigation Links from PDF with Dynamic Scroll Highlighting */}
+          {/* Desktop Navigation Links with responsive font, gap, and padding for seamless laptop fit */}
           <nav
             aria-label="Main Navigation"
-            className="hidden items-center gap-1.5 lg:flex xl:gap-3 2xl:gap-5"
+            className="hidden items-center lg:flex lg:gap-1 xl:gap-1.5 2xl:gap-4"
           >
             {navLinks.map((link) => {
               const isActive = activeSection === link.id;
@@ -119,22 +121,34 @@ export default function Header() {
                   key={link.name}
                   href={link.href}
                   onClick={(e) => handleNavClick(e, link.id)}
-                  className="rounded-md bg-[#D6AC70] px-4 py-1.5 text-[14px] font-medium text-[#1a1a1a] shadow-sm transition-all duration-200 xl:px-5 xl:py-2 xl:text-[15px]"
+                  className="whitespace-nowrap rounded-md bg-[#D6AC70] font-medium text-[#1a1a1a] shadow-sm transition-all duration-200 text-[12px] px-2 py-1 lg:text-[12.5px] lg:px-2.5 lg:py-1 xl:text-[13px] xl:px-3 xl:py-1.5 2xl:text-[14.5px] 2xl:px-4.5 2xl:py-2"
                 >
-                  {link.name}
+                  {link.id === "developer" ? (
+                    <>
+                      <span className="hidden 2xl:inline">About </span>Developer
+                    </>
+                  ) : (
+                    link.name
+                  )}
                 </a>
               ) : (
                 <a
                   key={link.name}
                   href={link.href}
                   onClick={(e) => handleNavClick(e, link.id)}
-                  className={`whitespace-nowrap px-2.5 py-1.5 text-[14px] font-medium tracking-wide transition-colors xl:px-3.5 xl:text-[15px] ${
+                  className={`whitespace-nowrap rounded-md font-medium tracking-normal transition-colors text-[12px] px-2 py-1 lg:text-[12.5px] lg:px-2 lg:py-1 xl:text-[13px] xl:px-2.5 xl:py-1.5 2xl:text-[14.5px] 2xl:px-3.5 2xl:py-2 ${
                     isScrolled
                       ? "text-[#1a1a1a] hover:text-[#D6AC70]"
                       : "text-white drop-shadow-[0_1px_2px_rgba(0,0,0,0.6)] hover:text-[#D6AC70]"
                   }`}
                 >
-                  {link.name}
+                  {link.id === "developer" ? (
+                    <>
+                      <span className="hidden 2xl:inline">About </span>Developer
+                    </>
+                  ) : (
+                    link.name
+                  )}
                 </a>
               );
             })}

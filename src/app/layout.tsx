@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Montserrat } from "next/font/google";
+import Preloader from "@/components/Preloader";
 import "./globals.css";
 
 const montserrat = Montserrat({
@@ -23,6 +24,14 @@ export const metadata: Metadata = {
     "Chhattisgarh",
     "Sumeet Infraventures",
   ],
+  icons: {
+    icon: [
+      { url: "/favicon.svg", type: "image/svg+xml" },
+      { url: "/favicon.png", type: "image/png" },
+    ],
+    shortcut: "/favicon.svg",
+    apple: "/favicon.png",
+  },
 };
 
 export default function RootLayout({
@@ -32,7 +41,10 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" className={montserrat.variable}>
-      <body className={`${montserrat.className} antialiased`}>{children}</body>
+      <body className={`${montserrat.className} antialiased`}>
+        <Preloader />
+        {children}
+      </body>
     </html>
   );
 }

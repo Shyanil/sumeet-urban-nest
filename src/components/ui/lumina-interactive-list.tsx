@@ -1,66 +1,118 @@
 "use client";
 
 import Image from "next/image";
+import { useState } from "react";
 
-export type LuminaSlide = { title: string; description: string; media: string };
+export type LuminaSlide = {
+  title: string;
+  description: string;
+  media: string;
+  category?: "interior" | "exterior";
+};
 
-export function LuminaInteractiveList({ slides, onOpen }: { slides: LuminaSlide[]; onOpen?: (index: number) => void }) {
+export function LuminaInteractiveList({
+  slides,
+  onOpen,
+}: {
+  slides: LuminaSlide[];
+  onOpen?: (index: number) => void;
+}) {
+  const [activeCategory, setActiveCategory] = useState<"all" | "interior" | "exterior">("all");
+
+  const filteredSlides =
+    activeCategory === "all"
+      ? slides
+      : slides.filter((s) => s.category === activeCategory);
+
+  const interiorCount = slides.filter((s) => s.category === "interior").length;
+  const exteriorCount = slides.filter((s) => s.category === "exterior").length;
+
   return (
-    <div className="overflow-hidden bg-[#f5f2ed] py-20 text-[#292522] sm:py-24 lg:py-32">
-      <div className="mx-auto w-full max-w-[1680px] px-5 sm:px-8 lg:px-12">
-        <div className="mb-10 flex flex-col gap-5 border-b border-[#292522]/15 pb-8 sm:mb-14 sm:flex-row sm:items-end sm:justify-between">
-          <div>
-            <p className="mb-3 text-[10px] font-semibold uppercase tracking-[0.28em] text-[#292522]/45">
-              Spaces crafted for living
-            </p>
-            <h2 className="text-xl font-bold tracking-[0.34em] text-coral md:text-[26px] lg:text-[30px]">
-              G A L L E R Y
-            </h2>
+    <div className="overflow-hidden bg-white py-20 text-[#292522] sm:py-24 lg:py-32">
+      <div className="mx-auto w-full max-w-[1720px] px-6 sm:px-10 md:px-14 lg:px-20 xl:px-28 2xl:px-36">
+        {/* Section Header */}
+        <div className="mx-auto mb-10 max-w-[800px] text-center sm:mb-12">
+          <div className="mb-3 flex items-center justify-center gap-3 sm:mb-4">
+            <span className="h-px w-8 bg-[#2c2b29]/25 sm:w-12" />
+            <span className="text-[10px] font-semibold uppercase tracking-[0.32em] text-[#2c2b29] sm:text-xs">
+              Visual Portfolio · 04
+            </span>
+            <span className="h-px w-8 bg-[#2c2b29]/25 sm:w-12" />
           </div>
-          <p className="max-w-md text-sm font-light leading-relaxed text-[#292522]/65 sm:text-right sm:text-base">
-            A closer look at the considered spaces, refined details and everyday experiences of Sumeet Urban Nest.
-          </p>
+
+          <h2 className="whitespace-nowrap text-3xl font-light tracking-[0.28em] text-coral sm:text-4xl md:text-5xl lg:text-6xl uppercase">
+            G A L L E R Y
+          </h2>
         </div>
 
-        <div className="grid auto-rows-[220px] grid-cols-1 gap-3 sm:auto-rows-[260px] sm:grid-cols-2 lg:auto-rows-[280px] lg:grid-cols-4">
-          {slides.map((slide, index) => (
+        {/* Filter Categories */}
+        <div className="mb-10 flex flex-wrap items-center justify-center gap-2 sm:mb-14 sm:gap-3">
+          {[
+            { id: "all", label: `All Views (${slides.length})` },
+            { id: "interior", label: `Interior Spaces (${interiorCount})` },
+            { id: "exterior", label: `Exterior Architecture (${exteriorCount})` },
+          ].map((cat) => (
             <button
-              key={slide.media}
+              key={cat.id}
               type="button"
-              onClick={() => onOpen?.(index)}
-              aria-label={`Open ${slide.title}`}
-              className={`group relative overflow-hidden bg-[#1b1816] text-left ${
-                index === 0
-                  ? "sm:row-span-2 lg:col-span-2"
-                  : index === 1
-                    ? "lg:col-span-2"
-                    : ""
+              onClick={() => setActiveCategory(cat.id as "all" | "interior" | "exterior")}
+              className={`rounded-full px-5 py-2 text-xs font-semibold uppercase tracking-[0.16em] transition-all duration-300 ${
+                activeCategory === cat.id
+                  ? "bg-[#292522] text-white shadow-md"
+                  : "border border-[#292522]/20 bg-white/40 text-[#292522]/75 hover:border-coral hover:bg-white hover:text-coral"
               }`}
             >
-              <Image
-                src={slide.media}
-                alt={slide.title}
-                fill
-                priority={index === 0}
-                sizes={index === 0 ? "(min-width: 1024px) 50vw, 100vw" : "(min-width: 1024px) 25vw, 50vw"}
-                className="object-cover transition duration-700 ease-out group-hover:scale-[1.035]"
-              />
-              <span className="absolute inset-0 bg-gradient-to-t from-black/75 via-black/5 to-transparent transition-colors group-hover:from-black/85" />
-              <span className="absolute inset-x-0 bottom-0 flex items-end justify-between gap-4 p-5 sm:p-6">
-                <span>
-                  <span className="mb-2 block text-[9px] font-semibold uppercase tracking-[0.24em] text-white/55">
-                    {String(index + 1).padStart(2, "0")}
-                  </span>
-                  <span className={`${index === 0 ? "text-2xl sm:text-3xl" : "text-lg"} block font-light tracking-wide text-white`}>
-                    {slide.title}
-                  </span>
-                </span>
-                <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full border border-white/45 text-lg text-white transition group-hover:border-coral group-hover:bg-coral">
-                  +
-                </span>
-              </span>
+              {cat.label}
             </button>
           ))}
+        </div>
+
+        {/* Gallery Grid */}
+        <div className="grid auto-rows-[220px] grid-cols-1 gap-3 sm:auto-rows-[260px] sm:grid-cols-2 lg:auto-rows-[280px] lg:grid-cols-4 grid-flow-dense">
+          {filteredSlides.map((slide, index) => {
+            const originalIndex = slides.findIndex((s) => s.media === slide.media);
+            const isHero = index === 0 || index === 7;
+            const isWide = index === 1 || index === 8;
+
+            return (
+              <button
+                key={slide.media}
+                type="button"
+                onClick={() => onOpen?.(originalIndex >= 0 ? originalIndex : index)}
+                aria-label={`Open ${slide.title}`}
+                className={`group relative overflow-hidden bg-[#1b1816] text-left rounded-xl transition duration-500 ${
+                  isHero
+                    ? "sm:row-span-2 lg:col-span-2"
+                    : isWide
+                      ? "lg:col-span-2"
+                      : ""
+                }`}
+              >
+                <Image
+                  src={slide.media}
+                  alt={slide.title}
+                  fill
+                  priority={index === 0}
+                  sizes={isHero ? "(min-width: 1024px) 50vw, 100vw" : "(min-width: 1024px) 25vw, 50vw"}
+                  className="object-cover transition duration-700 ease-out group-hover:scale-[1.035]"
+                />
+                <span className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/10 to-transparent transition-colors group-hover:from-black/85" />
+                <span className="absolute inset-x-0 bottom-0 flex items-end justify-between gap-4 p-5 sm:p-6">
+                  <span>
+                    <span className="mb-2 block text-[9px] font-semibold uppercase tracking-[0.24em] text-white/60">
+                      {String((originalIndex >= 0 ? originalIndex : index) + 1).padStart(2, "0")} · {slide.category?.toUpperCase() || "GALLERY"}
+                    </span>
+                    <span className={`${isHero ? "text-2xl sm:text-3xl" : "text-lg"} block font-light tracking-wide text-white`}>
+                      {slide.title}
+                    </span>
+                  </span>
+                  <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full border border-white/45 text-lg text-white transition group-hover:border-coral group-hover:bg-coral">
+                    +
+                  </span>
+                </span>
+              </button>
+            );
+          })}
         </div>
       </div>
     </div>

@@ -52,7 +52,7 @@ export default function HeroSection() {
         <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/35 to-black/25" />
       </div>
 
-      <div className="relative z-10 mx-auto flex h-full max-w-[1680px] flex-col justify-end px-5 pb-16 pt-24 sm:px-8 sm:pb-20 sm:pt-28 md:px-10 lg:px-12 xl:flex-row xl:items-end xl:justify-between xl:gap-10 xl:pb-24">
+      <div className="relative z-10 mx-auto flex h-full w-full max-w-[1720px] flex-col justify-end px-6 pb-16 pt-24 sm:px-10 sm:pb-20 sm:pt-28 md:px-14 lg:px-20 xl:px-28 2xl:px-36 xl:flex-row xl:items-end xl:justify-between xl:gap-10 xl:pb-24">
         <div className="max-w-[660px] pb-6 xl:pb-0">
           <h1 className="text-[clamp(1.35rem,6.5vw,3rem)] font-light leading-[1.12] tracking-[-0.025em] text-white xl:text-[clamp(2.75rem,3.35vw,3.75rem)]">
             <span className="block whitespace-nowrap font-normal">
@@ -64,7 +64,7 @@ export default function HeroSection() {
           </h1>
         </div>
 
-        <div className="w-full max-w-[340px] shrink-0 sm:max-w-[360px] xl:max-w-[380px]">
+        <div className="w-full max-w-[350px] shrink-0 sm:max-w-[380px] xl:max-w-[390px] 2xl:max-w-[420px]">
           <div className="relative overflow-hidden rounded-2xl border border-white/20 bg-black/45 p-5 shadow-[0_24px_50px_rgba(0,0,0,0.45)] backdrop-blur-xl sm:p-6">
             <div
               aria-hidden="true"
@@ -88,11 +88,8 @@ export default function HeroSection() {
 
             <div className="my-5 h-px bg-gradient-to-r from-white/20 via-white/10 to-transparent" />
 
-            <p className="text-[10px] font-semibold uppercase tracking-[0.24em] text-white/55">
-              Luxury residences
-            </p>
-            <h2 className="mt-2 text-[30px] font-light leading-none tracking-tight text-white sm:text-[34px]">
-              2 <span className="text-coral">&amp;</span> 3 BOHK Homes
+            <h2 className="whitespace-nowrap text-[22px] font-light leading-none tracking-tight text-white min-[380px]:text-[24px] sm:text-[26px] xl:text-[28px]">
+              2 <span className="text-coral">&amp;</span> 3 BOHK Apartments
             </h2>
             <p className="mt-3 text-xs leading-relaxed text-white/70">
               Thoughtfully designed luxury residences

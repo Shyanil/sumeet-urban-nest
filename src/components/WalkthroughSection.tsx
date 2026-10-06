@@ -1,49 +1,257 @@
+"use client";
+
 import Image from "next/image";
+import { useEffect, useState } from "react";
 
 export default function WalkthroughSection() {
+  const [isOpen, setIsOpen] = useState(false);
+
+  useEffect(() => {
+    if (!isOpen) return;
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === "Escape") setIsOpen(false);
+    };
+    window.addEventListener("keydown", handleKeyDown);
+    return () => window.removeEventListener("keydown", handleKeyDown);
+  }, [isOpen]);
+
   return (
-    <section id="walkthrough" className="scroll-mt-20 bg-[#FFF0DE] py-16 md:py-20 lg:py-24">
-      <div className="mx-auto w-[calc(100%-3rem)] max-w-[1566px] md:w-[82%]">
-        {/* Section Title */}
-        <div className="mb-12 flex justify-center md:mb-14">
-          <h2 className="text-center text-xl font-bold tracking-[0.34em] text-coral md:text-[26px] lg:text-[30px]">
+    <section
+      id="walkthrough"
+      className="relative scroll-mt-20 overflow-hidden bg-[#FFF0DE] py-20 sm:py-24 md:py-32 lg:py-36"
+    >
+      {/* Background architectural ambient glow and rings */}
+      <div
+        aria-hidden="true"
+        className="pointer-events-none absolute inset-0 select-none overflow-hidden"
+      >
+        <div className="absolute left-1/2 top-1/2 h-[750px] w-[750px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-coral/8 blur-[130px]" />
+        <Image
+          src="/images/exterior/amenities-rings.webp"
+          alt=""
+          width={2034}
+          height={773}
+          className="pointer-events-none absolute -left-40 top-1/2 -translate-y-1/2 w-[520px] max-w-none opacity-[0.14] select-none"
+        />
+        <Image
+          src="/images/exterior/overview-rings.webp"
+          alt=""
+          width={2034}
+          height={773}
+          className="pointer-events-none absolute -right-36 top-1/3 w-[560px] max-w-none opacity-[0.14] select-none"
+        />
+      </div>
+
+      <div className="relative z-10 mx-auto w-full max-w-[1720px] px-6 sm:px-10 md:px-14 lg:px-20 xl:px-28 2xl:px-36">
+        {/* Top Editorial Header */}
+        <div className="mx-auto mb-10 max-w-[1100px] text-center sm:mb-14 md:mb-16">
+          <div className="mb-3 flex items-center justify-center gap-3 sm:mb-4">
+            <span className="h-px w-8 bg-[#2c2b29]/25 sm:w-12" />
+            <span className="text-[10px] font-semibold uppercase tracking-[0.32em] text-[#2c2b29] sm:text-xs">
+              Architectural Experience · 02
+            </span>
+            <span className="h-px w-8 bg-[#2c2b29]/25 sm:w-12" />
+          </div>
+
+          <h2 className="whitespace-nowrap text-3xl font-light tracking-[0.28em] text-coral sm:text-4xl md:text-5xl lg:text-6xl uppercase">
             W A L K T H R O U G H
           </h2>
         </div>
 
-        {/* Video Container */}
-        <div className="relative aspect-video w-full overflow-hidden bg-black/10">
-          <Image
-            src="/images/exterior/podium-top-view.webp"
-            alt="Podium garden walkthrough at Sumeet Urban Nest"
-            fill
-            className="object-cover"
-            sizes="(min-width: 1920px) 1566px, 82vw"
+        {/* Central Immersive Media Showcase */}
+        <div className="relative mx-auto w-full">
+          {/* Subtle architectural frame accent lines */}
+          <div
+            aria-hidden="true"
+            className="pointer-events-none absolute -inset-3 hidden rounded-[36px] border border-coral/15 sm:block md:-inset-4 md:rounded-[42px]"
           />
 
-          <button
-            type="button"
-            aria-label="Play walkthrough video"
-            className="group absolute left-1/2 top-1/2 flex h-24 w-24 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full bg-white/10 transition-transform duration-300 hover:scale-105 md:h-36 md:w-36 lg:h-40 lg:w-40"
+          <div
+            onClick={() => setIsOpen(true)}
+            className="group relative aspect-[16/10] w-full cursor-pointer overflow-hidden rounded-2xl border border-[#2c2b29]/15 bg-[#1a1715] shadow-[0_25px_70px_-15px_rgba(83,55,39,0.22)] sm:aspect-[16/9] sm:rounded-3xl md:rounded-[32px]"
           >
-            <span className="absolute inset-0 rounded-full border-2 border-white/70" />
-            <span className="absolute inset-[6px] rounded-full border border-white/80" />
-            <span className="absolute inset-[12px] rounded-full border border-white/55" />
-            <svg
-              className="relative ml-2 h-10 w-10 text-white drop-shadow-md transition-transform duration-300 group-hover:scale-110 md:h-14 md:w-14"
-              fill="currentColor"
-              viewBox="0 0 24 24"
+            {/* The Main Project Image */}
+            <Image
+              src="/images/exterior/podium-top-view.webp"
+              alt="Podium garden walkthrough at Sumeet Urban Nest"
+              fill
+              className="object-cover object-center transition-transform duration-1000 ease-out group-hover:scale-[1.025]"
+              sizes="(min-width: 1920px) 1600px, 94vw"
+              priority
+            />
+
+            {/* Subtle cinematic gradient vignette */}
+            <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/70 via-black/15 to-black/35 transition-opacity duration-700 group-hover:from-black/60" />
+
+            {/* Top-corner metadata badges */}
+            <div className="pointer-events-none absolute inset-x-0 top-0 flex items-center justify-between p-4 sm:p-6 md:p-8">
+              <span className="inline-flex items-center gap-2 rounded-full border border-white/25 bg-black/40 px-3 py-1 text-[10px] font-medium uppercase tracking-[0.2em] text-white/90 backdrop-blur-md sm:text-[11px]">
+                <span className="h-1.5 w-1.5 rounded-full bg-coral animate-pulse" />
+                Podium &amp; Sky Tour
+              </span>
+              <span className="hidden rounded-full border border-white/20 bg-black/30 px-3 py-1 text-[10px] font-medium uppercase tracking-[0.22em] text-white/80 backdrop-blur-md sm:inline-block sm:text-[11px]">
+                4K Ultra View
+              </span>
+            </div>
+
+            {/* Redesigned Circular Luxury Play Control */}
+            <button
+              type="button"
+              aria-label="Play walkthrough video"
+              onClick={(e) => {
+                e.stopPropagation();
+                setIsOpen(true);
+              }}
+              className="group/btn absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 flex flex-col items-center justify-center cursor-pointer focus:outline-none focus-visible:ring-4 focus-visible:ring-coral/50"
             >
-              <path d="M8 5v14l11-7z" />
-            </svg>
-          </button>
+              {/* Outer pulsing ring */}
+              <div className="relative flex items-center justify-center">
+                <span className="absolute h-24 w-24 rounded-full border border-coral/30 bg-coral/5 animate-ping opacity-35 sm:h-32 sm:w-32 md:h-40 md:w-40 pointer-events-none" />
+
+                {/* Outer Glass Aura */}
+                <span className="absolute h-24 w-24 rounded-full border border-white/30 bg-white/10 backdrop-blur-md transition-all duration-500 ease-out group-hover/btn:scale-110 group-hover/btn:border-coral/40 group-hover/btn:bg-coral/15 sm:h-32 sm:w-32 md:h-40 md:w-40" />
+
+                {/* Precision Mid Ring */}
+                <span className="absolute h-20 w-20 rounded-full border border-white/50 transition-all duration-500 ease-out group-hover/btn:scale-105 group-hover/btn:border-white/80 sm:h-28 sm:w-28 md:h-34 md:w-34" />
+
+                {/* Core Play Button */}
+                <span className="relative flex h-16 w-16 items-center justify-center rounded-full border border-white/70 bg-white/25 shadow-[0_8px_32px_rgba(0,0,0,0.35)] backdrop-blur-lg transition-all duration-500 ease-out group-hover/btn:scale-95 group-hover/btn:border-coral group-hover/btn:bg-coral group-hover/btn:shadow-[0_0_40px_rgba(232,115,74,0.6)] sm:h-22 sm:w-22 md:h-26 md:w-26">
+                  <svg
+                    className="ml-1 h-7 w-7 fill-white text-white drop-shadow-md transition-transform duration-300 group-hover/btn:scale-110 sm:h-9 sm:w-9 md:h-11 md:w-11"
+                    viewBox="0 0 24 24"
+                    aria-hidden="true"
+                  >
+                    <path d="M8 5v14l11-7z" />
+                  </svg>
+                </span>
+              </div>
+
+              {/* Floating Label */}
+              <span className="mt-4 inline-flex items-center gap-2 rounded-full border border-white/20 bg-black/50 px-3.5 py-1 text-[10px] font-semibold uppercase tracking-[0.24em] text-white shadow-lg backdrop-blur-md transition-all duration-300 group-hover/btn:border-coral group-hover/btn:bg-black/70 group-hover/btn:text-white sm:mt-5 sm:px-4 sm:py-1.5 sm:text-[11px]">
+                Press To Play
+              </span>
+            </button>
+          </div>
         </div>
 
-        {/* Caption */}
-        <p className="mt-9 text-center text-sm font-bold tracking-[0.025em] text-coral md:mt-11 md:text-xl lg:text-[24px]">
-          PRESS PLAY TO SEE HOW CENTRAL RAIPUR OPENS OUT TO LIFE.
-        </p>
+        {/* Editorial Bottom Composition */}
+        <div className="mt-10 sm:mt-12 md:mt-16 lg:mt-20">
+          <div className="grid gap-6 border-t border-[#2c2b29]/15 pt-8 sm:gap-8 sm:pt-10 md:grid-cols-12 md:items-start md:gap-10">
+            {/* Left Headline: Witness how CENTRAL RAIPUR OPENS OUT TO LIFE */}
+            <div className="md:col-span-7">
+              <span className="text-[10px] font-semibold uppercase tracking-[0.28em] text-coral sm:text-xs">
+                Elevated Living
+              </span>
+              <h3 className="mt-2 text-xl font-light leading-snug tracking-[-0.015em] text-[#2c2b29] sm:text-2xl md:text-3xl lg:text-[34px]">
+                <span className="block font-extralight text-[#6d625c]">
+                  Witness how
+                </span>
+                <span className="font-semibold text-coral">
+                  Central Raipur
+                </span>{" "}
+                opens out to life.
+              </h3>
+            </div>
+
+            {/* Right Editorial Narrative */}
+            <div className="flex flex-col justify-between gap-4 md:col-span-5 md:pt-1">
+              <p className="text-sm font-normal leading-relaxed text-[#5c544e] sm:text-[15px] md:leading-relaxed">
+                Step into Raipur’s first BOHK residences through an elevated visual tour across 1.76 acres of lush landscaped podium greens, rooftop recreation, and skyward towers at Khamardih, Shankar Nagar.
+              </p>
+
+              <div className="flex flex-wrap items-center gap-x-6 gap-y-2 pt-2 text-[11px] font-semibold uppercase tracking-[0.2em] text-[#7d7168]">
+                <span className="flex items-center gap-1.5">
+                  <span className="h-1.5 w-1.5 rounded-full bg-coral" />
+                  1.76 Acre Enclave
+                </span>
+                <span className="flex items-center gap-1.5">
+                  <span className="h-1.5 w-1.5 rounded-full bg-coral" />
+                  3 Towers
+                </span>
+                <span className="flex items-center gap-1.5">
+                  <span className="h-1.5 w-1.5 rounded-full bg-coral" />
+                  Podium Greens
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
+
+      {/* Cinematic Modal Preview when Play is clicked */}
+      {isOpen && (
+        <div
+          role="dialog"
+          aria-modal="true"
+          aria-label="Walkthrough cinema preview"
+          onClick={() => setIsOpen(false)}
+          className="fixed inset-0 z-[100] flex items-center justify-center bg-black/95 p-4 backdrop-blur-xl sm:p-6 md:p-10"
+        >
+          <button
+            type="button"
+            onClick={() => setIsOpen(false)}
+            aria-label="Close walkthrough preview"
+            className="absolute right-4 top-4 z-20 flex h-11 w-11 items-center justify-center rounded-full border border-white/30 bg-black/50 text-2xl text-white transition hover:bg-white hover:text-black sm:right-6 sm:top-6 sm:h-12 sm:w-12"
+          >
+            ×
+          </button>
+
+          <div
+            className="relative flex max-h-[90vh] w-full max-w-[1500px] flex-col overflow-hidden rounded-2xl border border-white/20 bg-[#161311] shadow-[0_30px_90px_rgba(0,0,0,0.8)]"
+            onClick={(e) => e.stopPropagation()}
+          >
+            {/* Modal Media Window */}
+            <div className="relative aspect-[16/9] w-full overflow-hidden bg-black">
+              <Image
+                src="/images/exterior/podium-top-view.webp"
+                alt="Sumeet Urban Nest Walkthrough"
+                fill
+                className="object-cover"
+                sizes="(min-width: 1500px) 1500px, 95vw"
+                priority
+              />
+
+              {/* Ambient overlay */}
+              <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/85 via-black/20 to-transparent" />
+
+              <div className="absolute inset-x-0 bottom-0 p-5 sm:p-8 text-white">
+                <span className="text-[10px] font-semibold uppercase tracking-[0.28em] text-coral sm:text-xs">
+                  Sumeet Urban Nest · Cinematic Preview
+                </span>
+                <h4 className="mt-1 text-lg font-light tracking-wide text-white sm:text-2xl md:text-3xl">
+                  Podium Garden &amp; Architectural Walkthrough
+                </h4>
+                <p className="mt-2 max-w-[700px] text-xs text-white/75 sm:text-sm">
+                  Experience the open layout, landscaped greens, and elevated lifestyle at Khamardih, Shankar Nagar.
+                </p>
+              </div>
+            </div>
+
+            {/* Modal Bottom Action Bar */}
+            <div className="flex flex-col items-center justify-between gap-4 border-t border-white/10 bg-[#1e1a17] px-5 py-4 sm:flex-row sm:px-8">
+              <p className="text-xs text-white/60 sm:text-sm">
+                Ready to explore the project in person?
+              </p>
+              <div className="flex items-center gap-3">
+                <a
+                  href="#contact"
+                  onClick={() => setIsOpen(false)}
+                  className="rounded-full bg-coral px-6 py-2.5 text-xs font-semibold uppercase tracking-[0.16em] text-white transition hover:bg-coral-dark sm:text-sm"
+                >
+                  Schedule Site Visit
+                </a>
+                <button
+                  type="button"
+                  onClick={() => setIsOpen(false)}
+                  className="rounded-full border border-white/25 px-5 py-2.5 text-xs font-medium uppercase tracking-[0.16em] text-white/80 transition hover:bg-white/10 sm:text-sm"
+                >
+                  Close
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
     </section>
   );
 }

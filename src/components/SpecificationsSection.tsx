@@ -60,38 +60,64 @@ const specifications = [
   },
 ];
 
+const ROTATION_INTERVAL = 8500; // 8.5 seconds for ample reading time
+
 export default function SpecificationsSection() {
   const [activeIndex, setActiveIndex] = useState(0);
+  const [isAutoPlaying, setIsAutoPlaying] = useState(true);
+  const [isHovered, setIsHovered] = useState(false);
   const stripRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
+    if (!isAutoPlaying || isHovered) return;
     const timer = window.setInterval(() => {
       setActiveIndex((index) => (index + 1) % specifications.length);
-    }, 4000);
+    }, ROTATION_INTERVAL);
     return () => window.clearInterval(timer);
-  }, []);
+  }, [isAutoPlaying, isHovered]);
 
   useEffect(() => {
     stripRef.current?.scrollTo({ left: activeIndex * 170, behavior: "smooth" });
   }, [activeIndex]);
+
+  const handleTabClick = (index: number) => {
+    setActiveIndex(index);
+    setIsAutoPlaying(false); // Stop auto-play permanently so user can read at their own pace
+  };
 
   return (
     <section
       id="specifications"
       className="scroll-mt-20 overflow-hidden bg-[#f3f0ed] py-20 sm:py-24 md:py-28"
     >
-      <div className="mx-auto w-full max-w-[1760px] px-5 sm:px-8 lg:px-12 xl:px-14 2xl:px-16">
-        <h2 className="mb-10 text-xl font-bold tracking-[0.34em] text-coral md:mb-14 md:text-[26px] lg:text-[30px]">
-          SPECIFICATIONS
-        </h2>
+      <div className="mx-auto w-full max-w-[1720px] px-6 sm:px-10 md:px-14 lg:px-20 xl:px-28 2xl:px-36">
+        {/* Section Header */}
+        <div className="mx-auto mb-10 max-w-[800px] text-center sm:mb-14">
+          <div className="mb-3 flex items-center justify-center gap-3 sm:mb-4">
+            <span className="h-px w-8 bg-[#2c2b29]/25 sm:w-12" />
+            <span className="text-[10px] font-semibold uppercase tracking-[0.32em] text-[#2c2b29] sm:text-xs">
+              Craftsmanship &amp; Finish · 06
+            </span>
+            <span className="h-px w-8 bg-[#2c2b29]/25 sm:w-12" />
+          </div>
 
-        <div ref={stripRef} className="overflow-x-auto pb-3 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
+          <h2 className="whitespace-nowrap text-xl font-light tracking-[0.2em] text-coral min-[380px]:text-2xl sm:text-3xl sm:tracking-[0.25em] md:text-4xl lg:text-5xl xl:text-6xl uppercase">
+            SPECIFICATIONS
+          </h2>
+        </div>
+
+        <div
+          ref={stripRef}
+          onMouseEnter={() => setIsHovered(true)}
+          onMouseLeave={() => setIsHovered(false)}
+          className="overflow-x-auto pb-3 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
+        >
           <div className="flex min-w-max border-y border-[#d9d0ca]">
             {specifications.map((item, index) => (
               <button
                 key={item.title}
                 type="button"
-                onClick={() => setActiveIndex(index)}
+                onClick={() => handleTabClick(index)}
                 className={`relative min-w-[150px] px-6 py-5 text-left text-sm font-semibold uppercase tracking-[0.12em] transition-colors sm:min-w-[190px] sm:text-base ${
                   index === activeIndex
                     ? "bg-[#2b2623] text-white"
@@ -101,23 +127,50 @@ export default function SpecificationsSection() {
                 <span className="mr-3 text-[10px] text-coral">{String(index + 1).padStart(2, "0")}</span>
                 {item.title}
                 {index === activeIndex && (
-                  <span key={activeIndex} className="absolute inset-x-0 bottom-0 h-[3px] animate-[luminaProgress_4s_linear] bg-coral" />
+                  <span
+                    key={`${activeIndex}-${isAutoPlaying}`}
+                    className="absolute inset-x-0 bottom-0 h-[3px] bg-coral"
+                    style={
+                      isAutoPlaying
+                        ? {
+                            animation: `luminaProgress ${ROTATION_INTERVAL}ms linear`,
+                            animationPlayState: isHovered ? "paused" : "running",
+                          }
+                        : undefined
+                    }
+                  />
                 )}
               </button>
             ))}
           </div>
         </div>
 
-        <div className="mt-6 grid overflow-hidden rounded-[28px] bg-white shadow-[0_18px_55px_rgba(71,49,38,0.08)] md:grid-cols-[0.7fr_1.3fr]">
+        <div
+          onMouseEnter={() => setIsHovered(true)}
+          onMouseLeave={() => setIsHovered(false)}
+          className="mt-6 grid overflow-hidden rounded-[28px] bg-white shadow-[0_18px_55px_rgba(71,49,38,0.08)] md:grid-cols-[0.7fr_1.3fr]"
+        >
           <div className="flex min-h-[210px] flex-col justify-between bg-[#2b2623] p-7 text-white sm:p-9 md:min-h-[300px] lg:p-12">
-            <span className="text-xs font-bold uppercase tracking-[0.25em] text-coral">Material detail</span>
+            <div className="flex items-center justify-between">
+              <span className="text-xs font-bold uppercase tracking-[0.25em] text-coral">Material detail</span>
+              {!isAutoPlaying && (
+                <button
+                  type="button"
+                  onClick={() => setIsAutoPlaying(true)}
+                  className="flex items-center gap-1.5 rounded-full border border-white/20 px-2.5 py-1 text-[10px] font-semibold uppercase tracking-wider text-white/70 transition hover:border-coral hover:text-coral"
+                  title="Resume automatic cycle"
+                >
+                  <span className="text-[9px]">▶</span> Resume
+                </button>
+              )}
+            </div>
             <div>
               <p className="mb-3 text-sm text-white/45">{String(activeIndex + 1).padStart(2, "0")} / {String(specifications.length).padStart(2, "0")}</p>
               <h3 className="text-3xl font-medium sm:text-4xl lg:text-5xl">{specifications[activeIndex].title}</h3>
             </div>
           </div>
           <div className="flex items-center p-7 sm:p-9 lg:p-12">
-            <ul key={activeIndex} className="w-full max-w-3xl animate-[luminaReveal_.6s_ease-out] space-y-4">
+            <ul key={activeIndex} className="w-full max-w-3xl animate-[luminaReveal_.35s_ease-out] space-y-4">
               {specifications[activeIndex].details.map((detail) => (
                 <li key={detail} className="flex gap-4 text-base leading-7 text-[#5e5752] sm:text-lg sm:leading-8">
                   <span className="mt-3 h-1.5 w-1.5 shrink-0 rounded-full bg-coral" aria-hidden="true" />

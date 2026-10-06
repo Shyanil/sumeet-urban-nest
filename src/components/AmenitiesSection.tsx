@@ -278,13 +278,22 @@ export default function AmenitiesSection() {
     >
       <div className="pointer-events-none absolute left-1/2 top-0 h-72 w-72 -translate-x-1/2 rounded-full bg-coral/10 blur-[110px]" />
 
-      <div className="relative mx-auto w-full max-w-[1760px] px-5 sm:px-8 lg:px-12 xl:px-14 2xl:px-16">
+      <div className="relative mx-auto w-full max-w-[1720px] px-6 sm:px-10 md:px-14 lg:px-20 xl:px-28 2xl:px-36">
         {/* Section Header */}
-        <div className="mx-auto mb-12 max-w-[760px] text-center md:mb-16">
-          <h2 className="mb-6 text-xl font-bold tracking-[0.34em] text-coral md:text-[26px] lg:text-[30px]">
+        <div className="mx-auto mb-12 max-w-[800px] text-center md:mb-16">
+          <div className="mb-3 flex items-center justify-center gap-3 sm:mb-4">
+            <span className="h-px w-8 bg-[#2c2b29]/25 sm:w-12" />
+            <span className="text-[15px] font-semibold uppercase tracking-[0.25em] text-[#2c2b29]">
+              Curated Lifestyle · 03
+            </span>
+            <span className="h-px w-8 bg-[#2c2b29]/25 sm:w-12" />
+          </div>
+
+          <h2 className="whitespace-nowrap text-3xl font-light tracking-[0.28em] text-coral sm:text-4xl md:text-5xl lg:text-6xl uppercase">
             A M E N I T I E S
           </h2>
-          <p className="mx-auto max-w-[680px] text-sm leading-relaxed text-[#6d625c] sm:text-base md:text-[17px]">
+
+          <p className="mx-auto mt-6 max-w-[680px] text-[15px] leading-relaxed text-[#6d625c]">
             From the courtyard to the podium greens up to rooftop skies, every
             space at Sumeet Urban Nest is designed to extend your day beyond the
             indoors.
@@ -311,7 +320,7 @@ export default function AmenitiesSection() {
                   <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-[#f8f1e8] [&>svg]:h-8 [&>svg]:w-8">
                     {amenity.icon}
                   </div>
-                  <p className="text-sm font-medium leading-snug text-[#3c3632]">
+                  <p className="text-[15px] font-medium leading-snug text-[#3c3632]">
                     {amenity.name}
                   </p>
                 </div>
@@ -338,7 +347,7 @@ export default function AmenitiesSection() {
                   <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-[#f8f1e8] [&>svg]:h-8 [&>svg]:w-8">
                     {amenity.icon}
                   </div>
-                  <p className="text-sm font-medium leading-snug text-[#3c3632]">
+                  <p className="text-[15px] font-medium leading-snug text-[#3c3632]">
                     {amenity.name}
                   </p>
                 </div>
@@ -365,7 +374,7 @@ export default function AmenitiesSection() {
                   <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-[#f8f1e8] [&>svg]:h-8 [&>svg]:w-8">
                     {amenity.icon}
                   </div>
-                  <p className="text-sm font-medium leading-snug text-[#3c3632]">
+                  <p className="text-[15px] font-medium leading-snug text-[#3c3632]">
                     {amenity.name}
                   </p>
                 </div>
