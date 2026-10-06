@@ -12,9 +12,11 @@ import DeveloperSection from "@/components/DeveloperSection";
 import ContactSection from "@/components/ContactSection";
 import Footer from "@/components/Footer";
 import SiteVisitBar from "@/components/SiteVisitBar";
+import { EnquiryProvider } from "@/components/EnquiryPanel";
 
 export default function Home() {
   return (
+    <EnquiryProvider>
       <main className="min-h-screen bg-white">
         <Header />
         <HeroSection />
@@ -44,5 +46,6 @@ export default function Home() {
         <Footer />
         <SiteVisitBar />
       </main>
+    </EnquiryProvider>
   );
 }

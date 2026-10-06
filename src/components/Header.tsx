@@ -3,6 +3,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useState } from "react";
+import { useEnquiry } from "@/components/EnquiryPanel";
 
 const navLinks = [
   { name: "Walkthrough", href: "#walkthrough", id: "walkthrough" },
@@ -16,6 +17,7 @@ const navLinks = [
 ];
 
 export default function Header() {
+  const { openEnquiry } = useEnquiry();
   const [isScrolled, setIsScrolled] = useState(false);
   const [activeSection, setActiveSection] = useState<string>("");
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -143,24 +145,24 @@ export default function Header() {
               })}
             </nav>
 
-            <a
-              href="#contact"
-              onClick={(e) => handleNavClick(e, "contact")}
+            <button
+              type="button"
+              onClick={openEnquiry}
               className="whitespace-nowrap rounded-none bg-coral px-3.5 py-1.5 text-[11px] font-bold uppercase tracking-wider text-white shadow-[0_4px_16px_rgba(232,115,74,0.32)] transition-all duration-300 hover:-translate-y-0.5 hover:bg-[#D4613A] hover:shadow-[0_6px_20px_rgba(232,115,74,0.45)] xl:px-4 xl:py-2 xl:text-[11.5px]"
             >
               Enquire Now
-            </a>
+            </button>
           </div>
 
           {/* Mobile Right: Enquire Now Button + Hamburger */}
           <div className="flex items-center gap-2.5 sm:gap-3 lg:hidden">
-            <a
-              href="#contact"
-              onClick={(e) => handleNavClick(e, "contact")}
+            <button
+              type="button"
+              onClick={openEnquiry}
               className="whitespace-nowrap rounded-none bg-coral px-3 py-1.5 text-[10.5px] font-bold uppercase tracking-wider text-white shadow-sm transition hover:bg-[#D4613A] sm:px-3.5 sm:text-[11px]"
             >
               Enquire Now
-            </a>
+            </button>
 
             <button
               type="button"
@@ -211,13 +213,16 @@ export default function Header() {
                 );
               })}
 
-              <a
-                href="#contact"
-                onClick={(e) => handleNavClick(e, "contact")}
+              <button
+                type="button"
+                onClick={() => {
+                  setIsMobileMenuOpen(false);
+                  openEnquiry();
+                }}
                 className="mt-2 flex w-full items-center justify-center rounded-none bg-coral py-3 text-center text-xs font-bold uppercase tracking-wider text-white shadow-md transition hover:bg-[#D4613A]"
               >
                 Enquire Now
-              </a>
+              </button>
             </nav>
           </div>
         )}

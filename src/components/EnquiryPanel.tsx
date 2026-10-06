@@ -191,20 +191,27 @@ export function EnquiryProvider({ children }: { children: ReactNode }) {
                     <label htmlFor="sticky-interest" className="sr-only">
                       Interested In
                     </label>
-                    <select
-                      required
-                      id="sticky-interest"
-                      name="interest"
-                      defaultValue=""
-                      className={`${fieldClassName} appearance-none text-[#746b66]`}
-                    >
-                      <option value="" disabled>
-                        Select BOHK
-                      </option>
-                      <option value="2-bhk">2 BOHK Home</option>
-                      <option value="3-bhk">3 BOHK Home</option>
-                      <option value="both">Both 2 &amp; 3 BOHK</option>
-                    </select>
+                    <div className="relative">
+                      <select
+                        required
+                        id="sticky-interest"
+                        name="interest"
+                        defaultValue=""
+                        className={`${fieldClassName} appearance-none pr-10 text-[#746b66]`}
+                      >
+                        <option value="" disabled>
+                          Select BOHK
+                        </option>
+                        <option value="2-bhk">2 BOHK Home</option>
+                        <option value="3-bhk">3 BOHK Home</option>
+                        <option value="both">Both 2 &amp; 3 BOHK</option>
+                      </select>
+                      <span className="pointer-events-none absolute right-4 top-1/2 -translate-y-1/2 text-[#746b66]/60">
+                        <svg className="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                        </svg>
+                      </span>
+                    </div>
                   </div>
 
                   <div>
@@ -286,3 +293,14 @@ export function EnquiryButton({
     </button>
   );
 }
+
+export function useEnquiry() {
+  const context = useContext(EnquiryContext);
+
+  if (!context) {
+    throw new Error("useEnquiry must be rendered inside EnquiryProvider.");
+  }
+
+  return context;
+}
+
