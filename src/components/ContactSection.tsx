@@ -215,7 +215,7 @@ export default function ContactSection() {
                   disabled={isSubmitting}
                   className="group relative flex h-13 w-full items-center justify-center gap-3 overflow-hidden rounded-xl bg-coral px-8 text-xs font-bold uppercase tracking-[0.2em] text-white shadow-[0_12px_28px_rgba(232,115,74,0.32)] transition-all duration-300 hover:bg-[#D4613A] hover:shadow-[0_16px_36px_rgba(232,115,74,0.45)] disabled:opacity-70 sm:text-sm"
                 >
-                  <span>{isSubmitting ? "Processing..." : "Schedule Site Visit & Get Brochure"}</span>
+                  <span>{isSubmitting ? "Processing..." : "Enquire Now"}</span>
                   <span className="text-base transition-transform duration-300 group-hover:translate-x-1">→</span>
                 </button>
               </div>
