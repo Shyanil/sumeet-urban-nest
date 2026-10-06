@@ -112,7 +112,7 @@ export default function Header() {
           <div className="hidden items-center lg:flex lg:gap-2 xl:gap-3 2xl:gap-4.5">
             <nav
               aria-label="Main Navigation"
-              className="flex items-center lg:gap-1 xl:gap-1.5 2xl:gap-3.5"
+              className="flex items-center lg:gap-1 xl:gap-1.5 2xl:gap-3"
             >
               {navLinks.map((link) => {
                 const isActive = activeSection === link.id;
@@ -122,34 +122,22 @@ export default function Header() {
                     key={link.name}
                     href={link.href}
                     onClick={(e) => handleNavClick(e, link.id)}
-                    className="whitespace-nowrap rounded-md bg-[#D6AC70] font-medium text-[#1a1a1a] shadow-sm transition-all duration-200 text-[12px] px-2 py-1 lg:text-[12.5px] lg:px-2.5 lg:py-1 xl:text-[13px] xl:px-3 xl:py-1.5 2xl:text-[14.5px] 2xl:px-4.5 2xl:py-2"
+                    className="whitespace-nowrap rounded-sm bg-[#D6AC70] font-semibold text-[#1a1a1a] shadow-sm transition-all duration-200 text-[10.5px] px-2 py-1 lg:text-[11px] lg:px-2 lg:py-1 xl:text-[11.5px] xl:px-2.5 xl:py-1.5 2xl:text-[12.5px] 2xl:px-3.5 2xl:py-1.5"
                   >
-                    {link.id === "developer" ? (
-                      <>
-                        <span className="hidden 2xl:inline">About </span>Developer
-                      </>
-                    ) : (
-                      link.name
-                    )}
+                    {link.name}
                   </a>
                 ) : (
                   <a
                     key={link.name}
                     href={link.href}
                     onClick={(e) => handleNavClick(e, link.id)}
-                    className={`whitespace-nowrap rounded-md font-medium tracking-normal transition-colors text-[12px] px-2 py-1 lg:text-[12.5px] lg:px-2 lg:py-1 xl:text-[13px] xl:px-2.5 xl:py-1.5 2xl:text-[14.5px] 2xl:px-3.5 2xl:py-2 ${
+                    className={`whitespace-nowrap rounded-sm font-medium tracking-wide transition-colors text-[10.5px] px-1.5 py-1 lg:text-[11px] lg:px-2 lg:py-1 xl:text-[11.5px] xl:px-2.5 xl:py-1.5 2xl:text-[12.5px] 2xl:px-3 2xl:py-1.5 ${
                       isScrolled
                         ? "text-[#1a1a1a] hover:text-[#D6AC70]"
                         : "text-white drop-shadow-[0_1px_2px_rgba(0,0,0,0.6)] hover:text-[#D6AC70]"
                     }`}
                   >
-                    {link.id === "developer" ? (
-                      <>
-                        <span className="hidden 2xl:inline">About </span>Developer
-                      </>
-                    ) : (
-                      link.name
-                    )}
+                    {link.name}
                   </a>
                 );
               })}
@@ -158,7 +146,7 @@ export default function Header() {
             <a
               href="#contact"
               onClick={(e) => handleNavClick(e, "contact")}
-              className="whitespace-nowrap rounded-full bg-coral px-3.5 py-1.5 text-[11px] font-bold uppercase tracking-wider text-white shadow-[0_6px_20px_rgba(232,115,74,0.32)] transition-all duration-300 hover:-translate-y-0.5 hover:bg-[#D4613A] hover:shadow-[0_8px_24px_rgba(232,115,74,0.45)] xl:px-4.5 xl:py-2 xl:text-xs"
+              className="whitespace-nowrap rounded-none bg-coral px-3.5 py-1.5 text-[11px] font-bold uppercase tracking-wider text-white shadow-[0_4px_16px_rgba(232,115,74,0.32)] transition-all duration-300 hover:-translate-y-0.5 hover:bg-[#D4613A] hover:shadow-[0_6px_20px_rgba(232,115,74,0.45)] xl:px-4 xl:py-2 xl:text-[11.5px]"
             >
               Enquire Now
             </a>
@@ -169,7 +157,7 @@ export default function Header() {
             <a
               href="#contact"
               onClick={(e) => handleNavClick(e, "contact")}
-              className="whitespace-nowrap rounded-full bg-coral px-3.5 py-1.5 text-[10.5px] font-bold uppercase tracking-wider text-white shadow-sm transition hover:bg-[#D4613A] sm:px-4 sm:text-xs"
+              className="whitespace-nowrap rounded-none bg-coral px-3 py-1.5 text-[10.5px] font-bold uppercase tracking-wider text-white shadow-sm transition hover:bg-[#D4613A] sm:px-3.5 sm:text-[11px]"
             >
               Enquire Now
             </a>
@@ -226,7 +214,7 @@ export default function Header() {
               <a
                 href="#contact"
                 onClick={(e) => handleNavClick(e, "contact")}
-                className="mt-2 flex w-full items-center justify-center rounded-xl bg-coral py-3 text-center text-xs font-bold uppercase tracking-wider text-white shadow-md transition hover:bg-[#D4613A]"
+                className="mt-2 flex w-full items-center justify-center rounded-none bg-coral py-3 text-center text-xs font-bold uppercase tracking-wider text-white shadow-md transition hover:bg-[#D4613A]"
               >
                 Enquire Now
               </a>
