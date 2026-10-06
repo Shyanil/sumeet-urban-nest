@@ -5,7 +5,7 @@ export default function ContactSection() {
   return (
     <section
       id="contact"
-      className="scroll-mt-20 overflow-hidden bg-[#E16E5B] py-16 sm:py-20 lg:py-28 xl:py-32"
+      className="scroll-mt-20 overflow-hidden bg-[#E16E5B] pt-10 pb-16 sm:py-20 lg:py-28 xl:py-32"
     >
       <div className="mx-auto max-w-[1568px] px-6 sm:px-10 lg:px-16 xl:px-20">
         <div className="grid items-center gap-14 lg:grid-cols-[minmax(0,2fr)_minmax(0,3fr)] lg:gap-20 xl:gap-24">

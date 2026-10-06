@@ -24,14 +24,19 @@ export default function Home() {
         <LocationSection />
         <SpecificationsSection />
         <PlanSection />
-        <section className="relative h-[100svh] min-h-[520px] w-full overflow-hidden bg-white" aria-label="Circular garden living">
-          <Image
-            src="/images/circular-garden-living-diorama.webp"
-            alt="Circular garden living at Sumeet Urban Nest"
-            fill
-            sizes="100vw"
-            className="object-contain object-center"
-          />
+        <section
+          className="relative w-full overflow-hidden bg-white py-4 sm:py-8 lg:h-[100svh] lg:min-h-[520px] lg:py-0"
+          aria-label="Circular garden living"
+        >
+          <div className="relative mx-auto aspect-[1832/858] w-full max-w-[1760px] lg:h-full lg:aspect-auto">
+            <Image
+              src="/images/circular-garden-living-diorama.webp"
+              alt="Circular garden living at Sumeet Urban Nest"
+              fill
+              sizes="100vw"
+              className="object-contain object-center"
+            />
+          </div>
         </section>
         <ContactSection />
         <Footer />

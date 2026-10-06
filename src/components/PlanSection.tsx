@@ -148,7 +148,7 @@ export default function PlanSection() {
   }, [fullscreen]);
 
   return (
-    <section id="plan" className="scroll-mt-20 bg-white py-16 md:py-24">
+    <section id="plan" className="scroll-mt-20 bg-white pt-14 pb-8 md:py-24">
       <div className="mx-auto mb-10 w-full max-w-[1760px] px-5 sm:px-8 md:mb-14 lg:px-12 xl:px-14 2xl:px-16">
         <div className="flex items-center justify-between gap-5">
           <h2 className="text-xl font-bold tracking-[0.34em] text-coral md:text-[26px] lg:text-[30px]">MASTER PLAN</h2>
