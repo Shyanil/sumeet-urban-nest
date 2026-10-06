@@ -305,10 +305,17 @@ export default function AmenitiesSection() {
           <article className="group overflow-hidden rounded-[26px] border border-[#e8ded7] bg-white shadow-[0_12px_35px_rgba(83,55,39,0.08)] transition duration-300 hover:-translate-y-1 hover:shadow-[0_22px_50px_rgba(83,55,39,0.14)]">
             <div className="relative aspect-[16/9] overflow-hidden">
               <Image src="/images/exterior/podium-kids-play.webp" alt="Podium and ground amenities" fill className="object-cover transition-transform duration-700 group-hover:scale-105" sizes="(max-width: 1024px) 100vw, 33vw" />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/75 via-black/5 to-transparent" />
-              <div className="absolute inset-x-0 bottom-0 flex items-end justify-between p-5 text-white">
-                <div><p className="mb-1 text-[10px] font-bold uppercase tracking-[0.22em] text-[#ffc79b]">Outdoor living</p><h4 className="text-xl font-semibold sm:text-2xl">Podium + Ground</h4></div>
-                <span className="rounded-full border border-white/30 bg-black/25 px-3 py-1 text-xs font-bold backdrop-blur-md">05 spaces</span>
+              <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/20 to-transparent" />
+              <span className="absolute right-3.5 top-3.5 z-10 rounded-full border border-white/30 bg-black/45 px-3 py-1 text-xs font-semibold tracking-wide text-white shadow-sm backdrop-blur-md whitespace-nowrap sm:right-4 sm:top-4">
+                05 spaces
+              </span>
+              <div className="absolute inset-x-0 bottom-0 p-4 sm:p-5 text-white">
+                <p className="mb-1 text-[10px] font-bold uppercase tracking-[0.22em] text-[#ffc79b]">
+                  Outdoor living
+                </p>
+                <h4 className="text-lg font-semibold sm:text-xl md:text-2xl">
+                  Podium + Ground
+                </h4>
               </div>
             </div>
             <div className="grid grid-cols-1 gap-1 p-4 sm:grid-cols-2 sm:p-5 lg:grid-cols-1">
@@ -332,10 +339,17 @@ export default function AmenitiesSection() {
           <article className="group overflow-hidden rounded-[26px] border border-[#e8ded7] bg-white shadow-[0_12px_35px_rgba(83,55,39,0.08)] transition duration-300 hover:-translate-y-1 hover:shadow-[0_22px_50px_rgba(83,55,39,0.14)]">
             <div className="relative aspect-[16/9] overflow-hidden">
               <Image src="/images/exterior/terrace-sitting.webp" alt="Rooftop amenities" fill className="object-cover transition-transform duration-700 group-hover:scale-105" sizes="(max-width: 1024px) 100vw, 33vw" />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/75 via-black/5 to-transparent" />
-              <div className="absolute inset-x-0 bottom-0 flex items-end justify-between p-5 text-white">
-                <div><p className="mb-1 text-[10px] font-bold uppercase tracking-[0.22em] text-[#ffc79b]">Under open skies</p><h4 className="text-xl font-semibold sm:text-2xl">Rooftop</h4></div>
-                <span className="rounded-full border border-white/30 bg-black/25 px-3 py-1 text-xs font-bold backdrop-blur-md">03 spaces</span>
+              <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/20 to-transparent" />
+              <span className="absolute right-3.5 top-3.5 z-10 rounded-full border border-white/30 bg-black/45 px-3 py-1 text-xs font-semibold tracking-wide text-white shadow-sm backdrop-blur-md whitespace-nowrap sm:right-4 sm:top-4">
+                03 spaces
+              </span>
+              <div className="absolute inset-x-0 bottom-0 p-4 sm:p-5 text-white">
+                <p className="mb-1 text-[10px] font-bold uppercase tracking-[0.22em] text-[#ffc79b]">
+                  Under open skies
+                </p>
+                <h4 className="text-lg font-semibold sm:text-xl md:text-2xl">
+                  Rooftop
+                </h4>
               </div>
             </div>
             <div className="grid grid-cols-1 gap-1 p-4 sm:grid-cols-2 sm:p-5 lg:grid-cols-1">
@@ -359,10 +373,17 @@ export default function AmenitiesSection() {
           <article className="group overflow-hidden rounded-[26px] border border-[#e8ded7] bg-white shadow-[0_12px_35px_rgba(83,55,39,0.08)] transition duration-300 hover:-translate-y-1 hover:shadow-[0_22px_50px_rgba(83,55,39,0.14)]">
             <div className="relative aspect-[16/9] overflow-hidden">
               <Image src="/images/interior/community-hall.webp" alt="Club amenities" fill className="object-cover transition-transform duration-700 group-hover:scale-105" sizes="(max-width: 1024px) 100vw, 33vw" />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/75 via-black/5 to-transparent" />
-              <div className="absolute inset-x-0 bottom-0 flex items-end justify-between p-5 text-white">
-                <div><p className="mb-1 text-[10px] font-bold uppercase tracking-[0.22em] text-[#ffc79b]">Wellness + community</p><h4 className="text-xl font-semibold sm:text-2xl">Club</h4></div>
-                <span className="rounded-full border border-white/30 bg-black/25 px-3 py-1 text-xs font-bold backdrop-blur-md">05 spaces</span>
+              <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/20 to-transparent" />
+              <span className="absolute right-3.5 top-3.5 z-10 rounded-full border border-white/30 bg-black/45 px-3 py-1 text-xs font-semibold tracking-wide text-white shadow-sm backdrop-blur-md whitespace-nowrap sm:right-4 sm:top-4">
+                05 spaces
+              </span>
+              <div className="absolute inset-x-0 bottom-0 p-4 sm:p-5 text-white">
+                <p className="mb-1 text-[10px] font-bold uppercase tracking-[0.22em] text-[#ffc79b]">
+                  Wellness + community
+                </p>
+                <h4 className="text-lg font-semibold sm:text-xl md:text-2xl">
+                  Club
+                </h4>
               </div>
             </div>
             <div className="grid grid-cols-1 gap-1 p-4 sm:grid-cols-2 sm:p-5 lg:grid-cols-1">
