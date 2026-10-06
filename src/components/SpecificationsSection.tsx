@@ -101,7 +101,7 @@ export default function SpecificationsSection() {
             <span className="h-px w-8 bg-[#2c2b29]/25 sm:w-12" />
           </div>
 
-          <h2 className="whitespace-nowrap text-xl font-light tracking-[0.2em] text-coral min-[380px]:text-2xl sm:text-3xl sm:tracking-[0.25em] md:text-4xl lg:text-5xl xl:text-6xl uppercase">
+          <h2 className="whitespace-nowrap text-base min-[380px]:text-lg sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-light tracking-[0.16em] min-[380px]:tracking-[0.2em] sm:tracking-[0.25em] text-coral uppercase">
             SPECIFICATIONS
           </h2>
         </div>

@@ -253,7 +253,7 @@ export default function PlanSection() {
               </span>
             </div>
 
-            <h2 className="text-2xl min-[380px]:text-3xl font-light tracking-[0.16em] min-[380px]:tracking-[0.22em] text-coral sm:text-4xl sm:tracking-[0.28em] md:text-5xl uppercase">
+            <h2 className="text-[14px] min-[380px]:text-[16px] sm:text-3xl md:text-4xl lg:text-5xl font-light tracking-[0.14em] min-[380px]:tracking-[0.18em] sm:tracking-[0.28em] text-coral uppercase">
               M A S T E R &nbsp; P L A N
             </h2>
           </div>

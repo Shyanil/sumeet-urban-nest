@@ -52,7 +52,7 @@ export default function ContactSection() {
             <span className="h-px w-8 bg-[#2c2b29]/25 sm:w-12" />
           </div>
 
-          <h2 className="w-full text-center whitespace-nowrap text-[17px] min-[380px]:text-[20px] sm:text-3xl md:text-4xl lg:text-5xl font-light tracking-[0.14em] min-[380px]:tracking-[0.18em] sm:tracking-[0.22em] text-coral uppercase pl-[0.14em]">
+          <h2 className="w-full text-center whitespace-nowrap text-[13px] min-[380px]:text-[15px] sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl font-light tracking-[0.12em] min-[380px]:tracking-[0.16em] sm:tracking-[0.22em] text-coral uppercase pl-[0.12em]">
             C O N N E C T &nbsp; W I T H &nbsp; U S
           </h2>
         </div>

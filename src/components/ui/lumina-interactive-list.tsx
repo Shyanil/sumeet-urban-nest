@@ -40,7 +40,7 @@ export function LuminaInteractiveList({
             <span className="h-px w-6 bg-[#2c2b29]/25 sm:w-12" />
           </div>
 
-          <h2 className="whitespace-nowrap text-2xl min-[380px]:text-3xl font-light tracking-[0.2em] min-[380px]:tracking-[0.24em] text-coral sm:text-4xl sm:tracking-[0.28em] md:text-5xl lg:text-6xl uppercase">
+          <h2 className="whitespace-nowrap text-lg min-[380px]:text-xl sm:text-3xl md:text-4xl lg:text-5xl font-light tracking-[0.2em] sm:tracking-[0.28em] text-coral uppercase">
             G A L L E R Y
           </h2>
         </div>
