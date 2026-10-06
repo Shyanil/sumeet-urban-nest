@@ -24,7 +24,7 @@ export default function ContactSection() {
     if (fullName.length < 2) nextErrors.fullName = "Please enter your full name";
     if (!/^[6-9]\d{9}$/.test(phoneNumber.slice(-10))) nextErrors.phoneNumber = "Enter a valid 10-digit mobile number";
     if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(emailAddress)) nextErrors.emailAddress = "Enter a valid email address";
-    if (!interest) nextErrors.interest = "Please select your configuration";
+    if (!interest) nextErrors.interest = "Please select your BOHK preference";
     if (!/^\d{6}$/.test(locationPincode)) nextErrors.locationPincode = "Enter a valid 6-digit pincode";
 
     setErrors(nextErrors);
@@ -172,7 +172,7 @@ export default function ContactSection() {
               <div className="grid gap-4 sm:grid-cols-2">
                 <div>
                   <label htmlFor="contactInterest" className="mb-1 block text-xs font-semibold uppercase tracking-wider text-[#2B2623]">
-                    Configuration <span className="text-coral">*</span>
+                    BOHK <span className="text-coral">*</span>
                   </label>
                   <select
                     id="contactInterest"
@@ -182,7 +182,7 @@ export default function ContactSection() {
                       errors.interest ? "border-red-400 focus:border-red-500" : "border-[#2B2623]/15 focus:border-coral"
                     }`}
                   >
-                    <option value="" disabled>Select BHK</option>
+                    <option value="" disabled>Select BOHK</option>
                     <option value="2-bhk">2 BOHK Apartment</option>
                     <option value="3-bhk">3 BOHK Apartment</option>
                     <option value="both">Both 2 &amp; 3 BOHK</option>

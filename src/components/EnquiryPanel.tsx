@@ -199,11 +199,11 @@ export function EnquiryProvider({ children }: { children: ReactNode }) {
                       className={`${fieldClassName} appearance-none text-[#746b66]`}
                     >
                       <option value="" disabled>
-                        Interested In
+                        Select BOHK
                       </option>
-                      <option value="2-bhk">2 BHK Home</option>
-                      <option value="3-bhk">3 BHK Home</option>
-                      <option value="both">2 &amp; 3 BHK Homes</option>
+                      <option value="2-bhk">2 BOHK Home</option>
+                      <option value="3-bhk">3 BOHK Home</option>
+                      <option value="both">Both 2 &amp; 3 BOHK</option>
                     </select>
                   </div>
 

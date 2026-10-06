@@ -78,7 +78,7 @@ export default function Home2() {
                 <div className="mt-7 grid max-w-[590px] grid-cols-3 overflow-hidden rounded-xl border border-white/30 bg-black/25 shadow-[0_12px_36px_rgba(0,0,0,0.15)] backdrop-blur-sm sm:mt-9">
                   <div className="px-3 py-4 sm:px-5 sm:py-5">
                     <p className="text-xl font-semibold tracking-tight text-white sm:text-2xl">2 &amp; 3</p>
-                    <p className="mt-1 text-[9px] leading-4 text-white/75 sm:text-xs">BHK Homes</p>
+                    <p className="mt-1 text-[9px] leading-4 text-white/75 sm:text-xs">BOHK Homes</p>
                   </div>
                   <div className="border-x border-white/20 px-3 py-4 sm:px-5 sm:py-5">
                     <p className="text-xl font-semibold tracking-tight text-white sm:text-2xl">1.76</p>
@@ -155,9 +155,9 @@ export default function Home2() {
                     className={`${heroFieldClassName} appearance-none text-[#746b66]`}
                   >
                     <option value="" disabled>Select a home type</option>
-                    <option value="2-bhk">2 BHK Home</option>
-                    <option value="3-bhk">3 BHK Home</option>
-                    <option value="both">2 &amp; 3 BHK Homes</option>
+                    <option value="2-bhk">2 BOHK Home</option>
+                    <option value="3-bhk">3 BOHK Home</option>
+                    <option value="both">2 &amp; 3 BOHK Homes</option>
                   </select>
                 </div>
                 <button
