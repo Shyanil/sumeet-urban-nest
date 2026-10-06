@@ -45,15 +45,15 @@ export default function WalkthroughSection() {
       <div className="relative z-10 mx-auto w-full max-w-[1720px] px-6 sm:px-10 md:px-14 lg:px-20 xl:px-28 2xl:px-36">
         {/* Top Editorial Header */}
         <div className="mx-auto mb-10 max-w-[1100px] text-center sm:mb-14 md:mb-16">
-          <div className="mb-3 flex items-center justify-center gap-3 sm:mb-4">
-            <span className="h-px w-8 bg-[#2c2b29]/25 sm:w-12" />
-            <span className="text-[10px] font-semibold uppercase tracking-[0.32em] text-[#2c2b29] sm:text-xs">
+          <div className="mb-3 flex items-center justify-center gap-2.5 sm:mb-4 sm:gap-3">
+            <span className="h-px w-6 bg-[#2c2b29]/25 sm:w-12" />
+            <span className="text-[10px] font-semibold uppercase tracking-[0.2em] text-[#2c2b29] sm:text-xs sm:tracking-[0.32em]">
               Architectural Experience · 02
             </span>
-            <span className="h-px w-8 bg-[#2c2b29]/25 sm:w-12" />
+            <span className="h-px w-6 bg-[#2c2b29]/25 sm:w-12" />
           </div>
 
-          <h2 className="whitespace-nowrap text-3xl font-light tracking-[0.28em] text-coral sm:text-4xl md:text-5xl lg:text-6xl uppercase">
+          <h2 className="whitespace-nowrap text-[19px] min-[380px]:text-[22px] font-light tracking-[0.16em] min-[380px]:tracking-[0.2em] text-coral sm:text-4xl sm:tracking-[0.28em] md:text-5xl lg:text-6xl uppercase">
             W A L K T H R O U G H
           </h2>
         </div>

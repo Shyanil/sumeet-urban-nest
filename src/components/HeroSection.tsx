@@ -55,10 +55,10 @@ export default function HeroSection() {
       <div className="relative z-10 mx-auto flex h-full w-full max-w-[1720px] flex-col justify-end px-6 pb-16 pt-24 sm:px-10 sm:pb-20 sm:pt-28 md:px-14 lg:px-20 xl:px-28 2xl:px-36 xl:flex-row xl:items-end xl:justify-between xl:gap-10 xl:pb-24">
         <div className="max-w-[660px] pb-6 xl:pb-0">
           <h1 className="text-[clamp(1.35rem,6.5vw,3rem)] font-light leading-[1.12] tracking-[-0.025em] text-white xl:text-[clamp(2.75rem,3.35vw,3.75rem)]">
-            <span className="block whitespace-nowrap font-normal">
+            <span className="block font-normal sm:whitespace-nowrap">
               A peaceful corner within
             </span>
-            <span className="block whitespace-nowrap font-light">
+            <span className="block font-light sm:whitespace-nowrap">
               your <span className="font-semibold text-coral">everyday</span> world.
             </span>
           </h1>

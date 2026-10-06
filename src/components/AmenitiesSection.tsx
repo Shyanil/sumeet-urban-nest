@@ -280,20 +280,20 @@ export default function AmenitiesSection() {
 
       <div className="relative mx-auto w-full max-w-[1720px] px-6 sm:px-10 md:px-14 lg:px-20 xl:px-28 2xl:px-36">
         {/* Section Header */}
-        <div className="mx-auto mb-12 max-w-[800px] text-center md:mb-16">
-          <div className="mb-3 flex items-center justify-center gap-3 sm:mb-4">
-            <span className="h-px w-8 bg-[#2c2b29]/25 sm:w-12" />
-            <span className="text-[15px] font-semibold uppercase tracking-[0.25em] text-[#2c2b29]">
+        <div className="mx-auto mb-10 max-w-[800px] text-center sm:mb-12 md:mb-16">
+          <div className="mb-3 flex items-center justify-center gap-2.5 sm:mb-4 sm:gap-3">
+            <span className="h-px w-6 bg-[#2c2b29]/25 sm:w-12" />
+            <span className="text-xs font-semibold uppercase tracking-[0.18em] text-[#2c2b29] sm:text-[15px] sm:tracking-[0.25em]">
               Curated Lifestyle · 03
             </span>
-            <span className="h-px w-8 bg-[#2c2b29]/25 sm:w-12" />
+            <span className="h-px w-6 bg-[#2c2b29]/25 sm:w-12" />
           </div>
 
-          <h2 className="whitespace-nowrap text-3xl font-light tracking-[0.28em] text-coral sm:text-4xl md:text-5xl lg:text-6xl uppercase">
+          <h2 className="text-2xl font-light tracking-[0.16em] text-coral min-[380px]:text-3xl min-[380px]:tracking-[0.22em] sm:text-4xl sm:tracking-[0.28em] md:text-5xl lg:text-6xl uppercase">
             A M E N I T I E S
           </h2>
 
-          <p className="mx-auto mt-6 max-w-[680px] text-[15px] leading-relaxed text-[#6d625c]">
+          <p className="mx-auto mt-4 sm:mt-6 max-w-[680px] text-[15px] leading-relaxed text-[#6d625c]">
             From the courtyard to the podium greens up to rooftop skies, every
             space at Sumeet Urban Nest is designed to extend your day beyond the
             indoors.
@@ -318,16 +318,16 @@ export default function AmenitiesSection() {
                 </h4>
               </div>
             </div>
-            <div className="grid grid-cols-1 gap-1 p-4 sm:grid-cols-2 sm:p-5 lg:grid-cols-1">
+            <div className="grid grid-cols-1 gap-1 p-3 sm:grid-cols-2 sm:gap-1.5 sm:p-5 lg:grid-cols-1">
               {podiumAmenities.map((amenity) => (
                 <div
                   key={amenity.name}
-                  className="flex items-center gap-4 rounded-2xl p-3 transition-colors hover:bg-[#fff5ee]"
+                  className="flex items-center gap-3.5 rounded-2xl p-2.5 transition-colors hover:bg-[#fff5ee] sm:gap-4 sm:p-3"
                 >
-                  <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-[#f8f1e8] [&>svg]:h-8 [&>svg]:w-8">
+                  <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-[#f8f1e8] sm:h-12 sm:w-12 [&>svg]:h-7 [&>svg]:w-7 sm:[&>svg]:h-8 sm:[&>svg]:w-8">
                     {amenity.icon}
                   </div>
-                  <p className="text-[15px] font-medium leading-snug text-[#3c3632]">
+                  <p className="text-[15px] font-medium leading-relaxed text-[#2c2b29]">
                     {amenity.name}
                   </p>
                 </div>
@@ -352,16 +352,16 @@ export default function AmenitiesSection() {
                 </h4>
               </div>
             </div>
-            <div className="grid grid-cols-1 gap-1 p-4 sm:grid-cols-2 sm:p-5 lg:grid-cols-1">
+            <div className="grid grid-cols-1 gap-1 p-3 sm:grid-cols-2 sm:gap-1.5 sm:p-5 lg:grid-cols-1">
               {rooftopAmenities.map((amenity) => (
                 <div
                   key={amenity.name}
-                  className="flex items-center gap-4 rounded-2xl p-3 transition-colors hover:bg-[#fff5ee]"
+                  className="flex items-center gap-3.5 rounded-2xl p-2.5 transition-colors hover:bg-[#fff5ee] sm:gap-4 sm:p-3"
                 >
-                  <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-[#f8f1e8] [&>svg]:h-8 [&>svg]:w-8">
+                  <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-[#f8f1e8] sm:h-12 sm:w-12 [&>svg]:h-7 [&>svg]:w-7 sm:[&>svg]:h-8 sm:[&>svg]:w-8">
                     {amenity.icon}
                   </div>
-                  <p className="text-[15px] font-medium leading-snug text-[#3c3632]">
+                  <p className="text-[15px] font-medium leading-relaxed text-[#2c2b29]">
                     {amenity.name}
                   </p>
                 </div>
@@ -386,16 +386,16 @@ export default function AmenitiesSection() {
                 </h4>
               </div>
             </div>
-            <div className="grid grid-cols-1 gap-1 p-4 sm:grid-cols-2 sm:p-5 lg:grid-cols-1">
+            <div className="grid grid-cols-1 gap-1 p-3 sm:grid-cols-2 sm:gap-1.5 sm:p-5 lg:grid-cols-1">
               {clubAmenities.map((amenity) => (
                 <div
                   key={amenity.name}
-                  className="flex items-center gap-4 rounded-2xl p-3 transition-colors hover:bg-[#fff5ee]"
+                  className="flex items-center gap-3.5 rounded-2xl p-2.5 transition-colors hover:bg-[#fff5ee] sm:gap-4 sm:p-3"
                 >
-                  <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-[#f8f1e8] [&>svg]:h-8 [&>svg]:w-8">
+                  <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-[#f8f1e8] sm:h-12 sm:w-12 [&>svg]:h-7 [&>svg]:w-7 sm:[&>svg]:h-8 sm:[&>svg]:w-8">
                     {amenity.icon}
                   </div>
-                  <p className="text-[15px] font-medium leading-snug text-[#3c3632]">
+                  <p className="text-[15px] font-medium leading-relaxed text-[#2c2b29]">
                     {amenity.name}
                   </p>
                 </div>

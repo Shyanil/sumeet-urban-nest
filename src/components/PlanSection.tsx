@@ -246,14 +246,14 @@ export default function PlanSection() {
         <div className="flex flex-col gap-5 sm:flex-row sm:items-end sm:justify-between">
           <div>
             {/* Top Editorial Eyebrow */}
-            <div className="mb-3 flex items-center gap-3 sm:mb-4">
-              <span className="h-px w-8 bg-[#2c2b29]/25 sm:w-12" />
-              <span className="text-[10px] font-semibold uppercase tracking-[0.32em] text-[#2c2b29] sm:text-xs">
+            <div className="mb-3 flex items-center gap-2.5 sm:mb-4 sm:gap-3">
+              <span className="h-px w-6 bg-[#2c2b29]/25 sm:w-12" />
+              <span className="text-[10px] font-semibold uppercase tracking-[0.2em] text-[#2c2b29] sm:text-xs sm:tracking-[0.32em]">
                 Architectural Layout · 07
               </span>
             </div>
 
-            <h2 className="text-3xl font-light tracking-[0.28em] text-coral sm:text-4xl md:text-5xl uppercase">
+            <h2 className="text-2xl min-[380px]:text-3xl font-light tracking-[0.16em] min-[380px]:tracking-[0.22em] text-coral sm:text-4xl sm:tracking-[0.28em] md:text-5xl uppercase">
               M A S T E R &nbsp; P L A N
             </h2>
           </div>

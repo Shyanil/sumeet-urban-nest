@@ -17,16 +17,16 @@ export default function OverviewSection() {
 
       <div className="relative z-10 mx-auto max-w-[1000px] px-6 text-center">
         {/* Top Editorial Eyebrow */}
-        <div className="mb-3 flex items-center justify-center gap-3 sm:mb-4">
-          <span className="h-px w-8 bg-[#2c2b29]/25 sm:w-12" />
-          <span className="text-[10px] font-semibold uppercase tracking-[0.32em] text-[#2c2b29] sm:text-xs">
+        <div className="mb-3 flex items-center justify-center gap-2.5 sm:mb-4 sm:gap-3">
+          <span className="h-px w-6 bg-[#2c2b29]/25 sm:w-12" />
+          <span className="text-[10px] font-semibold uppercase tracking-[0.2em] text-[#2c2b29] sm:text-xs sm:tracking-[0.32em]">
             Project Overview · 01
           </span>
-          <span className="h-px w-8 bg-[#2c2b29]/25 sm:w-12" />
+          <span className="h-px w-6 bg-[#2c2b29]/25 sm:w-12" />
         </div>
 
         {/* Main Heading in Orange */}
-        <h2 className="whitespace-nowrap text-3xl font-light tracking-[0.28em] text-coral sm:text-4xl md:text-5xl lg:text-6xl uppercase">
+        <h2 className="whitespace-nowrap text-2xl min-[380px]:text-3xl font-light tracking-[0.2em] min-[380px]:tracking-[0.24em] text-coral sm:text-4xl sm:tracking-[0.28em] md:text-5xl lg:text-6xl uppercase">
           O V E R V I E W
         </h2>
 
