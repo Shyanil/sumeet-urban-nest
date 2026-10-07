@@ -8,6 +8,7 @@ import GallerySection from "@/components/GallerySection";
 import LocationSection from "@/components/LocationSection";
 import SpecificationsSection from "@/components/SpecificationsSection";
 import PlanSection from "@/components/PlanSection";
+import LayoutSection from "@/components/LayoutSection";
 import DeveloperSection from "@/components/DeveloperSection";
 import ContactSection from "@/components/ContactSection";
 import Footer from "@/components/Footer";
@@ -41,6 +42,7 @@ export default function Home() {
         </section>
         <SpecificationsSection />
         <PlanSection />
+        <LayoutSection />
         <ContactSection />
         <DeveloperSection />
         <Footer />

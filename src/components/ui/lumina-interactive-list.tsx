@@ -18,6 +18,7 @@ export function LuminaInteractiveList({
   onOpen?: (index: number) => void;
 }) {
   const [activeCategory, setActiveCategory] = useState<"all" | "interior" | "exterior">("all");
+  const [cursorPosition, setCursorPosition] = useState<{ x: number; y: number } | null>(null);
 
   const filteredSlides =
     activeCategory === "all"
@@ -40,7 +41,7 @@ export function LuminaInteractiveList({
             <span className="h-px w-6 bg-[#2c2b29]/25 sm:w-12" />
           </div>
 
-          <h2 className="whitespace-nowrap text-lg min-[380px]:text-xl sm:text-3xl md:text-4xl lg:text-5xl font-light tracking-[0.2em] sm:tracking-[0.28em] text-coral uppercase">
+          <h2 className="whitespace-nowrap text-base min-[380px]:text-lg sm:text-2xl md:text-3xl lg:text-4xl font-light tracking-[0.2em] sm:tracking-[0.28em] text-coral uppercase">
             G A L L E R Y
           </h2>
         </div>
@@ -73,17 +74,22 @@ export function LuminaInteractiveList({
             const originalIndex = slides.findIndex((s) => s.media === slide.media);
             const isHero = index === 0 || index === 7;
             const isWide = index === 1 || index === 8;
+            const isFinalAllViewsPair =
+              activeCategory === "all" && index >= filteredSlides.length - 2;
 
             return (
               <button
                 key={slide.media}
                 type="button"
                 onClick={() => onOpen?.(originalIndex >= 0 ? originalIndex : index)}
+                onMouseEnter={(event) => setCursorPosition({ x: event.clientX, y: event.clientY })}
+                onMouseMove={(event) => setCursorPosition({ x: event.clientX, y: event.clientY })}
+                onMouseLeave={() => setCursorPosition(null)}
                 aria-label={`Open ${slide.title}`}
-                className={`group relative overflow-hidden bg-[#1b1816] text-left rounded-xl transition duration-500 ${
+                className={`group relative cursor-none overflow-hidden rounded-xl bg-[#1b1816] text-left transition duration-500 ${
                   isHero
                     ? "sm:row-span-2 lg:col-span-2"
-                    : isWide
+                    : isWide || isFinalAllViewsPair
                       ? "lg:col-span-2"
                       : ""
                 }`}
@@ -114,6 +120,16 @@ export function LuminaInteractiveList({
             );
           })}
         </div>
+
+        {cursorPosition && (
+          <div
+            aria-hidden="true"
+            className="pointer-events-none fixed z-[60] hidden h-20 w-20 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full border border-white/70 bg-[#E8734A]/95 text-[10px] font-semibold tracking-[0.2em] text-white shadow-[0_8px_30px_rgba(0,0,0,0.3)] backdrop-blur-sm lg:flex"
+            style={{ left: cursorPosition.x, top: cursorPosition.y }}
+          >
+            VIEW
+          </div>
+        )}
       </div>
     </div>
   );

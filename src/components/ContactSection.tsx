@@ -4,7 +4,7 @@ import Image from "next/image";
 import { useState, type FormEvent } from "react";
 import { useRouter } from "next/navigation";
 
-type Errors = Partial<Record<"fullName" | "phoneNumber" | "emailAddress" | "interest" | "locationPincode", string>>;
+type Errors = Partial<Record<"fullName" | "phoneNumber" | "budget" | "interest" | "locationPincode", string>>;
 
 export default function ContactSection() {
   const router = useRouter();
@@ -16,15 +16,15 @@ export default function ContactSection() {
     const data = new FormData(event.currentTarget);
     const fullName = String(data.get("fullName") ?? "").trim();
     const phoneNumber = String(data.get("phoneNumber") ?? "").replace(/\D/g, "");
-    const emailAddress = String(data.get("emailAddress") ?? "").trim();
+    const budget = String(data.get("budget") ?? "");
     const interest = String(data.get("interest") ?? "");
     const locationPincode = String(data.get("locationPincode") ?? "").trim();
     const nextErrors: Errors = {};
 
     if (fullName.length < 2) nextErrors.fullName = "Please enter your full name";
     if (!/^[6-9]\d{9}$/.test(phoneNumber.slice(-10))) nextErrors.phoneNumber = "Enter a valid 10-digit mobile number";
-    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(emailAddress)) nextErrors.emailAddress = "Enter a valid email address";
-    if (!interest) nextErrors.interest = "Please select your BOHK preference";
+    if (!budget) nextErrors.budget = "Please select your budget";
+    if (!interest) nextErrors.interest = "Please select a configuration";
     if (!/^\d{6}$/.test(locationPincode)) nextErrors.locationPincode = "Enter a valid 6-digit pincode";
 
     setErrors(nextErrors);
@@ -52,7 +52,7 @@ export default function ContactSection() {
             <span className="h-px w-8 bg-[#2c2b29]/25 sm:w-12" />
           </div>
 
-          <h2 className="w-full text-center whitespace-nowrap text-[13px] min-[380px]:text-[15px] sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl font-light tracking-[0.12em] min-[380px]:tracking-[0.16em] sm:tracking-[0.22em] text-coral uppercase pl-[0.12em]">
+          <h2 className="w-full text-center whitespace-nowrap text-[12px] min-[380px]:text-[14px] sm:text-xl md:text-2xl lg:text-3xl xl:text-4xl font-light tracking-[0.12em] min-[380px]:tracking-[0.16em] sm:tracking-[0.22em] text-coral uppercase pl-[0.12em]">
             C O N N E C T &nbsp; W I T H &nbsp; U S
           </h2>
         </div>
@@ -152,19 +152,25 @@ export default function ContactSection() {
                 </div>
 
                 <div>
-                  <label htmlFor="contactEmailAddress" className="mb-1 block text-xs font-semibold uppercase tracking-wider text-[#2B2623]">
-                    Email Address <span className="text-coral">*</span>
+                  <label htmlFor="contactBudget" className="mb-1 block text-xs font-semibold uppercase tracking-wider text-[#2B2623]">
+                    Your Budget <span className="text-coral">*</span>
                   </label>
-                  <input
-                    type="email"
-                    id="contactEmailAddress"
-                    name="emailAddress"
-                    placeholder="name@example.com"
-                    className={`h-12 w-full rounded-xl border bg-[#F8F7F4] px-4 text-sm text-[#2B2623] outline-none transition placeholder:text-[#2B2623]/40 focus:bg-white focus:ring-2 focus:ring-coral/20 ${
-                      errors.emailAddress ? "border-red-400 focus:border-red-500" : "border-[#2B2623]/15 focus:border-coral"
+                  <select
+                    id="contactBudget"
+                    name="budget"
+                    defaultValue=""
+                    className={`h-12 w-full rounded-xl border bg-[#F8F7F4] px-4 text-sm text-[#2B2623] outline-none transition focus:bg-white focus:ring-2 focus:ring-coral/20 ${
+                      errors.budget ? "border-red-400 focus:border-red-500" : "border-[#2B2623]/15 focus:border-coral"
                     }`}
-                  />
-                  {errors.emailAddress && <p className="mt-1 text-[11px] font-medium text-red-500">{errors.emailAddress}</p>}
+                  >
+                    <option value="" disabled>Your Budget</option>
+                    <option value="2-bohk-55-60">2 BOHK: ₹55L–₹60L</option>
+                    <option value="2-bohk-60-65-plus">2 BOHK: ₹60L–₹65L+</option>
+                    <option value="3-bohk-85-90">3 BOHK: ₹85L–₹90L</option>
+                    <option value="3-bohk-90-95">3 BOHK: ₹90L–₹95L</option>
+                    <option value="3-bohk-95-1cr-plus">3 BOHK: ₹95L–₹1Cr+</option>
+                  </select>
+                  {errors.budget && <p className="mt-1 text-[11px] font-medium text-red-500">{errors.budget}</p>}
                 </div>
               </div>
 
@@ -172,7 +178,7 @@ export default function ContactSection() {
               <div className="grid gap-4 sm:grid-cols-2">
                 <div>
                   <label htmlFor="contactInterest" className="mb-1 block text-xs font-semibold uppercase tracking-wider text-[#2B2623]">
-                    BOHK <span className="text-coral">*</span>
+                    Select Configuration <span className="text-coral">*</span>
                   </label>
                   <select
                     id="contactInterest"
@@ -182,10 +188,10 @@ export default function ContactSection() {
                       errors.interest ? "border-red-400 focus:border-red-500" : "border-[#2B2623]/15 focus:border-coral"
                     }`}
                   >
-                    <option value="" disabled>Select BOHK</option>
-                    <option value="2-bhk">2 BOHK Apartment</option>
-                    <option value="3-bhk">3 BOHK Apartment</option>
-                    <option value="both">Both 2 &amp; 3 BOHK</option>
+                    <option value="" disabled>Select Configuration</option>
+                    <option value="2-bohk">2 BOHK</option>
+                    <option value="3-bohk">3 BOHK</option>
+                    <option value="not-sure">Not Sure</option>
                   </select>
                   {errors.interest && <p className="mt-1 text-[11px] font-medium text-red-500">{errors.interest}</p>}
                 </div>

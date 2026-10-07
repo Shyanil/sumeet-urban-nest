@@ -118,7 +118,7 @@ export default function Preloader() {
 
         {/* Tagline */}
         <p className="mb-8 max-w-[340px] text-[10px] font-light uppercase tracking-[0.28em] text-[#D6AC70] sm:text-xs">
-          Khamardih, Shankar Nagar • Raipur
+          First BOHK Apartments in Raipur
         </p>
 
         {/* Progress bar container */}

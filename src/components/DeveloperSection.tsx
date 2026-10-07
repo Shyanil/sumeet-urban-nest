@@ -72,7 +72,7 @@ export default function DeveloperSection() {
             <span className="h-px w-8 bg-[#2c2b29]/25 sm:w-12" />
           </div>
 
-          <h2 className="w-full text-center whitespace-nowrap text-[13px] min-[380px]:text-[15px] sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl font-light tracking-[0.12em] min-[380px]:tracking-[0.16em] sm:tracking-[0.22em] text-coral uppercase pl-[0.12em]">
+          <h2 className="w-full text-center whitespace-nowrap text-[12px] min-[380px]:text-[14px] sm:text-xl md:text-2xl lg:text-3xl xl:text-4xl font-light tracking-[0.12em] min-[380px]:tracking-[0.16em] sm:tracking-[0.22em] text-coral uppercase pl-[0.12em]">
             A B O U T &nbsp; D E V E L O P E R
           </h2>
 

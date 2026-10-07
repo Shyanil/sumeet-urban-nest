@@ -3,7 +3,7 @@
 import { useEffect, useState, type FormEvent } from "react";
 import { useRouter } from "next/navigation";
 
-type Errors = Partial<Record<"name" | "phone" | "email" | "bhk" | "pincode", string>>;
+type Errors = Partial<Record<"name" | "phone" | "budget" | "bhk" | "pincode", string>>;
 
 const inputClassName =
   "h-11 min-w-0 rounded-full border border-[#2B2623]/15 bg-white/85 px-4 text-xs text-[#2B2623] outline-none transition placeholder:text-[#2B2623]/45 focus:border-coral focus:ring-2 focus:ring-coral/15 lg:h-12 lg:text-sm xl:px-3";
@@ -41,15 +41,15 @@ export default function SiteVisitBar() {
     const data = new FormData(event.currentTarget);
     const name = String(data.get("name") ?? "").trim();
     const phone = String(data.get("phone") ?? "").replace(/\D/g, "");
-    const email = String(data.get("email") ?? "").trim();
+    const budget = String(data.get("budget") ?? "");
     const bhk = String(data.get("bhk") ?? "");
     const pincode = String(data.get("pincode") ?? "").trim();
     const nextErrors: Errors = {};
 
     if (name.length < 2) nextErrors.name = "Enter your name";
     if (!/^[6-9]\d{9}$/.test(phone.slice(-10))) nextErrors.phone = "Enter a valid 10-digit phone";
-    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) nextErrors.email = "Enter a valid email";
-    if (!bhk) nextErrors.bhk = "Select BOHK";
+    if (!budget) nextErrors.budget = "Select your budget";
+    if (!bhk) nextErrors.bhk = "Select Configuration";
     if (!/^\d{6}$/.test(pincode)) nextErrors.pincode = "Enter a valid 6-digit pincode";
 
     setErrors(nextErrors);
@@ -88,19 +88,35 @@ export default function SiteVisitBar() {
             <form onSubmit={submit} noValidate className="hidden min-w-0 flex-1 items-center gap-3 xl:flex">
               <Field name="name" placeholder="Name" autoComplete="name" error={errors.name} className={`${inputClassName} w-full`} wrapperClassName="min-w-[120px] flex-1" />
               <Field name="phone" placeholder="Phone" type="tel" inputMode="tel" autoComplete="tel" error={errors.phone} className={`${inputClassName} w-full`} wrapperClassName="min-w-[120px] flex-1" />
-              <Field name="email" placeholder="Email" type="email" autoComplete="email" error={errors.email} className={`${inputClassName} w-full`} wrapperClassName="min-w-[150px] flex-[1.2]" />
-              <label className="relative w-[110px] min-w-[110px] shrink-0">
-                <span className="sr-only">BOHK preference</span>
+              <label className="relative w-[180px] min-w-[180px] shrink-0">
+                <span className="sr-only">Your Budget</span>
+                <select
+                  name="budget"
+                  defaultValue=""
+                  aria-invalid={Boolean(errors.budget)}
+                  className={`${inputClassName} w-full appearance-none pr-7 ${errors.budget ? "border-red-500" : ""}`}
+                >
+                  <option value="" disabled>Your Budget</option>
+                  <option value="2-bohk-55-60">2 BOHK: ₹55L–₹60L</option>
+                  <option value="2-bohk-60-65-plus">2 BOHK: ₹60L–₹65L+</option>
+                  <option value="3-bohk-85-90">3 BOHK: ₹85L–₹90L</option>
+                  <option value="3-bohk-90-95">3 BOHK: ₹90L–₹95L</option>
+                  <option value="3-bohk-95-1cr-plus">3 BOHK: ₹95L–₹1Cr+</option>
+                </select>
+                {errors.budget && <span className="mt-1 block pl-3 text-[9px] text-red-600 xl:absolute xl:left-3 xl:top-full xl:whitespace-nowrap xl:pl-0">{errors.budget}</span>}
+              </label>
+              <label className="relative w-[180px] min-w-[180px] shrink-0">
+                <span className="sr-only">Select Configuration</span>
                 <select
                   name="bhk"
                   defaultValue=""
                   aria-invalid={Boolean(errors.bhk)}
                   className={`${inputClassName} w-full appearance-none pr-7 ${errors.bhk ? "border-red-500" : ""}`}
                 >
-                  <option value="" disabled>BOHK</option>
-                  <option value="2-bhk">2 BOHK</option>
-                  <option value="3-bhk">3 BOHK</option>
-                  <option value="both">2 &amp; 3 BOHK</option>
+                  <option value="" disabled>Select Configuration</option>
+                  <option value="2-bohk">2 BOHK</option>
+                  <option value="3-bohk">3 BOHK</option>
+                  <option value="not-sure">Not Sure</option>
                 </select>
                 <span className="pointer-events-none absolute right-3 top-1/2 -translate-y-1/2 text-[#2B2623]/50">
                   <svg className="h-3.5 w-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -129,19 +145,35 @@ export default function SiteVisitBar() {
               <form onSubmit={submit} noValidate className="grid grid-cols-2 gap-3">
                 <Field name="name" placeholder="Name" autoComplete="name" error={errors.name} className={`${inputClassName} w-full`} />
                 <Field name="phone" placeholder="Phone" type="tel" inputMode="tel" autoComplete="tel" error={errors.phone} className={`${inputClassName} w-full`} />
-                <Field name="email" placeholder="Email" type="email" autoComplete="email" error={errors.email} className={`${inputClassName} col-span-2 w-full`} />
+                <label className="relative col-span-2 block">
+                  <span className="sr-only">Your Budget</span>
+                  <select
+                    name="budget"
+                    defaultValue=""
+                    aria-invalid={Boolean(errors.budget)}
+                    className={`${inputClassName} w-full appearance-none pr-8 ${errors.budget ? "border-red-500" : ""}`}
+                  >
+                    <option value="" disabled>Your Budget</option>
+                    <option value="2-bohk-55-60">2 BOHK: ₹55L–₹60L</option>
+                    <option value="2-bohk-60-65-plus">2 BOHK: ₹60L–₹65L+</option>
+                    <option value="3-bohk-85-90">3 BOHK: ₹85L–₹90L</option>
+                    <option value="3-bohk-90-95">3 BOHK: ₹90L–₹95L</option>
+                    <option value="3-bohk-95-1cr-plus">3 BOHK: ₹95L–₹1Cr+</option>
+                  </select>
+                  {errors.budget && <span className="mt-1 block pl-3 text-[9px] text-red-600">{errors.budget}</span>}
+                </label>
                 <label className="relative block">
-                  <span className="sr-only">BOHK preference</span>
+                  <span className="sr-only">Select Configuration</span>
                   <select
                     name="bhk"
                     defaultValue=""
                     aria-invalid={Boolean(errors.bhk)}
                     className={`${inputClassName} w-full appearance-none pr-8 ${errors.bhk ? "border-red-500" : ""}`}
                   >
-                    <option value="" disabled>BOHK</option>
-                    <option value="2-bhk">2 BOHK</option>
-                    <option value="3-bhk">3 BOHK</option>
-                    <option value="both">2 &amp; 3 BOHK</option>
+                    <option value="" disabled>Select Configuration</option>
+                    <option value="2-bohk">2 BOHK</option>
+                    <option value="3-bohk">3 BOHK</option>
+                    <option value="not-sure">Not Sure</option>
                   </select>
                   <span className="pointer-events-none absolute right-3.5 top-1/2 -translate-y-1/2 text-[#2B2623]/50">
                     <svg className="h-3.5 w-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">

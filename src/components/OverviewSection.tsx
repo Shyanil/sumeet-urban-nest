@@ -26,7 +26,7 @@ export default function OverviewSection() {
         </div>
 
         {/* Main Heading in Orange */}
-        <h2 className="whitespace-nowrap text-lg min-[380px]:text-xl sm:text-3xl md:text-4xl lg:text-5xl font-light tracking-[0.2em] sm:tracking-[0.28em] text-coral uppercase">
+        <h2 className="whitespace-nowrap text-base min-[380px]:text-lg sm:text-2xl md:text-3xl lg:text-4xl font-light tracking-[0.2em] sm:tracking-[0.28em] text-coral uppercase">
           O V E R V I E W
         </h2>
 

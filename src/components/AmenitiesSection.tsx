@@ -289,7 +289,7 @@ export default function AmenitiesSection() {
             <span className="h-px w-6 bg-[#2c2b29]/25 sm:w-12" />
           </div>
 
-          <h2 className="whitespace-nowrap text-lg min-[380px]:text-xl sm:text-3xl md:text-4xl lg:text-5xl font-light tracking-[0.18em] sm:tracking-[0.28em] text-coral uppercase">
+          <h2 className="whitespace-nowrap text-base min-[380px]:text-lg sm:text-2xl md:text-3xl lg:text-4xl font-light tracking-[0.18em] sm:tracking-[0.28em] text-coral uppercase">
             A M E N I T I E S
           </h2>
 

@@ -134,19 +134,24 @@ export default function Home2() {
                   />
                 </div>
                 <div>
-                  <label htmlFor="home2-email" className="mb-1.5 block text-[11px] font-semibold text-[#514c46]">Email address</label>
-                  <input
+                  <label htmlFor="home2-budget" className="mb-1.5 block text-[11px] font-semibold text-[#514c46]">Your Budget</label>
+                  <select
                     required
-                    id="home2-email"
-                    name="emailAddress"
-                    type="email"
-                    autoComplete="email"
-                    placeholder="Enter your email address"
-                    className={heroFieldClassName}
-                  />
+                    id="home2-budget"
+                    name="budget"
+                    defaultValue=""
+                    className={`${heroFieldClassName} appearance-none text-[#746b66]`}
+                  >
+                    <option value="" disabled>Your Budget</option>
+                    <option value="2-bohk-55-60">2 BOHK: ₹55L–₹60L</option>
+                    <option value="2-bohk-60-65-plus">2 BOHK: ₹60L–₹65L+</option>
+                    <option value="3-bohk-85-90">3 BOHK: ₹85L–₹90L</option>
+                    <option value="3-bohk-90-95">3 BOHK: ₹90L–₹95L</option>
+                    <option value="3-bohk-95-1cr-plus">3 BOHK: ₹95L–₹1Cr+</option>
+                  </select>
                 </div>
                 <div>
-                  <label htmlFor="home2-interest" className="mb-1.5 block text-[11px] font-semibold text-[#514c46]">Home preference</label>
+                  <label htmlFor="home2-interest" className="mb-1.5 block text-[11px] font-semibold text-[#514c46]">Select Configuration</label>
                   <select
                     required
                     id="home2-interest"
@@ -154,10 +159,10 @@ export default function Home2() {
                     defaultValue=""
                     className={`${heroFieldClassName} appearance-none text-[#746b66]`}
                   >
-                    <option value="" disabled>Select a home type</option>
-                    <option value="2-bhk">2 BOHK Home</option>
-                    <option value="3-bhk">3 BOHK Home</option>
-                    <option value="both">2 &amp; 3 BOHK Homes</option>
+                    <option value="" disabled>Select Configuration</option>
+                    <option value="2-bohk">2 BOHK</option>
+                    <option value="3-bohk">3 BOHK</option>
+                    <option value="not-sure">Not Sure</option>
                   </select>
                 </div>
                 <button

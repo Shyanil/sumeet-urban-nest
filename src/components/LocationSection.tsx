@@ -36,7 +36,7 @@ export default function LocationSection() {
             </span>
           </div>
 
-          <h2 className="whitespace-nowrap text-lg min-[380px]:text-xl sm:text-3xl md:text-4xl lg:text-5xl font-light tracking-[0.18em] sm:tracking-[0.24em] text-coral uppercase">
+          <h2 className="whitespace-nowrap text-base min-[380px]:text-lg sm:text-2xl md:text-3xl lg:text-4xl font-light tracking-[0.18em] sm:tracking-[0.24em] text-coral uppercase">
             L O C A T I O N
           </h2>
 

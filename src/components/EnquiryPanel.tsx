@@ -173,23 +173,35 @@ export function EnquiryProvider({ children }: { children: ReactNode }) {
                   </div>
 
                   <div>
-                    <label htmlFor="sticky-email" className="sr-only">
-                      Email Address
+                    <label htmlFor="sticky-budget" className="sr-only">
+                      Your Budget
                     </label>
-                    <input
-                      required
-                      type="email"
-                      id="sticky-email"
-                      name="emailAddress"
-                      autoComplete="email"
-                      placeholder="Email Address"
-                      className={fieldClassName}
-                    />
+                    <div className="relative">
+                      <select
+                        required
+                        id="sticky-budget"
+                        name="budget"
+                        defaultValue=""
+                        className={`${fieldClassName} appearance-none pr-10 text-[#746b66]`}
+                      >
+                        <option value="" disabled>Your Budget</option>
+                        <option value="2-bohk-55-60">2 BOHK: ₹55L–₹60L</option>
+                        <option value="2-bohk-60-65-plus">2 BOHK: ₹60L–₹65L+</option>
+                        <option value="3-bohk-85-90">3 BOHK: ₹85L–₹90L</option>
+                        <option value="3-bohk-90-95">3 BOHK: ₹90L–₹95L</option>
+                        <option value="3-bohk-95-1cr-plus">3 BOHK: ₹95L–₹1Cr+</option>
+                      </select>
+                      <span className="pointer-events-none absolute right-4 top-1/2 -translate-y-1/2 text-[#746b66]/60">
+                        <svg className="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                        </svg>
+                      </span>
+                    </div>
                   </div>
 
                   <div>
                     <label htmlFor="sticky-interest" className="sr-only">
-                      Interested In
+                      Select Configuration
                     </label>
                     <div className="relative">
                       <select
@@ -200,11 +212,11 @@ export function EnquiryProvider({ children }: { children: ReactNode }) {
                         className={`${fieldClassName} appearance-none pr-10 text-[#746b66]`}
                       >
                         <option value="" disabled>
-                          Select BOHK
+                          Select Configuration
                         </option>
-                        <option value="2-bhk">2 BOHK Home</option>
-                        <option value="3-bhk">3 BOHK Home</option>
-                        <option value="both">Both 2 &amp; 3 BOHK</option>
+                        <option value="2-bohk">2 BOHK</option>
+                        <option value="3-bohk">3 BOHK</option>
+                        <option value="not-sure">Not Sure</option>
                       </select>
                       <span className="pointer-events-none absolute right-4 top-1/2 -translate-y-1/2 text-[#746b66]/60">
                         <svg className="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -244,21 +256,6 @@ export function EnquiryProvider({ children }: { children: ReactNode }) {
                 </form>
               )}
 
-              <div className="mt-5 flex items-center justify-center gap-4 border-t border-[#eee4de] pt-5 text-xs text-[#746b66] sm:text-sm">
-                <a
-                  href="tel:+917247724800"
-                  className="font-medium transition hover:text-coral"
-                >
-                  7247 7248 00
-                </a>
-                <span className="h-4 w-px bg-[#ddd1ca]" />
-                <a
-                  href="mailto:sales@sumeetinfraventures.com"
-                  className="transition hover:text-coral"
-                >
-                  Email us
-                </a>
-              </div>
             </div>
           </section>
         </div>
@@ -303,4 +300,3 @@ export function useEnquiry() {
 
   return context;
 }
-
