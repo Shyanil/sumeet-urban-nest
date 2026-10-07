@@ -24,8 +24,11 @@ export default function Home() {
         <OverviewSection />
         <WalkthroughSection />
         <AmenitiesSection />
+        <PlanSection />
         <GallerySection />
+        <SpecificationsSection />
         <LocationSection />
+        <LayoutSection />
         <section
           className="relative w-full overflow-hidden bg-white py-4 sm:py-8 lg:h-[100svh] lg:min-h-[520px] lg:py-0"
           aria-label="Circular garden living"
@@ -40,9 +43,6 @@ export default function Home() {
             />
           </div>
         </section>
-        <SpecificationsSection />
-        <PlanSection />
-        <LayoutSection />
         <ContactSection />
         <DeveloperSection />
         <Footer />

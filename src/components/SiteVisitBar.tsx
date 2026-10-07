@@ -15,6 +15,7 @@ export default function SiteVisitBar() {
   const [isMobileOpen, setIsMobileOpen] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [errors, setErrors] = useState<Errors>({});
+  const [configuration, setConfiguration] = useState("");
 
   useEffect(() => {
     const updateVisibility = () => {
@@ -66,18 +67,18 @@ export default function SiteVisitBar() {
   return (
     <aside className="fixed inset-x-3 bottom-3 z-[90] mx-auto max-w-[1540px] animate-[enquiry-sheet-in_340ms_cubic-bezier(0.22,1,0.36,1)] sm:inset-x-5 sm:bottom-5" aria-label="Book a site visit">
       <div className="overflow-hidden rounded-[26px] border border-white/50 bg-[#F8F7F3]/95 shadow-[0_18px_55px_rgba(43,38,35,0.24)] backdrop-blur-xl xl:rounded-full">
-        <div className="flex min-h-[74px] items-center gap-3 px-4 py-3 sm:px-5 xl:px-4 xl:py-2">
+        <div className="relative flex min-h-[74px] items-center gap-3 px-4 py-3 sm:px-5 xl:px-4 xl:py-2">
           <button type="button" onClick={() => setIsMobileOpen((open) => !open)} className="flex min-w-0 flex-1 items-center gap-3 text-left xl:pointer-events-none xl:w-[190px] xl:flex-none" aria-expanded={isMobileOpen}>
             <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-coral/10 text-coral">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" className="h-5 w-5" aria-hidden="true"><path strokeLinecap="round" strokeLinejoin="round" d="M12 21s7-4.6 7-11a7 7 0 1 0-14 0c0 6.4 7 11 7 11Z"/><circle cx="12" cy="10" r="2.5"/></svg>
             </span>
             <span className="min-w-0">
-              <span className="block text-[11px] font-bold tracking-[0.2em] text-[#2B2623]">SITE VISIT</span>
-              <span className="mt-0.5 block text-[10px] text-[#2B2623]/55">Book Priority Slot</span>
+              <span className="hidden text-[11px] font-bold tracking-[0.2em] text-[#2B2623] xl:block">SITE VISIT</span>
+              <span className="mt-0.5 hidden text-[10px] text-[#2B2623]/55 xl:block">Book Priority Slot</span>
             </span>
           </button>
 
-          <button type="button" onClick={() => setIsMobileOpen(true)} className="ml-auto rounded-full bg-coral px-5 py-3 text-[10px] font-bold tracking-[0.12em] text-white xl:hidden">BOOK NOW</button>
+          <button type="button" onClick={() => setIsMobileOpen(true)} className="absolute left-1/2 -translate-x-1/2 rounded-full bg-coral px-5 py-3 text-[10px] font-bold tracking-[0.12em] text-white xl:hidden">DOWNLOAD BROCHURE</button>
 
           {isSubmitted ? (
             <div className="hidden flex-1 items-center justify-center gap-3 text-sm font-semibold text-[#2B2623] xl:flex">
@@ -92,16 +93,16 @@ export default function SiteVisitBar() {
                 <span className="sr-only">Your Budget</span>
                 <select
                   name="budget"
+                  key={configuration}
                   defaultValue=""
+                  disabled={!configuration}
                   aria-invalid={Boolean(errors.budget)}
-                  className={`${inputClassName} w-full appearance-none pr-7 ${errors.budget ? "border-red-500" : ""}`}
+                  className={`${inputClassName} w-full appearance-none pr-7 disabled:cursor-not-allowed disabled:opacity-55 ${errors.budget ? "border-red-500" : ""}`}
                 >
                   <option value="" disabled>Your Budget</option>
-                  <option value="2-bohk-55-60">2 BOHK: ₹55L–₹60L</option>
-                  <option value="2-bohk-60-65-plus">2 BOHK: ₹60L–₹65L+</option>
-                  <option value="3-bohk-85-90">3 BOHK: ₹85L–₹90L</option>
-                  <option value="3-bohk-90-95">3 BOHK: ₹90L–₹95L</option>
-                  <option value="3-bohk-95-1cr-plus">3 BOHK: ₹95L–₹1Cr+</option>
+                  {configuration === "2-bohk" && <><option value="2-bohk-55-60">₹55L–₹60L</option><option value="2-bohk-60-65-plus">₹60L–₹65L+</option></>}
+                  {configuration === "3-bohk" && <><option value="3-bohk-85-90">₹85L–₹90L</option><option value="3-bohk-90-95">₹90L–₹95L</option><option value="3-bohk-95-1cr-plus">₹95L–₹1Cr+</option></>}
+                  {configuration === "not-sure" && <><option value="2-bohk-55-60">2 BOHK: ₹55L–₹60L</option><option value="2-bohk-60-65-plus">2 BOHK: ₹60L–₹65L+</option><option value="3-bohk-85-90">3 BOHK: ₹85L–₹90L</option><option value="3-bohk-90-95">3 BOHK: ₹90L–₹95L</option><option value="3-bohk-95-1cr-plus">3 BOHK: ₹95L–₹1Cr+</option></>}
                 </select>
                 {errors.budget && <span className="mt-1 block pl-3 text-[9px] text-red-600 xl:absolute xl:left-3 xl:top-full xl:whitespace-nowrap xl:pl-0">{errors.budget}</span>}
               </label>
@@ -109,7 +110,8 @@ export default function SiteVisitBar() {
                 <span className="sr-only">Select Configuration</span>
                 <select
                   name="bhk"
-                  defaultValue=""
+                  value={configuration}
+                  onChange={(event) => setConfiguration(event.target.value)}
                   aria-invalid={Boolean(errors.bhk)}
                   className={`${inputClassName} w-full appearance-none pr-7 ${errors.bhk ? "border-red-500" : ""}`}
                 >
@@ -128,9 +130,9 @@ export default function SiteVisitBar() {
               <Field name="pincode" placeholder="Pincode" inputMode="numeric" autoComplete="postal-code" error={errors.pincode} className={`${inputClassName} w-full`} wrapperClassName="w-[118px] min-w-[118px] shrink-0" />
               <button
                 type="submit"
-                className="group flex h-12 w-[136px] shrink-0 items-center justify-between gap-2 whitespace-nowrap rounded-full bg-coral py-1.5 pl-5 pr-1.5 text-[10px] font-bold tracking-[0.13em] text-white shadow-[0_10px_26px_rgba(232,115,74,0.32)] transition duration-300 hover:-translate-y-0.5 hover:bg-coral-dark hover:shadow-[0_14px_30px_rgba(232,115,74,0.38)] focus:outline-none focus:ring-4 focus:ring-coral/20"
+                className="group flex h-12 w-[210px] shrink-0 items-center justify-between gap-2 whitespace-nowrap rounded-full bg-coral py-1.5 pl-5 pr-1.5 text-[10px] font-bold tracking-[0.08em] text-white shadow-[0_10px_26px_rgba(232,115,74,0.32)] transition duration-300 hover:-translate-y-0.5 hover:bg-coral-dark hover:shadow-[0_14px_30px_rgba(232,115,74,0.38)] focus:outline-none focus:ring-4 focus:ring-coral/20"
               >
-                CONFIRM
+                DOWNLOAD BROCHURE
                 <span className="flex h-9 w-9 items-center justify-center rounded-full bg-white/18 text-lg transition-transform duration-300 group-hover:translate-x-0.5" aria-hidden="true">→</span>
               </button>
             </form>
@@ -148,17 +150,17 @@ export default function SiteVisitBar() {
                 <label className="relative col-span-2 block">
                   <span className="sr-only">Your Budget</span>
                   <select
-                    name="budget"
+                  name="budget"
+                    key={configuration}
                     defaultValue=""
+                    disabled={!configuration}
                     aria-invalid={Boolean(errors.budget)}
-                    className={`${inputClassName} w-full appearance-none pr-8 ${errors.budget ? "border-red-500" : ""}`}
+                    className={`${inputClassName} w-full appearance-none pr-8 disabled:cursor-not-allowed disabled:opacity-55 ${errors.budget ? "border-red-500" : ""}`}
                   >
                     <option value="" disabled>Your Budget</option>
-                    <option value="2-bohk-55-60">2 BOHK: ₹55L–₹60L</option>
-                    <option value="2-bohk-60-65-plus">2 BOHK: ₹60L–₹65L+</option>
-                    <option value="3-bohk-85-90">3 BOHK: ₹85L–₹90L</option>
-                    <option value="3-bohk-90-95">3 BOHK: ₹90L–₹95L</option>
-                    <option value="3-bohk-95-1cr-plus">3 BOHK: ₹95L–₹1Cr+</option>
+                    {configuration === "2-bohk" && <><option value="2-bohk-55-60">₹55L–₹60L</option><option value="2-bohk-60-65-plus">₹60L–₹65L+</option></>}
+                    {configuration === "3-bohk" && <><option value="3-bohk-85-90">₹85L–₹90L</option><option value="3-bohk-90-95">₹90L–₹95L</option><option value="3-bohk-95-1cr-plus">₹95L–₹1Cr+</option></>}
+                    {configuration === "not-sure" && <><option value="2-bohk-55-60">2 BOHK: ₹55L–₹60L</option><option value="2-bohk-60-65-plus">2 BOHK: ₹60L–₹65L+</option><option value="3-bohk-85-90">3 BOHK: ₹85L–₹90L</option><option value="3-bohk-90-95">3 BOHK: ₹90L–₹95L</option><option value="3-bohk-95-1cr-plus">3 BOHK: ₹95L–₹1Cr+</option></>}
                   </select>
                   {errors.budget && <span className="mt-1 block pl-3 text-[9px] text-red-600">{errors.budget}</span>}
                 </label>
@@ -166,7 +168,8 @@ export default function SiteVisitBar() {
                   <span className="sr-only">Select Configuration</span>
                   <select
                     name="bhk"
-                    defaultValue=""
+                    value={configuration}
+                    onChange={(event) => setConfiguration(event.target.value)}
                     aria-invalid={Boolean(errors.bhk)}
                     className={`${inputClassName} w-full appearance-none pr-8 ${errors.bhk ? "border-red-500" : ""}`}
                   >

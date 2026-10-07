@@ -10,6 +10,7 @@ export default function ContactSection() {
   const router = useRouter();
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [errors, setErrors] = useState<Errors>({});
+  const [configuration, setConfiguration] = useState("");
 
   const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -47,7 +48,7 @@ export default function ContactSection() {
           <div className="mb-3 flex items-center justify-center gap-3 sm:mb-4">
             <span className="h-px w-8 bg-[#2c2b29]/25 sm:w-12" />
             <span className="text-[10px] font-semibold uppercase tracking-[0.32em] text-[#2c2b29] sm:text-xs">
-              Private Enclave · 08
+              Private Enclave · 09
             </span>
             <span className="h-px w-8 bg-[#2c2b29]/25 sm:w-12" />
           </div>
@@ -158,17 +159,16 @@ export default function ContactSection() {
                   <select
                     id="contactBudget"
                     name="budget"
-                    defaultValue=""
-                    className={`h-12 w-full rounded-xl border bg-[#F8F7F4] px-4 text-sm text-[#2B2623] outline-none transition focus:bg-white focus:ring-2 focus:ring-coral/20 ${
+                    key={configuration}
+                    disabled={!configuration}
+                    className={`h-12 w-full rounded-xl border bg-[#F8F7F4] px-4 text-sm text-[#2B2623] outline-none transition focus:bg-white focus:ring-2 focus:ring-coral/20 disabled:cursor-not-allowed disabled:opacity-55 ${
                       errors.budget ? "border-red-400 focus:border-red-500" : "border-[#2B2623]/15 focus:border-coral"
                     }`}
                   >
                     <option value="" disabled>Your Budget</option>
-                    <option value="2-bohk-55-60">2 BOHK: ₹55L–₹60L</option>
-                    <option value="2-bohk-60-65-plus">2 BOHK: ₹60L–₹65L+</option>
-                    <option value="3-bohk-85-90">3 BOHK: ₹85L–₹90L</option>
-                    <option value="3-bohk-90-95">3 BOHK: ₹90L–₹95L</option>
-                    <option value="3-bohk-95-1cr-plus">3 BOHK: ₹95L–₹1Cr+</option>
+                    {configuration === "2-bohk" && <><option value="2-bohk-55-60">₹55L–₹60L</option><option value="2-bohk-60-65-plus">₹60L–₹65L+</option></>}
+                    {configuration === "3-bohk" && <><option value="3-bohk-85-90">₹85L–₹90L</option><option value="3-bohk-90-95">₹90L–₹95L</option><option value="3-bohk-95-1cr-plus">₹95L–₹1Cr+</option></>}
+                    {configuration === "not-sure" && <><option value="2-bohk-55-60">2 BOHK: ₹55L–₹60L</option><option value="2-bohk-60-65-plus">2 BOHK: ₹60L–₹65L+</option><option value="3-bohk-85-90">3 BOHK: ₹85L–₹90L</option><option value="3-bohk-90-95">3 BOHK: ₹90L–₹95L</option><option value="3-bohk-95-1cr-plus">3 BOHK: ₹95L–₹1Cr+</option></>}
                   </select>
                   {errors.budget && <p className="mt-1 text-[11px] font-medium text-red-500">{errors.budget}</p>}
                 </div>
@@ -183,7 +183,8 @@ export default function ContactSection() {
                   <select
                     id="contactInterest"
                     name="interest"
-                    defaultValue=""
+                    value={configuration}
+                    onChange={(event) => setConfiguration(event.target.value)}
                     className={`h-12 w-full rounded-xl border bg-[#F8F7F4] px-4 text-sm text-[#2B2623] outline-none transition focus:bg-white focus:ring-2 focus:ring-coral/20 ${
                       errors.interest ? "border-red-400 focus:border-red-500" : "border-[#2B2623]/15 focus:border-coral"
                     }`}

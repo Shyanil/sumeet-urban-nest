@@ -20,28 +20,6 @@ export default function WalkthroughSection() {
       id="walkthrough"
       className="relative scroll-mt-20 overflow-hidden bg-[#FFF0DE] py-20 sm:py-24 md:py-32 lg:py-36"
     >
-      {/* Background architectural ambient glow and rings */}
-      <div
-        aria-hidden="true"
-        className="pointer-events-none absolute inset-0 select-none overflow-hidden"
-      >
-        <div className="absolute left-1/2 top-1/2 h-[750px] w-[750px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-coral/8 blur-[130px]" />
-        <Image
-          src="/images/exterior/amenities-rings.webp"
-          alt=""
-          width={2034}
-          height={773}
-          className="pointer-events-none absolute -left-40 top-1/2 -translate-y-1/2 w-[520px] max-w-none opacity-[0.14] select-none"
-        />
-        <Image
-          src="/images/exterior/overview-rings.webp"
-          alt=""
-          width={2034}
-          height={773}
-          className="pointer-events-none absolute -right-36 top-1/3 w-[560px] max-w-none opacity-[0.14] select-none"
-        />
-      </div>
-
       <div className="relative z-10 mx-auto w-full max-w-[1720px] px-6 sm:px-10 md:px-14 lg:px-20 xl:px-28 2xl:px-36">
         {/* Top Editorial Header */}
         <div className="mx-auto mb-10 max-w-[1100px] text-center sm:mb-14 md:mb-16">

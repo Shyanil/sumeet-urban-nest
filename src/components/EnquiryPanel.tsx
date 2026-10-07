@@ -22,6 +22,7 @@ const fieldClassName =
 export function EnquiryProvider({ children }: { children: ReactNode }) {
   const [isOpen, setIsOpen] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
+  const [configuration, setConfiguration] = useState("");
   const nameInputRef = useRef<HTMLInputElement>(null);
 
   useEffect(() => {
@@ -44,6 +45,7 @@ export function EnquiryProvider({ children }: { children: ReactNode }) {
 
   const openEnquiry = () => {
     setIsSubmitted(false);
+    setConfiguration("");
     setIsOpen(true);
   };
 
@@ -178,18 +180,18 @@ export function EnquiryProvider({ children }: { children: ReactNode }) {
                     </label>
                     <div className="relative">
                       <select
-                        required
+                        required={Boolean(configuration)}
+                        disabled={!configuration}
                         id="sticky-budget"
                         name="budget"
+                        key={configuration}
                         defaultValue=""
-                        className={`${fieldClassName} appearance-none pr-10 text-[#746b66]`}
+                        className={`${fieldClassName} appearance-none pr-10 text-[#746b66] disabled:cursor-not-allowed disabled:opacity-55`}
                       >
                         <option value="" disabled>Your Budget</option>
-                        <option value="2-bohk-55-60">2 BOHK: ₹55L–₹60L</option>
-                        <option value="2-bohk-60-65-plus">2 BOHK: ₹60L–₹65L+</option>
-                        <option value="3-bohk-85-90">3 BOHK: ₹85L–₹90L</option>
-                        <option value="3-bohk-90-95">3 BOHK: ₹90L–₹95L</option>
-                        <option value="3-bohk-95-1cr-plus">3 BOHK: ₹95L–₹1Cr+</option>
+                        {configuration === "2-bohk" && <><option value="2-bohk-55-60">₹55L–₹60L</option><option value="2-bohk-60-65-plus">₹60L–₹65L+</option></>}
+                        {configuration === "3-bohk" && <><option value="3-bohk-85-90">₹85L–₹90L</option><option value="3-bohk-90-95">₹90L–₹95L</option><option value="3-bohk-95-1cr-plus">₹95L–₹1Cr+</option></>}
+                        {configuration === "not-sure" && <><option value="2-bohk-55-60">2 BOHK: ₹55L–₹60L</option><option value="2-bohk-60-65-plus">2 BOHK: ₹60L–₹65L+</option><option value="3-bohk-85-90">3 BOHK: ₹85L–₹90L</option><option value="3-bohk-90-95">3 BOHK: ₹90L–₹95L</option><option value="3-bohk-95-1cr-plus">3 BOHK: ₹95L–₹1Cr+</option></>}
                       </select>
                       <span className="pointer-events-none absolute right-4 top-1/2 -translate-y-1/2 text-[#746b66]/60">
                         <svg className="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -208,7 +210,8 @@ export function EnquiryProvider({ children }: { children: ReactNode }) {
                         required
                         id="sticky-interest"
                         name="interest"
-                        defaultValue=""
+                        value={configuration}
+                        onChange={(event) => setConfiguration(event.target.value)}
                         className={`${fieldClassName} appearance-none pr-10 text-[#746b66]`}
                       >
                         <option value="" disabled>

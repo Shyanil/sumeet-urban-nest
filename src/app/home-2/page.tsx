@@ -1,5 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
+import ConfigurationBudgetFields from "@/components/ConfigurationBudgetFields";
 
 export const metadata = {
   title: "Sumeet Urban Nest | Coming Soon in Raipur",
@@ -133,38 +134,7 @@ export default function Home2() {
                     className={heroFieldClassName}
                   />
                 </div>
-                <div>
-                  <label htmlFor="home2-budget" className="mb-1.5 block text-[11px] font-semibold text-[#514c46]">Your Budget</label>
-                  <select
-                    required
-                    id="home2-budget"
-                    name="budget"
-                    defaultValue=""
-                    className={`${heroFieldClassName} appearance-none text-[#746b66]`}
-                  >
-                    <option value="" disabled>Your Budget</option>
-                    <option value="2-bohk-55-60">2 BOHK: ₹55L–₹60L</option>
-                    <option value="2-bohk-60-65-plus">2 BOHK: ₹60L–₹65L+</option>
-                    <option value="3-bohk-85-90">3 BOHK: ₹85L–₹90L</option>
-                    <option value="3-bohk-90-95">3 BOHK: ₹90L–₹95L</option>
-                    <option value="3-bohk-95-1cr-plus">3 BOHK: ₹95L–₹1Cr+</option>
-                  </select>
-                </div>
-                <div>
-                  <label htmlFor="home2-interest" className="mb-1.5 block text-[11px] font-semibold text-[#514c46]">Select Configuration</label>
-                  <select
-                    required
-                    id="home2-interest"
-                    name="interest"
-                    defaultValue=""
-                    className={`${heroFieldClassName} appearance-none text-[#746b66]`}
-                  >
-                    <option value="" disabled>Select Configuration</option>
-                    <option value="2-bohk">2 BOHK</option>
-                    <option value="3-bohk">3 BOHK</option>
-                    <option value="not-sure">Not Sure</option>
-                  </select>
-                </div>
+                <ConfigurationBudgetFields fieldClassName={heroFieldClassName} />
                 <button
                   type="submit"
                   className="group flex min-h-13 w-full items-center justify-between rounded-lg bg-coral px-5 text-sm font-bold tracking-[0.04em] text-white shadow-[0_10px_24px_rgba(232,115,74,0.24)] transition hover:-translate-y-0.5 hover:bg-coral-dark focus-visible:outline-2 focus-visible:outline-offset-3 focus-visible:outline-coral sm:min-h-14 sm:px-6"

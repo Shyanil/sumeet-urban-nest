@@ -29,8 +29,8 @@ export default function LayoutSection() {
             </span>
             <span className="h-px w-6 bg-[#2c2b29]/25 sm:w-12" />
           </div>
-          <h2 className="text-3xl font-light leading-tight tracking-[-0.035em] text-[#2c2b29] sm:text-4xl md:text-5xl">
-            <span className="text-coral">Opened out to space.</span>
+          <h2 className="whitespace-nowrap text-[11px] font-light uppercase tracking-[0.14em] text-coral min-[380px]:text-[13px] sm:text-2xl sm:tracking-[0.2em] md:text-3xl lg:text-4xl">
+            O P E N E D &nbsp; O U T &nbsp; T O &nbsp; S P A C E
           </h2>
           <p className="mx-auto mt-5 max-w-[620px] text-sm leading-7 text-[#6d625c] sm:text-[15px]">
             Three distinct towers, thoughtfully composed to bring light, privacy and openness into everyday living.
