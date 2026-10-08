@@ -68,7 +68,6 @@ export function EnquiryProvider({ children }: { children: ReactNode }) {
         body: JSON.stringify({
           fullName: String(formData.get("fullName") ?? "").trim(),
           phoneNumber: `+91${String(formData.get("phoneNumber") ?? "").replace(/\D/g, "").slice(-10)}`,
-          email: String(formData.get("email") ?? "").trim(),
           budget: String(formData.get("budget") ?? ""),
           configuration: String(formData.get("interest") ?? ""),
           locationPincode: String(formData.get("locationPincode") ?? "").trim(),
@@ -174,7 +173,7 @@ export function EnquiryProvider({ children }: { children: ReactNode }) {
                   </button>
                 </div>
               ) : (
-                <form onSubmit={submitEnquiry} className="space-y-3.5 sm:space-y-4">
+                <form onSubmit={submitEnquiry} className="flex flex-col gap-3.5 sm:gap-4">
                   {submitError && <p className="rounded-lg bg-red-50 px-3 py-2 text-sm text-red-600">{submitError}</p>}
                   <div>
                     <label htmlFor="sticky-full-name" className="sr-only">
@@ -190,11 +189,6 @@ export function EnquiryProvider({ children }: { children: ReactNode }) {
                       placeholder="Full Name"
                       className={fieldClassName}
                     />
-                  </div>
-
-                  <div>
-                    <label htmlFor="sticky-email" className="sr-only">Email Address</label>
-                    <input required type="email" id="sticky-email" name="email" autoComplete="email" placeholder="Email Address" className={fieldClassName} />
                   </div>
 
                   <div>
@@ -218,7 +212,7 @@ export function EnquiryProvider({ children }: { children: ReactNode }) {
                     </div>
                   </div>
 
-                  <div>
+                  <div className="order-3">
                     <label htmlFor="sticky-budget" className="sr-only">
                       Your Budget
                     </label>
@@ -245,7 +239,7 @@ export function EnquiryProvider({ children }: { children: ReactNode }) {
                     </div>
                   </div>
 
-                  <div>
+                  <div className="order-2">
                     <label htmlFor="sticky-interest" className="sr-only">
                       Select Configuration
                     </label>
@@ -273,7 +267,7 @@ export function EnquiryProvider({ children }: { children: ReactNode }) {
                     </div>
                   </div>
 
-                  <div>
+                  <div className="order-4">
                     <label htmlFor="sticky-location" className="sr-only">
                       Location / Pincode
                     </label>
@@ -291,10 +285,9 @@ export function EnquiryProvider({ children }: { children: ReactNode }) {
                   <button
                     type="submit"
                     disabled={isSubmitting}
-                    className="group flex min-h-13 w-full items-center justify-center gap-3 rounded-xl bg-coral px-6 text-sm font-bold tracking-[0.08em] text-white shadow-[0_12px_30px_rgba(232,115,74,0.25)] transition hover:-translate-y-0.5 hover:bg-coral-dark hover:shadow-[0_16px_34px_rgba(232,115,74,0.32)] sm:min-h-14 sm:text-[15px]"
+                    className="group order-5 flex h-11 w-full items-center justify-center rounded-full bg-coral px-5 text-[10px] font-bold uppercase tracking-[0.08em] text-white shadow-[0_10px_26px_rgba(232,115,74,0.32)] transition duration-300 hover:-translate-y-0.5 hover:bg-coral-dark hover:shadow-[0_14px_30px_rgba(232,115,74,0.38)] focus:outline-none focus:ring-4 focus:ring-coral/20"
                   >
                     {isSubmitting ? "SUBMITTING..." : "SUBMIT ENQUIRY"}
-                    <span className="transition-transform group-hover:translate-x-1">&rarr;</span>
                   </button>
 
                   <p className="px-2 pt-1 text-center text-[10px] leading-4 text-[#9b918c] sm:text-[11px]">

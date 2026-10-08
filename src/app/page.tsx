@@ -7,12 +7,12 @@ import GallerySection from "@/components/GallerySection";
 import LocationSection from "@/components/LocationSection";
 import SpecificationsSection from "@/components/SpecificationsSection";
 import PlanSection from "@/components/PlanSection";
-import FloorPlanSection from "@/components/FloorPlanSection";
 import LayoutSection from "@/components/LayoutSection";
 import DeveloperSection from "@/components/DeveloperSection";
 import ContactSection from "@/components/ContactSection";
 import Footer from "@/components/Footer";
 import SiteVisitBar from "@/components/SiteVisitBar";
+import SectionCta from "@/components/SectionCta";
 import { EnquiryProvider } from "@/components/EnquiryPanel";
 
 export default function Home() {
@@ -23,12 +23,15 @@ export default function Home() {
         <HeroSection />
         <OverviewSection />
         <AmenitiesSection />
+        <SectionCta />
         <PlanSection />
-        <FloorPlanSection />
+        <SectionCta />
         <GallerySection />
+        <SectionCta />
         <SpecificationsSection />
         <LocationSection />
         <LayoutSection />
+        <SectionCta />
         <section
           className="relative w-full overflow-hidden bg-white py-4 sm:py-8 lg:h-[100svh] lg:min-h-[520px] lg:py-0"
           aria-label="Circular garden living"

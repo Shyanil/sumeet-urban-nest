@@ -10,7 +10,7 @@ const montserrat = Montserrat({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL ?? "https://sumeet-urban-nest.sumitinfracon6.workers.dev"),
+  metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL ?? "https://sumeeturbannest.com"),
   title: {
     default: "Sumeet Urban Nest | 2 & 3 BHK Homes in Khamardih, Raipur",
     template: "%s | Sumeet Urban Nest",

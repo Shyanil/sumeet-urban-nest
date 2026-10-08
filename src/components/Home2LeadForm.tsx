@@ -29,7 +29,6 @@ export default function Home2LeadForm({ fieldClassName }: { fieldClassName: stri
         body: JSON.stringify({
           fullName: String(data.get("fullName") ?? "").trim(),
           phoneNumber: `+91${phoneNumber.slice(-10)}`,
-          email: String(data.get("email") ?? "").trim(),
           configuration: String(data.get("interest") ?? ""),
           budget: String(data.get("budget") ?? ""),
           form: "home-2",
@@ -58,10 +57,6 @@ export default function Home2LeadForm({ fieldClassName }: { fieldClassName: stri
           <span className="pointer-events-none absolute left-4 top-1/2 -translate-y-1/2 text-xs font-semibold text-[#302c2a]/55">+91</span>
           <input required id="home2-phone" name="phoneNumber" type="tel" inputMode="numeric" autoComplete="tel" maxLength={10} pattern="[0-9]{10}" placeholder="98765 43210" className={`${fieldClassName} pl-13`} />
         </div>
-      </div>
-      <div>
-        <label htmlFor="home2-email" className="mb-1.5 block text-[11px] font-semibold text-[#514c46]">Email address *</label>
-        <input required id="home2-email" name="email" type="email" inputMode="email" autoComplete="email" placeholder="you@example.com" className={fieldClassName} />
       </div>
       <ConfigurationBudgetFields fieldClassName={fieldClassName} />
       <button type="submit" disabled={isSubmitting} className="group flex min-h-13 w-full items-center justify-between rounded-lg bg-coral px-5 text-sm font-bold tracking-[0.04em] text-white shadow-[0_10px_24px_rgba(232,115,74,0.24)] transition hover:-translate-y-0.5 hover:bg-coral-dark focus-visible:outline-2 focus-visible:outline-offset-3 focus-visible:outline-coral disabled:opacity-70 sm:min-h-14 sm:px-6">

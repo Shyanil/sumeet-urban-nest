@@ -43,7 +43,7 @@ export default function LayoutSection() {
               key={block.name}
               className="group relative overflow-hidden rounded-[24px] border border-[#e8ded7] bg-white p-6 shadow-[0_12px_35px_rgba(83,55,39,0.08)] transition duration-300 hover:-translate-y-1 hover:shadow-[0_22px_50px_rgba(83,55,39,0.14)] sm:p-8"
             >
-              <div className="pointer-events-none absolute -right-10 -top-10 h-32 w-32 rounded-full border-[18px] border-coral/5 transition-transform duration-500 group-hover:scale-110" />
+              <div className="pointer-events-none absolute -bottom-10 -right-10 h-32 w-32 rounded-full border-[18px] border-coral/5 transition-transform duration-500 group-hover:scale-110" />
               <div className="relative flex items-start justify-between gap-5">
                 <p className="text-[11px] font-bold uppercase tracking-[0.3em] text-coral">
                   {block.name}

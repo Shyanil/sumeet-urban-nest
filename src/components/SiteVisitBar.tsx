@@ -7,7 +7,7 @@ import { getLeadTracking } from "@/lib/leadTracking";
 type Errors = Partial<Record<"name" | "phone" | "budget" | "bhk" | "pincode" | "form", string>>;
 
 const inputClassName =
-  "h-11 min-w-0 rounded-full border border-[#2B2623]/15 bg-white/85 px-4 text-xs text-[#2B2623] outline-none transition placeholder:text-[#2B2623]/45 focus:border-coral focus:ring-2 focus:ring-coral/15 lg:h-12 lg:text-sm xl:px-3";
+  "h-11 min-w-0 rounded-full border border-[#2B2623]/15 bg-white/85 px-4 text-xs text-[#2B2623] outline-none transition placeholder:text-[#2B2623]/45 focus:border-coral focus:ring-2 focus:ring-coral/15 lg:h-12 lg:text-sm xl:h-11 xl:text-[13px] xl:px-3";
 
 export default function SiteVisitBar() {
   const router = useRouter();
@@ -17,6 +17,7 @@ export default function SiteVisitBar() {
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [errors, setErrors] = useState<Errors>({});
   const [configuration, setConfiguration] = useState("");
+  const [isConfigurationOpen, setIsConfigurationOpen] = useState(false);
 
   useEffect(() => {
     const updateVisibility = () => {
@@ -43,15 +44,13 @@ export default function SiteVisitBar() {
     const data = new FormData(event.currentTarget);
     const name = String(data.get("name") ?? "").trim();
     const phone = String(data.get("phone") ?? "").replace(/\D/g, "");
-    const email = String(data.get("email") ?? "").trim();
     const budget = String(data.get("budget") ?? "");
-    const bhk = String(data.get("bhk") ?? "");
+    const bhk = configuration;
     const pincode = String(data.get("pincode") ?? "").trim();
     const nextErrors: Errors = {};
 
     if (name.length < 2) nextErrors.name = "Enter your name";
     if (!/^[6-9]\d{9}$/.test(phone.slice(-10))) nextErrors.phone = "Enter a valid 10-digit phone";
-    if (email && !/^\S+@\S+\.\S+$/.test(email)) nextErrors.form = "Enter a valid email address";
     if (!budget) nextErrors.budget = "Select your budget";
     if (!bhk) nextErrors.bhk = "Select Configuration";
     if (!/^\d{6}$/.test(pincode)) nextErrors.pincode = "Enter a valid 6-digit pincode";
@@ -61,7 +60,7 @@ export default function SiteVisitBar() {
       const response = await fetch("/api/enquiry", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ fullName: name, phoneNumber: `+91${phone.slice(-10)}`, email, budget, configuration: bhk, locationPincode: pincode, form: "site-visit", ...getLeadTracking() }),
+        body: JSON.stringify({ fullName: name, phoneNumber: `+91${phone.slice(-10)}`, budget, configuration: bhk, locationPincode: pincode, form: "site-visit", ...getLeadTracking() }),
       });
       if (response.ok) {
         setIsSubmitted(true);
@@ -75,10 +74,10 @@ export default function SiteVisitBar() {
   if (!isVisible || isDismissed) return null;
 
   return (
-    <aside className="fixed inset-x-3 bottom-3 z-[90] mx-auto max-w-[1540px] animate-[enquiry-sheet-in_340ms_cubic-bezier(0.22,1,0.36,1)] sm:inset-x-5 sm:bottom-5" aria-label="Book a site visit">
-      <div className="overflow-hidden rounded-[26px] border border-white/50 bg-[#F8F7F3]/95 shadow-[0_18px_55px_rgba(43,38,35,0.24)] backdrop-blur-xl xl:rounded-full">
-        <div className="relative flex min-h-[74px] items-center gap-3 px-4 py-3 sm:px-5 xl:px-4 xl:py-2">
-          <button type="button" onClick={() => setIsMobileOpen((open) => !open)} className="flex h-11 w-11 shrink-0 items-center justify-center gap-3 text-left xl:pointer-events-none xl:h-auto xl:w-[190px] xl:justify-start" aria-expanded={isMobileOpen}>
+    <aside className="fixed inset-x-3 bottom-3 z-[90] mx-auto max-w-[1540px] animate-[enquiry-sheet-in_340ms_cubic-bezier(0.22,1,0.36,1)] sm:inset-x-5 sm:bottom-5 xl:max-w-[1440px]" aria-label="Book a site visit">
+      <div className="overflow-hidden rounded-[26px] border border-white/50 bg-[#F8F7F3]/95 shadow-[0_18px_55px_rgba(43,38,35,0.24)] backdrop-blur-xl xl:overflow-visible xl:rounded-full">
+        <div className="relative flex min-h-[74px] items-center gap-3 px-4 py-3 sm:px-5 xl:min-h-[66px] xl:gap-2.5 xl:px-3 xl:py-1.5">
+          <button type="button" onClick={() => setIsMobileOpen((open) => !open)} className="flex h-11 w-11 shrink-0 items-center justify-center gap-3 text-left xl:pointer-events-none xl:h-auto xl:w-[170px] xl:justify-start" aria-expanded={isMobileOpen}>
             <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-coral/10 text-coral">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" className="h-5 w-5" aria-hidden="true"><path strokeLinecap="round" strokeLinejoin="round" d="M12 21s7-4.6 7-11a7 7 0 1 0-14 0c0 6.4 7 11 7 11Z"/><circle cx="12" cy="10" r="2.5"/></svg>
             </span>
@@ -97,10 +96,9 @@ export default function SiteVisitBar() {
             </div>
           ) : (
             <form onSubmit={submit} noValidate className="hidden min-w-0 flex-1 items-center gap-3 xl:flex">
-              <Field name="name" placeholder="Name" autoComplete="name" error={errors.name} className={`${inputClassName} w-full`} wrapperClassName="min-w-[120px] flex-1" />
-              <Field name="phone" placeholder="98765 43210" type="tel" inputMode="numeric" autoComplete="tel" maxLength={10} pattern="[0-9]{10}" countryCode error={errors.phone} className={`${inputClassName} w-full`} wrapperClassName="min-w-[120px] flex-1" />
-              <Field name="email" placeholder="Email Address" type="email" inputMode="email" autoComplete="email" className={`${inputClassName} w-full`} wrapperClassName="min-w-[150px] flex-1" />
-              <label className="relative w-[180px] min-w-[180px] shrink-0">
+              <Field name="name" placeholder="Name" autoComplete="name" error={errors.name} className={`${inputClassName} w-full`} wrapperClassName="min-w-[110px] flex-1" />
+              <Field name="phone" placeholder="98765 43210" type="tel" inputMode="numeric" autoComplete="tel" maxLength={10} pattern="[0-9]{10}" countryCode error={errors.phone} className={`${inputClassName} w-full`} wrapperClassName="min-w-[110px] flex-1" />
+              <label className="relative order-4 w-[165px] min-w-[165px] shrink-0">
                 <span className="sr-only">Your Budget</span>
                 <select
                   name="budget"
@@ -117,34 +115,43 @@ export default function SiteVisitBar() {
                 </select>
                 {errors.budget && <span className="mt-1 block pl-3 text-[9px] text-red-600 xl:absolute xl:left-3 xl:top-full xl:whitespace-nowrap xl:pl-0">{errors.budget}</span>}
               </label>
-              <label className="relative w-[180px] min-w-[180px] shrink-0">
-                <span className="sr-only">Select Configuration</span>
-                <select
-                  name="bhk"
-                  value={configuration}
-                  onChange={(event) => setConfiguration(event.target.value)}
-                  aria-invalid={Boolean(errors.bhk)}
-                  className={`${inputClassName} w-full appearance-none pr-7 ${errors.bhk ? "border-red-500" : ""}`}
+              <div className="relative order-3 w-[165px] min-w-[165px] shrink-0">
+                <button
+                  type="button"
+                  onClick={() => setIsConfigurationOpen((open) => !open)}
+                  aria-expanded={isConfigurationOpen}
+                  aria-haspopup="listbox"
+                  className={`${inputClassName} flex w-full items-center justify-between gap-2 text-left ${errors.bhk ? "border-red-500" : ""}`}
                 >
-                  <option value="" disabled>Select Configuration</option>
-                  <option value="2-bohk">2 BHK</option>
-                  <option value="3-bohk">3 BHK</option>
-                  <option value="not-sure">Not Sure</option>
-                </select>
-                <span className="pointer-events-none absolute right-3 top-1/2 -translate-y-1/2 text-[#2B2623]/50">
-                  <svg className="h-3.5 w-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <span className={configuration ? "text-[#2B2623]" : "text-[#2B2623]/45"}>{configuration === "2-bohk" ? "2 BHK" : configuration === "3-bohk" ? "3 BHK" : configuration === "not-sure" ? "Not Sure" : "Select Configuration"}</span>
+                  <svg className={`h-3.5 w-3.5 shrink-0 text-[#2B2623]/50 transition-transform ${isConfigurationOpen ? "rotate-180" : ""}`} fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
                   </svg>
-                </span>
+                </button>
+                {isConfigurationOpen && (
+                  <div role="listbox" aria-label="Select Configuration" className="absolute bottom-[calc(100%+8px)] left-0 z-[100] w-full overflow-hidden rounded-xl border border-[#2B2623]/10 bg-white p-1.5 shadow-[0_14px_30px_rgba(43,38,35,0.2)]">
+                    {[{ value: "2-bohk", label: "2 BHK" }, { value: "3-bohk", label: "3 BHK" }, { value: "not-sure", label: "Not Sure" }].map((option) => (
+                      <button
+                        key={option.value}
+                        type="button"
+                        role="option"
+                        aria-selected={configuration === option.value}
+                        onClick={() => { setConfiguration(option.value); setIsConfigurationOpen(false); }}
+                        className={`block w-full rounded-lg px-3 py-2 text-left text-xs transition hover:bg-[#fff2ea] ${configuration === option.value ? "bg-[#fff2ea] font-semibold text-coral" : "text-[#2B2623]"}`}
+                      >
+                        {option.label}
+                      </button>
+                    ))}
+                  </div>
+                )}
                 {errors.bhk && <span className="mt-1 block pl-3 text-[9px] text-red-600 xl:absolute xl:left-3 xl:top-full xl:whitespace-nowrap xl:pl-0">{errors.bhk}</span>}
-              </label>
-              <Field name="pincode" placeholder="Pincode" inputMode="numeric" autoComplete="postal-code" error={errors.pincode} className={`${inputClassName} w-full`} wrapperClassName="w-[118px] min-w-[118px] shrink-0" />
+              </div>
+              <Field name="pincode" placeholder="Pincode" inputMode="numeric" autoComplete="postal-code" error={errors.pincode} className={`${inputClassName} w-full`} wrapperClassName="order-5 w-[108px] min-w-[108px] shrink-0" />
               <button
                 type="submit"
-                className="group flex h-12 w-[210px] shrink-0 items-center justify-between gap-2 whitespace-nowrap rounded-full bg-coral py-1.5 pl-5 pr-1.5 text-[10px] font-bold tracking-[0.08em] text-white shadow-[0_10px_26px_rgba(232,115,74,0.32)] transition duration-300 hover:-translate-y-0.5 hover:bg-coral-dark hover:shadow-[0_14px_30px_rgba(232,115,74,0.38)] focus:outline-none focus:ring-4 focus:ring-coral/20"
+                className="group order-6 flex h-12 w-[210px] shrink-0 items-center justify-center whitespace-nowrap rounded-full bg-coral px-5 text-[10px] font-bold tracking-[0.08em] text-white shadow-[0_10px_26px_rgba(232,115,74,0.32)] transition duration-300 hover:-translate-y-0.5 hover:bg-coral-dark hover:shadow-[0_14px_30px_rgba(232,115,74,0.38)] focus:outline-none focus:ring-4 focus:ring-coral/20 xl:h-11 xl:w-[190px] xl:px-4"
               >
                 DOWNLOAD BROCHURE
-                <span className="flex h-9 w-9 items-center justify-center rounded-full bg-white/18 text-lg transition-transform duration-300 group-hover:translate-x-0.5" aria-hidden="true">→</span>
               </button>
             </form>
           )}
@@ -158,8 +165,7 @@ export default function SiteVisitBar() {
               <form onSubmit={submit} noValidate className="grid grid-cols-2 gap-3">
                 <Field name="name" placeholder="Name" autoComplete="name" error={errors.name} className={`${inputClassName} w-full`} />
                 <Field name="phone" placeholder="98765 43210" type="tel" inputMode="numeric" autoComplete="tel" maxLength={10} pattern="[0-9]{10}" countryCode error={errors.phone} className={`${inputClassName} w-full`} />
-                <Field name="email" placeholder="Email Address" type="email" inputMode="email" autoComplete="email" className={`${inputClassName} w-full`} />
-                <label className="relative col-span-2 block">
+                <label className="relative order-4 col-span-2 block">
                   <span className="sr-only">Your Budget</span>
                   <select
                   name="budget"
@@ -176,14 +182,14 @@ export default function SiteVisitBar() {
                   </select>
                   {errors.budget && <span className="mt-1 block pl-3 text-[9px] text-red-600">{errors.budget}</span>}
                 </label>
-                <label className="relative block">
+                <label className="relative order-3 col-span-2 block">
                   <span className="sr-only">Select Configuration</span>
                   <select
                     name="bhk"
                     value={configuration}
                     onChange={(event) => setConfiguration(event.target.value)}
                     aria-invalid={Boolean(errors.bhk)}
-                    className={`${inputClassName} w-full appearance-none pr-8 ${errors.bhk ? "border-red-500" : ""}`}
+                    className={`${inputClassName} w-full appearance-none pr-12 ${errors.bhk ? "border-red-500" : ""}`}
                   >
                     <option value="" disabled>Select Configuration</option>
                     <option value="2-bohk">2 BHK</option>
@@ -197,10 +203,9 @@ export default function SiteVisitBar() {
                   </span>
                   {errors.bhk && <span className="mt-1 block pl-3 text-[9px] text-red-600">{errors.bhk}</span>}
                 </label>
-                <Field name="pincode" placeholder="Pincode" inputMode="numeric" autoComplete="postal-code" error={errors.pincode} className={`${inputClassName} w-full`} />
-                <button type="submit" className="group col-span-2 flex h-12 items-center justify-between rounded-full bg-coral py-1.5 pl-6 pr-1.5 text-[11px] font-bold tracking-[0.13em] text-white shadow-[0_10px_26px_rgba(232,115,74,0.3)] transition active:scale-[0.99]">
-                  <span className="flex-1 text-center">DOWNLOAD BROCHURE</span>
-                  <span className="flex h-9 w-9 items-center justify-center rounded-full bg-white/18 text-lg" aria-hidden="true">→</span>
+                <Field name="pincode" placeholder="Pincode" inputMode="numeric" autoComplete="postal-code" error={errors.pincode} className={`${inputClassName} w-full`} wrapperClassName="order-5" />
+                <button type="submit" className="group order-6 col-span-2 flex h-12 items-center justify-center rounded-full bg-coral px-6 text-[11px] font-bold tracking-[0.13em] text-white shadow-[0_10px_26px_rgba(232,115,74,0.3)] transition active:scale-[0.99]">
+                  DOWNLOAD BROCHURE
                 </button>
               </form>
             )}

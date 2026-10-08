@@ -5,7 +5,7 @@ import { useState, type FormEvent } from "react";
 import { useRouter } from "next/navigation";
 import { getLeadTracking } from "@/lib/leadTracking";
 
-type Errors = Partial<Record<"fullName" | "phoneNumber" | "email" | "budget" | "interest" | "locationPincode" | "form", string>>;
+type Errors = Partial<Record<"fullName" | "phoneNumber" | "budget" | "interest" | "locationPincode" | "form", string>>;
 
 export default function ContactSection() {
   const router = useRouter();
@@ -18,7 +18,6 @@ export default function ContactSection() {
     const data = new FormData(event.currentTarget);
     const fullName = String(data.get("fullName") ?? "").trim();
     const phoneNumber = String(data.get("phoneNumber") ?? "").replace(/\D/g, "");
-    const email = String(data.get("email") ?? "").trim();
     const budget = String(data.get("budget") ?? "");
     const interest = String(data.get("interest") ?? "");
     const locationPincode = String(data.get("locationPincode") ?? "").trim();
@@ -26,7 +25,6 @@ export default function ContactSection() {
 
     if (fullName.length < 2) nextErrors.fullName = "Please enter your full name";
     if (!/^[6-9]\d{9}$/.test(phoneNumber.slice(-10))) nextErrors.phoneNumber = "Enter a valid 10-digit mobile number";
-    if (!/^\S+@\S+\.\S+$/.test(email)) nextErrors.email = "Enter a valid email address";
     if (!budget) nextErrors.budget = "Please select your budget";
     if (!interest) nextErrors.interest = "Please select a configuration";
     if (!/^\d{6}$/.test(locationPincode)) nextErrors.locationPincode = "Enter a valid 6-digit pincode";
@@ -41,7 +39,6 @@ export default function ContactSection() {
           body: JSON.stringify({
             fullName,
             phoneNumber: `+91${phoneNumber.slice(-10)}`,
-            email,
             budget,
             configuration: interest,
             locationPincode,
@@ -132,10 +129,10 @@ export default function ContactSection() {
               </p>
             </div>
 
-            <form onSubmit={handleSubmit} className="space-y-4 sm:space-y-4.5" noValidate>
+            <form onSubmit={handleSubmit} className="flex flex-col gap-4 sm:grid sm:grid-cols-2 sm:gap-4.5" noValidate>
               {errors.form && <p className="rounded-lg bg-red-50 px-3 py-2 text-sm text-red-600">{errors.form}</p>}
               {/* Full Name */}
-              <div>
+              <div className="order-0 sm:col-span-2">
                 <label htmlFor="contactFullName" className="mb-1 block text-xs font-semibold uppercase tracking-wider text-[#2B2623]">
                   Full Name <span className="text-coral">*</span>
                 </label>
@@ -151,9 +148,9 @@ export default function ContactSection() {
                 {errors.fullName && <p className="mt-1 text-[11px] font-medium text-red-500">{errors.fullName}</p>}
               </div>
 
-              {/* Phone & Email Row */}
-              <div className="grid gap-4 sm:grid-cols-2">
-                <div>
+              {/* Phone & Budget Row */}
+              <div className="contents">
+                <div className="order-1">
                   <label htmlFor="contactPhoneNumber" className="mb-1 block text-xs font-semibold uppercase tracking-wider text-[#2B2623]">
                     Mobile Number <span className="text-coral">*</span>
                   </label>
@@ -175,13 +172,7 @@ export default function ContactSection() {
                   {errors.phoneNumber && <p className="mt-1 text-[11px] font-medium text-red-500">{errors.phoneNumber}</p>}
                 </div>
 
-                <div>
-                  <label htmlFor="contactEmail" className="mb-1 block text-xs font-semibold uppercase tracking-wider text-[#2B2623]">Email Address <span className="text-coral">*</span></label>
-                  <input required type="email" id="contactEmail" name="email" autoComplete="email" placeholder="you@example.com" className={`h-12 w-full rounded-xl border bg-[#F8F7F4] px-4 text-sm text-[#2B2623] outline-none transition placeholder:text-[#2B2623]/40 focus:bg-white focus:ring-2 focus:ring-coral/20 ${errors.email ? "border-red-400 focus:border-red-500" : "border-[#2B2623]/15 focus:border-coral"}`} />
-                  {errors.email && <p className="mt-1 text-[11px] font-medium text-red-500">{errors.email}</p>}
-                </div>
-
-                <div>
+                <div className="order-3">
                   <label htmlFor="contactBudget" className="mb-1 block text-xs font-semibold uppercase tracking-wider text-[#2B2623]">
                     Your Budget <span className="text-coral">*</span>
                   </label>
@@ -204,8 +195,8 @@ export default function ContactSection() {
               </div>
 
               {/* Configuration & Pincode Row */}
-              <div className="grid gap-4 sm:grid-cols-2">
-                <div>
+              <div className="contents">
+                <div className="order-2">
                   <label htmlFor="contactInterest" className="mb-1 block text-xs font-semibold uppercase tracking-wider text-[#2B2623]">
                     Select Configuration <span className="text-coral">*</span>
                   </label>
@@ -226,7 +217,7 @@ export default function ContactSection() {
                   {errors.interest && <p className="mt-1 text-[11px] font-medium text-red-500">{errors.interest}</p>}
                 </div>
 
-                <div>
+                <div className="order-4">
                   <label htmlFor="contactPincode" className="mb-1 block text-xs font-semibold uppercase tracking-wider text-[#2B2623]">
                     Current Pincode <span className="text-coral">*</span>
                   </label>
@@ -245,19 +236,18 @@ export default function ContactSection() {
               </div>
 
               {/* Submit Button */}
-              <div className="pt-2">
+              <div className="order-5 pt-2 sm:col-span-2">
                 <button
                   type="submit"
                   disabled={isSubmitting}
-                  className="group relative flex h-13 w-full items-center justify-center gap-3 overflow-hidden rounded-xl bg-coral px-8 text-xs font-bold uppercase tracking-[0.2em] text-white shadow-[0_12px_28px_rgba(232,115,74,0.32)] transition-all duration-300 hover:bg-[#D4613A] hover:shadow-[0_16px_36px_rgba(232,115,74,0.45)] disabled:opacity-70 sm:text-sm"
+                  className="group relative flex h-11 w-full items-center justify-center overflow-hidden rounded-full bg-coral px-5 text-[10px] font-bold uppercase tracking-[0.08em] text-white shadow-[0_10px_26px_rgba(232,115,74,0.32)] transition duration-300 hover:-translate-y-0.5 hover:bg-coral-dark hover:shadow-[0_14px_30px_rgba(232,115,74,0.38)] focus:outline-none focus:ring-4 focus:ring-coral/20 disabled:opacity-70"
                 >
                   <span>{isSubmitting ? "Processing..." : "Enquire Now"}</span>
-                  <span className="text-base transition-transform duration-300 group-hover:translate-x-1">→</span>
                 </button>
               </div>
 
               {/* Trust Badges */}
-              <div className="flex flex-wrap items-center justify-center gap-4 pt-2 text-[11px] text-[#747474] sm:gap-6">
+              <div className="order-6 flex flex-wrap items-center justify-center gap-4 pt-2 text-[11px] text-[#747474] sm:col-span-2 sm:gap-6">
                 <span className="flex items-center gap-1.5">
                   <span className="flex h-3.5 w-3.5 items-center justify-center rounded-full bg-coral/15 text-[9px] font-bold text-coral">✓</span>
                   Direct Developer Access

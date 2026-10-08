@@ -7,11 +7,10 @@ import { useEnquiry } from "@/components/EnquiryPanel";
 
 const navLinks = [
   { name: "Amenities", href: "#amenities", id: "amenities" },
-  { name: "Gallery", href: "#gallery", id: "gallery" },
-  { name: "Location", href: "#location", id: "location" },
-  { name: "Specifications", href: "#specifications", id: "specifications" },
   { name: "Master Plan", href: "#plan", id: "plan" },
-  { name: "Floor Plan", href: "#floor-plan", id: "floor-plan" },
+  { name: "Gallery", href: "#gallery", id: "gallery" },
+  { name: "Specifications", href: "#specifications", id: "specifications" },
+  { name: "Location", href: "#location", id: "location" },
   { name: "Contact", href: "#contact", id: "contact" },
   { name: "About Developer", href: "#developer", id: "developer" },
 ];
@@ -148,7 +147,7 @@ export default function Header() {
             <button
               type="button"
               onClick={openEnquiry}
-              className="whitespace-nowrap rounded-none bg-coral px-3.5 py-1.5 text-[11px] font-bold uppercase tracking-wider text-white shadow-[0_4px_16px_rgba(232,115,74,0.32)] transition-all duration-300 hover:-translate-y-0.5 hover:bg-[#D4613A] hover:shadow-[0_6px_20px_rgba(232,115,74,0.45)] xl:px-4 xl:py-2 xl:text-[11.5px]"
+              className="whitespace-nowrap rounded-full bg-coral px-4 py-1.5 text-[10px] font-bold uppercase tracking-[0.08em] text-white shadow-[0_10px_26px_rgba(232,115,74,0.32)] transition duration-300 hover:-translate-y-0.5 hover:bg-coral-dark hover:shadow-[0_14px_30px_rgba(232,115,74,0.38)] xl:px-5 xl:py-2 xl:text-[11px]"
             >
               Enquire Now
             </button>
@@ -159,7 +158,7 @@ export default function Header() {
             <button
               type="button"
               onClick={openEnquiry}
-              className="whitespace-nowrap rounded-none bg-coral px-3 py-1.5 text-[10.5px] font-bold uppercase tracking-wider text-white shadow-sm transition hover:bg-[#D4613A] sm:px-3.5 sm:text-[11px]"
+              className="whitespace-nowrap rounded-full bg-coral px-3.5 py-1.5 text-[10px] font-bold uppercase tracking-[0.08em] text-white shadow-[0_10px_26px_rgba(232,115,74,0.32)] transition hover:bg-coral-dark sm:px-4 sm:text-[10.5px]"
             >
               Enquire Now
             </button>
@@ -219,7 +218,7 @@ export default function Header() {
                   setIsMobileMenuOpen(false);
                   openEnquiry();
                 }}
-                className="mt-2 flex w-full items-center justify-center rounded-none bg-coral py-3 text-center text-xs font-bold uppercase tracking-wider text-white shadow-md transition hover:bg-[#D4613A]"
+                className="mt-2 flex h-11 w-full items-center justify-center rounded-full bg-coral px-5 text-center text-[10px] font-bold uppercase tracking-[0.08em] text-white shadow-[0_10px_26px_rgba(232,115,74,0.32)] transition hover:bg-coral-dark"
               >
                 Enquire Now
               </button>
