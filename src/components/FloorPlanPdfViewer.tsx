@@ -2,7 +2,7 @@
 
 import { useEffect, useRef, useState } from "react";
 
-export default function FloorPlanPdfViewer({ src }: { src: string }) {
+export default function FloorPlanPdfViewer({ src, maxPages }: { src: string; maxPages?: number }) {
   const containerRef = useRef<HTMLDivElement>(null);
   const [error, setError] = useState(false);
 
@@ -24,7 +24,8 @@ export default function FloorPlanPdfViewer({ src }: { src: string }) {
         container.replaceChildren();
         const availableWidth = container.clientWidth;
 
-        for (let pageNumber = 1; pageNumber <= pdf.numPages; pageNumber += 1) {
+        const pageCount = maxPages ? Math.min(maxPages, pdf.numPages) : pdf.numPages;
+        for (let pageNumber = 1; pageNumber <= pageCount; pageNumber += 1) {
           const page = await pdf.getPage(pageNumber);
           const baseViewport = page.getViewport({ scale: 1 });
           const scale = Math.min(availableWidth / baseViewport.width, 2);
@@ -46,15 +47,13 @@ export default function FloorPlanPdfViewer({ src }: { src: string }) {
 
     void renderPages();
     return () => { cancelled = true; };
-  }, [src]);
+  }, [src, maxPages]);
 
   if (error) {
     return <p className="p-8 text-center text-sm text-[#6d625c]">The floor plan could not be displayed. Please refresh the page.</p>;
   }
 
   return (
-    <div className="bg-[#F7F5F0] p-2 sm:p-4">
-      <div ref={containerRef} className="mx-auto flex max-w-[920px] flex-col gap-3 sm:gap-5" aria-label="Sumeet Urban Nest floor plan brochure" />
-    </div>
+    <div ref={containerRef} className="mx-auto flex w-full max-w-[1280px] flex-col gap-3 sm:gap-5" aria-label="Sumeet Urban Nest floor plan brochure" />
   );
 }
