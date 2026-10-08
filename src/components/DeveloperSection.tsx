@@ -50,7 +50,6 @@ const stats = [
   { value: "25+", label: "Years of Trust", detail: "Shaping Chhattisgarh's Skyline" },
   { value: "4+", label: "Landmark Addresses", detail: "Commercial & Residential Hubs" },
   { value: "1.76", label: "Acres Dedicated", detail: "Raipur’s 1st BOHK Enclave" },
-  { value: "100%", label: "RERA Compliant", detail: "PCGRERA190326002064" },
 ];
 
 export default function DeveloperSection() {
@@ -137,13 +136,13 @@ export default function DeveloperSection() {
               </div>
 
               {/* 4 Architectural Metric Counters */}
-              <div className="mt-10 grid grid-cols-2 gap-3 border-t border-[#2B2623]/8 pt-8 sm:gap-4 sm:grid-cols-4">
+              <div className="mt-10 grid grid-cols-3 gap-2 border-t border-[#2B2623]/8 pt-8 sm:gap-4">
                 {stats.map((s) => (
-                  <div key={s.label} className="rounded-xl bg-[#FAF8F5] p-4 text-left transition hover:bg-white hover:shadow-sm">
-                    <p className="text-2xl font-light tracking-tight text-coral sm:text-3xl">
+                  <div key={s.label} className="rounded-xl bg-[#FAF8F5] p-2.5 text-left transition hover:bg-white hover:shadow-sm sm:p-4">
+                    <p className="text-xl font-light tracking-tight text-coral sm:text-3xl">
                       {s.value}
                     </p>
-                    <p className="mt-1 text-xs font-bold uppercase tracking-wider text-[#2B2623]">
+                    <p className="mt-1 whitespace-nowrap text-[8px] font-bold uppercase tracking-[0.03em] text-[#2B2623] sm:text-[10px] sm:tracking-[0.08em]">
                       {s.label}
                     </p>
                     <p className="mt-0.5 text-[10px] text-[#857d76]">

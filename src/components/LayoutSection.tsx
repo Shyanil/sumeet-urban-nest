@@ -1,3 +1,5 @@
+import SectionCta from "@/components/SectionCta";
+
 const blocks = [
   {
     name: "BLOCK A",
@@ -66,6 +68,9 @@ export default function LayoutSection() {
               </div>
             </article>
           ))}
+        </div>
+        <div className="mt-8 text-center sm:mt-10">
+          <SectionCta label="Schedule a Site Visit" />
         </div>
       </div>
     </section>

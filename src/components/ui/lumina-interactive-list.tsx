@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import { useState } from "react";
+import type { ReactNode } from "react";
 
 export type LuminaSlide = {
   title: string;
@@ -13,9 +14,11 @@ export type LuminaSlide = {
 export function LuminaInteractiveList({
   slides,
   onOpen,
+  footer,
 }: {
   slides: LuminaSlide[];
   onOpen?: (index: number) => void;
+  footer?: ReactNode;
 }) {
   const [activeCategory, setActiveCategory] = useState<"all" | "interior" | "exterior">("all");
   const [cursorPosition, setCursorPosition] = useState<{ x: number; y: number } | null>(null);
@@ -29,7 +32,7 @@ export function LuminaInteractiveList({
   const exteriorCount = slides.filter((s) => s.category === "exterior").length;
 
   return (
-    <div className="overflow-hidden bg-white py-20 text-[#292522] sm:py-24 lg:py-32">
+    <div className="overflow-hidden bg-white pb-0 pt-8 text-[#292522] sm:pt-10 lg:pt-12">
       <div className="mx-auto w-full max-w-[1720px] px-6 sm:px-10 md:px-14 lg:px-20 xl:px-28 2xl:px-36">
         {/* Section Header */}
         <div className="mx-auto mb-10 max-w-[800px] text-center sm:mb-12">
@@ -120,6 +123,8 @@ export function LuminaInteractiveList({
             );
           })}
         </div>
+
+        {footer && <div className="mt-8 pb-8 text-center sm:mt-10 sm:pb-10">{footer}</div>}
 
         {cursorPosition && (
           <div

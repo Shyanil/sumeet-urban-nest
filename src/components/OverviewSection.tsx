@@ -15,7 +15,7 @@ export default function OverviewSection() {
         className="pointer-events-none absolute -right-32 bottom-0 z-0 h-auto w-[300px] max-w-none select-none opacity-20 sm:-right-24 sm:w-[400px] md:-right-20 md:w-[500px] lg:-right-12 lg:w-[620px] lg:opacity-30 xl:w-[700px]"
       />
 
-      <div className="relative z-10 mx-auto max-w-[1000px] px-6 text-center">
+      <div className="relative z-10 mx-auto max-w-[1100px] px-6 text-center">
         {/* Top Editorial Eyebrow */}
         <div className="mb-3 flex items-center justify-center gap-2.5 sm:mb-4 sm:gap-3">
           <span className="h-px w-6 bg-[#2c2b29]/25 sm:w-12" />
@@ -30,8 +30,8 @@ export default function OverviewSection() {
           O V E R V I E W
         </h2>
 
-        <p className="mx-auto mt-6 max-w-[780px] text-lg font-light leading-relaxed text-[#2c2b29] sm:mt-8 sm:text-xl md:text-2xl md:leading-relaxed">
-          Introducing a new concept of modern living at Khamardih, Shankar Nagar — thoughtfully designed homes that bring together light, space, comfort and a more connected everyday lifestyle.
+        <p className="mx-auto mt-6 max-w-[780px] text-lg font-light leading-relaxed text-[#2c2b29] sm:mt-8 sm:text-xl md:max-w-[980px] md:text-2xl md:leading-relaxed">
+          Introducing a new concept of modern living at Khamardih, Shankar Nagar, thoughtfully designed homes that bring together light, space, comfort and a more connected everyday lifestyle.
         </p>
         <div className="mt-12 grid grid-cols-3 border-y border-[#2c2b29]/15 sm:mt-16">
           {[

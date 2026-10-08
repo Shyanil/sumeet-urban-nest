@@ -1,4 +1,5 @@
 import Image from "next/image";
+import SectionCta from "@/components/SectionCta";
 
 const podiumAmenities = [
   {
@@ -402,6 +403,9 @@ export default function AmenitiesSection() {
               ))}
             </div>
           </article>
+        </div>
+        <div className="mt-8 text-center sm:mt-10">
+          <SectionCta label="Schedule a Site Visit" />
         </div>
       </div>
     </section>

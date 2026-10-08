@@ -2,31 +2,32 @@
 
 import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
+import SectionCta from "@/components/SectionCta";
 
 const amenities = [
-  { id: 1, name: "Entry/Exit", x: 73.8, y: 50.8 },
+  { id: 1, name: "Entry/Exit", x: 82.4, y: 53.6 },
   { id: 2, name: "Driveway", x: 36.9, y: 53.2 },
-  { id: 3, name: "Temple", x: 67.4, y: 46.5 },
-  { id: 4, name: "Drop Off", x: 52.9, y: 53.2 },
-  { id: 5, name: "Kids' Play Area", x: 13.8, y: 64.2 },
-  { id: 6, name: "Pergola Seating Area", x: 13, y: 58.4 },
-  { id: 7, name: "Pavilion", x: 11.8, y: 39.9 },
-  { id: 8, name: "Peripheral Greens", x: 18.3, y: 24.1 },
-  { id: 9, name: "Central Plaza", x: 25.9, y: 52.6 },
-  { id: 10, name: "Swimming Pool", x: 45.1, y: 46.6 },
-  { id: 11, name: "Kids' Pool", x: 42.5, y: 43.2 },
-  { id: 12, name: "Pool Deck", x: 45.4, y: 43 },
-  { id: 13, name: "Senior Citizens' Seating Zone", x: 37.6, y: 47.1 },
-  { id: 14, name: "Outdoor Seating Area", x: 43.1, y: 36.3 },
-  { id: 15, name: "Multipurpose Area", x: 46.1, y: 37 },
-  { id: 16, name: "Lounge Area", x: 43.1, y: 39.5 },
-  { id: 17, name: "Hobby Space", x: 50.4, y: 37.2 },
-  { id: 18, name: "Changing Rooms", x: 50.6, y: 46.5 },
-  { id: 19, name: "Gymnasium", x: 29.2, y: 69.5 },
-  { id: 20, name: "Yoga Room", x: 32.1, y: 72.8 },
-  { id: 21, name: "Indoor Games Area", x: 28.6, y: 76.5 },
-  { id: 22, name: "Mini Theatre", x: 32.2, y: 80.2 },
-  { id: 23, name: "Multipurpose Hall", x: 28.7, y: 84 },
+  { id: 3, name: "Temple", x: 78, y: 45 },
+  { id: 4, name: "Drop Off", x: 52, y: 53.2 },
+  { id: 5, name: "Kids' Play Area", x: 17.6, y: 63.5 },
+  { id: 6, name: "Pergola Seating Area", x: 16.5, y: 58 },
+  { id: 7, name: "Pavilion", x: 16.9, y: 41.8 },
+  { id: 8, name: "Peripheral Greens", x: 24.7, y: 21.8 },
+  { id: 9, name: "Central Plaza", x: 26, y: 54 },
+  { id: 10, name: "Swimming Pool", x: 50.8, y: 46.3 },
+  { id: 11, name: "Kids' Pool", x: 49.2, y: 42.6 },
+  { id: 12, name: "Pool Deck", x: 53.5, y: 42.5 },
+  { id: 13, name: "Senior Citizens' Seating Zone", x: 42.5, y: 49.7 },
+  { id: 14, name: "Outdoor Seating Area", x: 49.2, y: 37.3 },
+  { id: 15, name: "Multipurpose Area", x: 53.5, y: 38 },
+  { id: 16, name: "Lounge Area", x: 51.3, y: 40.2 },
+  { id: 17, name: "Hobby Space", x: 58.3, y: 38 },
+  { id: 18, name: "Changing Rooms", x: 58.5, y: 47.4 },
+  { id: 19, name: "Gymnasium", x: 65, y: 41.1 },
+  { id: 20, name: "Yoga Room", x: 61.4, y: 35.3 },
+  { id: 21, name: "Indoor Games Area", x: 22.7, y: 40.2 },
+  { id: 22, name: "Mini Theatre", x: 25.2, y: 35 },
+  { id: 23, name: "Multipurpose Hall", x: 35.5, y: 35 },
 ];
 
 function MasterPlanExperience({ fullscreen = false, onClose }: { fullscreen?: boolean; onClose?: () => void }) {
@@ -241,7 +242,7 @@ export default function PlanSection() {
   }, [fullscreen]);
 
   return (
-    <section id="plan" className="scroll-mt-20 bg-white pt-14 pb-8 md:py-24">
+    <section id="plan" className="scroll-mt-20 bg-white pt-14 pb-4 md:pt-24 md:pb-10">
       <div className="mx-auto mb-10 w-full max-w-[1720px] px-6 sm:px-10 md:px-14 md:mb-14 lg:px-20 xl:px-28 2xl:px-36">
         <div className="flex flex-col gap-5 sm:flex-row sm:items-end sm:justify-between">
           <div>
@@ -268,6 +269,9 @@ export default function PlanSection() {
         </div>
       </div>
       <MasterPlanExperience />
+      <div className="mt-8 text-center sm:mt-10">
+        <SectionCta />
+      </div>
       {fullscreen && <div className="fixed inset-0 z-[100] bg-[#2B2623]"><MasterPlanExperience fullscreen onClose={() => setFullscreen(false)} /></div>}
     </section>
   );

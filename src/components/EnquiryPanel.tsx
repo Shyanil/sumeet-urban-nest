@@ -11,6 +11,7 @@ import {
 } from "react";
 import { useRouter } from "next/navigation";
 import { getLeadTracking } from "@/lib/leadTracking";
+import SelectChevron from "@/components/SelectChevron";
 
 type EnquiryContextValue = {
   openEnquiry: () => void;
@@ -231,11 +232,7 @@ export function EnquiryProvider({ children }: { children: ReactNode }) {
                         {configuration === "3-bohk" && <><option value="3-bohk-85-90">₹85L–₹90L</option><option value="3-bohk-90-95">₹90L–₹95L</option><option value="3-bohk-95-1cr-plus">₹95L–₹1Cr+</option></>}
                         {configuration === "not-sure" && <><option value="2-bohk-55-60">2 BHK: ₹55L–₹60L</option><option value="2-bohk-60-65-plus">2 BHK: ₹60L–₹65L+</option><option value="3-bohk-85-90">3 BHK: ₹85L–₹90L</option><option value="3-bohk-90-95">3 BHK: ₹90L–₹95L</option><option value="3-bohk-95-1cr-plus">3 BHK: ₹95L–₹1Cr+</option></>}
                       </select>
-                      <span className="pointer-events-none absolute right-4 top-1/2 -translate-y-1/2 text-[#746b66]/60">
-                        <svg className="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
-                        </svg>
-                      </span>
+                      <SelectChevron className="right-3 top-1/2 -translate-y-1/2" />
                     </div>
                   </div>
 
@@ -259,11 +256,7 @@ export function EnquiryProvider({ children }: { children: ReactNode }) {
                         <option value="3-bohk">3 BHK</option>
                         <option value="not-sure">Not Sure</option>
                       </select>
-                      <span className="pointer-events-none absolute right-4 top-1/2 -translate-y-1/2 text-[#746b66]/60">
-                        <svg className="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
-                        </svg>
-                      </span>
+                      <SelectChevron className="right-3 top-1/2 -translate-y-1/2" />
                     </div>
                   </div>
 

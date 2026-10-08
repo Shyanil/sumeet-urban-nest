@@ -3,6 +3,7 @@
 import Image from "next/image";
 import { useEffect, useState } from "react";
 import { LuminaInteractiveList, type LuminaSlide } from "@/components/ui/lumina-interactive-list";
+import SectionCta from "@/components/SectionCta";
 
 const gallerySlides: LuminaSlide[] = [
   {
@@ -136,7 +137,7 @@ export default function GallerySection() {
   return (
     <>
       <section id="gallery" className="scroll-mt-20">
-        <LuminaInteractiveList slides={gallerySlides} onOpen={setSelectedIndex} />
+        <LuminaInteractiveList slides={gallerySlides} onOpen={setSelectedIndex} footer={<SectionCta label="Download Brochure" />} />
       </section>
 
       {selectedIndex !== null && currentSlide && (

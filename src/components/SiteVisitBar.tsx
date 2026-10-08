@@ -3,6 +3,7 @@
 import { useEffect, useState, type FormEvent } from "react";
 import { useRouter } from "next/navigation";
 import { getLeadTracking } from "@/lib/leadTracking";
+import SelectChevron from "@/components/SelectChevron";
 
 type Errors = Partial<Record<"name" | "phone" | "budget" | "bhk" | "pincode" | "form", string>>;
 
@@ -113,9 +114,10 @@ export default function SiteVisitBar() {
                   {configuration === "3-bohk" && <><option value="3-bohk-85-90">₹85L–₹90L</option><option value="3-bohk-90-95">₹90L–₹95L</option><option value="3-bohk-95-1cr-plus">₹95L–₹1Cr+</option></>}
                   {configuration === "not-sure" && <><option value="2-bohk-55-60">2 BHK: ₹55L–₹60L</option><option value="2-bohk-60-65-plus">2 BHK: ₹60L–₹65L+</option><option value="3-bohk-85-90">3 BHK: ₹85L–₹90L</option><option value="3-bohk-90-95">3 BHK: ₹90L–₹95L</option><option value="3-bohk-95-1cr-plus">3 BHK: ₹95L–₹1Cr+</option></>}
                 </select>
+                <SelectChevron />
                 {errors.budget && <span className="mt-1 block pl-3 text-[9px] text-red-600 xl:absolute xl:left-3 xl:top-full xl:whitespace-nowrap xl:pl-0">{errors.budget}</span>}
               </label>
-              <div className="relative order-3 w-[165px] min-w-[165px] shrink-0">
+              <div className="relative order-3 w-[185px] min-w-[185px] shrink-0">
                 <button
                   type="button"
                   onClick={() => setIsConfigurationOpen((open) => !open)}
@@ -123,10 +125,10 @@ export default function SiteVisitBar() {
                   aria-haspopup="listbox"
                   className={`${inputClassName} flex w-full items-center justify-between gap-2 text-left ${errors.bhk ? "border-red-500" : ""}`}
                 >
-                  <span className={configuration ? "text-[#2B2623]" : "text-[#2B2623]/45"}>{configuration === "2-bohk" ? "2 BHK" : configuration === "3-bohk" ? "3 BHK" : configuration === "not-sure" ? "Not Sure" : "Select Configuration"}</span>
-                  <svg className={`h-3.5 w-3.5 shrink-0 text-[#2B2623]/50 transition-transform ${isConfigurationOpen ? "rotate-180" : ""}`} fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
-                  </svg>
+                  <span className={`whitespace-nowrap ${configuration ? "text-[#2B2623]" : "text-[#2B2623]/45"}`}>{configuration === "2-bohk" ? "2 BHK" : configuration === "3-bohk" ? "3 BHK" : configuration === "not-sure" ? "Not Sure" : "Select Configuration"}</span>
+                  <span className={`flex h-7 w-7 shrink-0 items-center justify-center rounded-full border border-coral/15 bg-coral/10 text-coral transition-transform ${isConfigurationOpen ? "rotate-180" : ""}`}>
+                    <svg className="h-3.5 w-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.25} d="m7 9 5 5 5-5" /></svg>
+                  </span>
                 </button>
                 {isConfigurationOpen && (
                   <div role="listbox" aria-label="Select Configuration" className="absolute bottom-[calc(100%+8px)] left-0 z-[100] w-full overflow-hidden rounded-xl border border-[#2B2623]/10 bg-white p-1.5 shadow-[0_14px_30px_rgba(43,38,35,0.2)]">
@@ -180,6 +182,7 @@ export default function SiteVisitBar() {
                     {configuration === "3-bohk" && <><option value="3-bohk-85-90">₹85L–₹90L</option><option value="3-bohk-90-95">₹90L–₹95L</option><option value="3-bohk-95-1cr-plus">₹95L–₹1Cr+</option></>}
                     {configuration === "not-sure" && <><option value="2-bohk-55-60">2 BHK: ₹55L–₹60L</option><option value="2-bohk-60-65-plus">2 BHK: ₹60L–₹65L+</option><option value="3-bohk-85-90">3 BHK: ₹85L–₹90L</option><option value="3-bohk-90-95">3 BHK: ₹90L–₹95L</option><option value="3-bohk-95-1cr-plus">3 BHK: ₹95L–₹1Cr+</option></>}
                   </select>
+                  <SelectChevron className="right-3.5 top-1/2 -translate-y-1/2" />
                   {errors.budget && <span className="mt-1 block pl-3 text-[9px] text-red-600">{errors.budget}</span>}
                 </label>
                 <label className="relative order-3 col-span-2 block">
@@ -196,11 +199,7 @@ export default function SiteVisitBar() {
                     <option value="3-bohk">3 BHK</option>
                     <option value="not-sure">Not Sure</option>
                   </select>
-                  <span className="pointer-events-none absolute right-3.5 top-1/2 -translate-y-1/2 text-[#2B2623]/50">
-                    <svg className="h-3.5 w-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
-                    </svg>
-                  </span>
+                  <SelectChevron className="right-3.5 top-1/2 -translate-y-1/2" />
                   {errors.bhk && <span className="mt-1 block pl-3 text-[9px] text-red-600">{errors.bhk}</span>}
                 </label>
                 <Field name="pincode" placeholder="Pincode" inputMode="numeric" autoComplete="postal-code" error={errors.pincode} className={`${inputClassName} w-full`} wrapperClassName="order-5" />

@@ -123,7 +123,7 @@ export default function Header() {
                     key={link.name}
                     href={link.href}
                     onClick={(e) => handleNavClick(e, link.id)}
-                    className="whitespace-nowrap rounded-sm bg-[#D6AC70] font-semibold text-[#1a1a1a] shadow-sm transition-all duration-200 text-[10.5px] px-2 py-1 lg:text-[11px] lg:px-2 lg:py-1 xl:text-[11.5px] xl:px-2.5 xl:py-1.5 2xl:text-[12.5px] 2xl:px-3.5 2xl:py-1.5"
+                    className="whitespace-nowrap rounded-sm bg-[#D6AC70] font-semibold uppercase text-[#1a1a1a] shadow-sm transition-all duration-200 text-[10.5px] px-2 py-1 lg:text-[11px] lg:px-2 lg:py-1 xl:text-[11.5px] xl:px-2.5 xl:py-1.5 2xl:text-[12.5px] 2xl:px-3.5 2xl:py-1.5"
                   >
                     {link.name}
                   </a>
@@ -132,7 +132,7 @@ export default function Header() {
                     key={link.name}
                     href={link.href}
                     onClick={(e) => handleNavClick(e, link.id)}
-                    className={`whitespace-nowrap rounded-sm font-medium tracking-wide transition-colors text-[10.5px] px-1.5 py-1 lg:text-[11px] lg:px-2 lg:py-1 xl:text-[11.5px] xl:px-2.5 xl:py-1.5 2xl:text-[12.5px] 2xl:px-3 2xl:py-1.5 ${
+                    className={`whitespace-nowrap rounded-sm font-medium uppercase tracking-wide transition-colors text-[10.5px] px-1.5 py-1 lg:text-[11px] lg:px-2 lg:py-1 xl:text-[11.5px] xl:px-2.5 xl:py-1.5 2xl:text-[12.5px] 2xl:px-3 2xl:py-1.5 ${
                       isScrolled
                         ? "text-[#1a1a1a] hover:text-[#D6AC70]"
                         : "text-white drop-shadow-[0_1px_2px_rgba(0,0,0,0.6)] hover:text-[#D6AC70]"
@@ -198,7 +198,7 @@ export default function Header() {
                     key={link.name}
                     href={link.href}
                     onClick={(e) => handleNavClick(e, link.id)}
-                    className={`flex items-center justify-between rounded-lg px-4 py-2.5 text-sm font-medium transition-colors ${
+                    className={`flex items-center justify-between rounded-lg px-4 py-2.5 text-sm font-medium uppercase transition-colors ${
                       isActive
                         ? "bg-[#D6AC70] text-[#1a1a1a]"
                         : "text-gray-800 hover:bg-gray-50 hover:text-coral"
