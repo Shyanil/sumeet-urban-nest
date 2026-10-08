@@ -11,7 +11,8 @@ const navLinks = [
   { name: "Gallery", href: "#gallery", id: "gallery" },
   { name: "Location", href: "#location", id: "location" },
   { name: "Specifications", href: "#specifications", id: "specifications" },
-  { name: "Floor Plans", href: "#plan", id: "plan" },
+  { name: "Master Plan", href: "#plan", id: "plan" },
+  { name: "Floor Plan", href: "#floor-plan", id: "floor-plan" },
   { name: "Contact", href: "#contact", id: "contact" },
   { name: "About Developer", href: "#developer", id: "developer" },
 ];

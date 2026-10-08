@@ -7,40 +7,35 @@ export const metadata = {
 
 export default function ThankYouPage() {
   return (
-    <main className="relative h-[100svh] min-h-[560px] overflow-hidden bg-[#2B2623]">
-      <Image
-        src="/images/exterior/hero-building.webp"
-        alt="Sumeet Urban Nest"
-        fill
-        priority
-        sizes="100vw"
-        className="z-0 object-cover object-center"
-      />
-      <div className="absolute inset-0 z-10 bg-gradient-to-t from-black/80 via-black/35 to-black/30" />
-
-      <div className="absolute left-1/2 top-1/2 z-20 w-[calc(100%-3rem)] max-w-3xl -translate-x-1/2 -translate-y-1/2 rounded-[28px] border border-[#D6AC70]/60 bg-[#F8F7F3]/95 px-6 py-10 text-center shadow-[0_24px_70px_rgba(43,38,35,0.38)] backdrop-blur-md sm:rounded-[36px] sm:px-12 sm:py-14">
-        <p className="text-[10px] font-bold uppercase tracking-[0.34em] text-coral sm:text-xs">
-          Sumeet Urban Nest
-        </p>
-        <h1 className="mt-4 text-4xl font-light tracking-[-0.04em] text-[#2B2623] sm:text-6xl lg:text-7xl">
-          Thank you for your interest.
-        </h1>
-        <div className="mx-auto mt-6 h-px w-24 bg-[#D6AC70]" aria-hidden="true" />
-        <p className="mx-auto mt-5 max-w-xl text-sm font-normal leading-7 text-[#6F5940] sm:text-base">
-          Our team will connect with you shortly to help you discover your new home.
-        </p>
+    <main className="relative min-h-[100svh] overflow-hidden bg-[#F7F5F0] py-6 sm:py-10">
+      <Image src="/images/exterior/hero-building.webp" alt="Sumeet Urban Nest" fill priority sizes="100vw" className="z-0 object-cover object-center opacity-[0.16]" />
+      <div className="absolute inset-0 z-10 bg-gradient-to-b from-[#F7F5F0]/70 via-[#F7F5F0]/85 to-[#F7F5F0]" />
+      <div className="relative z-20 mx-auto flex min-h-[calc(100svh-3rem)] w-[calc(100%-3rem)] max-w-5xl items-center justify-center sm:min-h-[calc(100svh-5rem)]">
+        <div className="w-full overflow-hidden rounded-[28px] border border-[#2B2623]/10 bg-white/95 shadow-[0_24px_70px_rgba(43,38,35,0.16)] backdrop-blur-md sm:rounded-[36px]">
+          <div className="grid lg:grid-cols-[0.85fr_1.15fr]">
+            <div className="relative min-h-[210px] overflow-hidden bg-[#2B2623] sm:min-h-[260px] lg:min-h-[500px]">
+              <Image src="/images/exterior/aerial-view.webp" alt="Sumeet Urban Nest aerial view" fill sizes="(min-width: 1024px) 42vw, 100vw" className="object-cover" />
+              <div className="absolute inset-0 bg-gradient-to-t from-[#2B2623]/80 via-[#2B2623]/15 to-transparent" />
+              <div className="absolute bottom-6 left-6 right-6 text-white sm:bottom-8 sm:left-8">
+                <p className="text-[10px] font-bold uppercase tracking-[0.28em] text-white/70">Sumeet Urban Nest</p>
+                <p className="mt-2 text-xl font-light leading-tight sm:text-2xl">Your new address is taking shape.</p>
+              </div>
+            </div>
+            <div className="px-6 py-10 text-center sm:px-12 sm:py-14 lg:flex lg:flex-col lg:justify-center lg:text-left">
+              <div className="mx-auto flex h-14 w-14 items-center justify-center rounded-full bg-coral/10 text-coral lg:mx-0">
+                <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="h-7 w-7"><path strokeLinecap="round" strokeLinejoin="round" d="m5 12 4 4L19 6" /></svg>
+              </div>
+              <p className="mt-6 text-[10px] font-bold uppercase tracking-[0.3em] text-coral">Enquiry received</p>
+              <h1 className="mt-3 text-4xl font-light tracking-[-0.045em] text-[#2B2623] sm:text-5xl">Thank you.</h1>
+              <p className="mt-4 max-w-md text-sm leading-7 text-[#6d625c] sm:text-base">Your details have been received. Our team will connect with you shortly to help you discover your new home.</p>
+              <a href="/downloads/sumeet-urban-nest-brochure.pdf" download="Sumeet Urban Nest Brochure.pdf" className="group mt-8 inline-flex min-h-14 items-center justify-center gap-4 rounded-full bg-coral px-7 text-xs font-bold tracking-[0.14em] text-white shadow-[0_12px_28px_rgba(232,115,74,0.28)] transition hover:-translate-y-0.5 hover:bg-coral-dark sm:text-sm lg:self-start">
+                DOWNLOAD BROCHURE <span className="text-lg transition-transform group-hover:translate-y-0.5" aria-hidden="true">↓</span>
+              </a>
+              <a href="/" className="mt-5 inline-block text-xs font-semibold uppercase tracking-[0.14em] text-[#6d625c] transition hover:text-coral lg:self-start">Back to website</a>
+            </div>
+          </div>
+        </div>
       </div>
-
-      <a
-        href="/downloads/sumeet-urban-nest-brochure.pdf"
-        download="Sumeet Urban Nest Brochure.pdf"
-        className="group absolute bottom-8 left-1/2 z-20 flex min-h-14 -translate-x-1/2 items-center gap-5 whitespace-nowrap rounded-full bg-coral py-2 pl-7 pr-2 text-xs font-bold tracking-[0.15em] text-white shadow-[0_16px_45px_rgba(0,0,0,0.3)] transition hover:-translate-y-1 hover:bg-coral-dark sm:bottom-12 sm:text-sm"
-      >
-        DOWNLOAD BROCHURE
-        <span className="flex h-11 w-11 items-center justify-center rounded-full bg-white/20 text-xl transition-transform group-hover:translate-y-0.5" aria-hidden="true">
-          ↓
-        </span>
-      </a>
     </main>
   );
 }

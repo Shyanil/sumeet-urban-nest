@@ -10,20 +10,41 @@ const montserrat = Montserrat({
 });
 
 export const metadata: Metadata = {
-  title: "Sumeet Urban Nest | Khamardih, Shankar Nagar's First BOHK Homes",
+  metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL ?? "https://sumeet-urban-nest.workers.dev"),
+  title: {
+    default: "Sumeet Urban Nest | 2 & 3 BHK Homes in Khamardih, Raipur",
+    template: "%s | Sumeet Urban Nest",
+  },
   description:
-    "Discover 2 & 3 BOHK homes at Sumeet Urban Nest, Khamardih, Shankar Nagar, Raipur. 152 residences across 3 towers, spread over 1.76 acres with world-class amenities.",
+    "Discover 2 & 3 BHK homes at Sumeet Urban Nest in Khamardih, Shankar Nagar, Raipur. Explore premium residences, amenities, master plan and floor plans.",
   keywords: [
     "Sumeet Urban Nest",
-    "BOHK Homes",
+    "BHK homes",
     "Khamardih",
     "Shankar Nagar",
     "Raipur",
-    "2 BOHK",
-    "3 BOHK",
+    "2 BHK",
+    "3 BHK",
     "Chhattisgarh",
     "Sumeet Infraventures",
   ],
+  alternates: { canonical: "/" },
+  openGraph: {
+    type: "website",
+    locale: "en_IN",
+    url: "/",
+    siteName: "Sumeet Urban Nest",
+    title: "Sumeet Urban Nest | 2 & 3 BHK Homes in Khamardih, Raipur",
+    description: "Premium 2 & 3 BHK homes in Khamardih, Shankar Nagar, Raipur.",
+    images: [{ url: "/images/exterior/hero-building.webp", width: 1920, height: 1080, alt: "Sumeet Urban Nest exterior elevation" }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Sumeet Urban Nest | 2 & 3 BHK Homes in Raipur",
+    description: "Explore premium homes, amenities and floor plans in Khamardih, Raipur.",
+    images: ["/images/exterior/hero-building.webp"],
+  },
+  robots: { index: true, follow: true },
   icons: {
     icon: [
       { url: "/favicon.svg", type: "image/svg+xml" },
