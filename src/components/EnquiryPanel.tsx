@@ -68,6 +68,7 @@ export function EnquiryProvider({ children }: { children: ReactNode }) {
         body: JSON.stringify({
           fullName: String(formData.get("fullName") ?? "").trim(),
           phoneNumber: `+91${String(formData.get("phoneNumber") ?? "").replace(/\D/g, "").slice(-10)}`,
+          email: String(formData.get("email") ?? "").trim(),
           budget: String(formData.get("budget") ?? ""),
           configuration: String(formData.get("interest") ?? ""),
           locationPincode: String(formData.get("locationPincode") ?? "").trim(),
@@ -189,6 +190,11 @@ export function EnquiryProvider({ children }: { children: ReactNode }) {
                       placeholder="Full Name"
                       className={fieldClassName}
                     />
+                  </div>
+
+                  <div>
+                    <label htmlFor="sticky-email" className="sr-only">Email Address</label>
+                    <input required type="email" id="sticky-email" name="email" autoComplete="email" placeholder="Email Address" className={fieldClassName} />
                   </div>
 
                   <div>

@@ -43,6 +43,7 @@ export default function SiteVisitBar() {
     const data = new FormData(event.currentTarget);
     const name = String(data.get("name") ?? "").trim();
     const phone = String(data.get("phone") ?? "").replace(/\D/g, "");
+    const email = String(data.get("email") ?? "").trim();
     const budget = String(data.get("budget") ?? "");
     const bhk = String(data.get("bhk") ?? "");
     const pincode = String(data.get("pincode") ?? "").trim();
@@ -50,6 +51,7 @@ export default function SiteVisitBar() {
 
     if (name.length < 2) nextErrors.name = "Enter your name";
     if (!/^[6-9]\d{9}$/.test(phone.slice(-10))) nextErrors.phone = "Enter a valid 10-digit phone";
+    if (email && !/^\S+@\S+\.\S+$/.test(email)) nextErrors.form = "Enter a valid email address";
     if (!budget) nextErrors.budget = "Select your budget";
     if (!bhk) nextErrors.bhk = "Select Configuration";
     if (!/^\d{6}$/.test(pincode)) nextErrors.pincode = "Enter a valid 6-digit pincode";
@@ -59,7 +61,7 @@ export default function SiteVisitBar() {
       const response = await fetch("/api/enquiry", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ fullName: name, phoneNumber: `+91${phone.slice(-10)}`, budget, configuration: bhk, locationPincode: pincode, form: "site-visit", ...getLeadTracking() }),
+        body: JSON.stringify({ fullName: name, phoneNumber: `+91${phone.slice(-10)}`, email, budget, configuration: bhk, locationPincode: pincode, form: "site-visit", ...getLeadTracking() }),
       });
       if (response.ok) {
         setIsSubmitted(true);
@@ -97,6 +99,7 @@ export default function SiteVisitBar() {
             <form onSubmit={submit} noValidate className="hidden min-w-0 flex-1 items-center gap-3 xl:flex">
               <Field name="name" placeholder="Name" autoComplete="name" error={errors.name} className={`${inputClassName} w-full`} wrapperClassName="min-w-[120px] flex-1" />
               <Field name="phone" placeholder="98765 43210" type="tel" inputMode="numeric" autoComplete="tel" maxLength={10} pattern="[0-9]{10}" countryCode error={errors.phone} className={`${inputClassName} w-full`} wrapperClassName="min-w-[120px] flex-1" />
+              <Field name="email" placeholder="Email Address" type="email" inputMode="email" autoComplete="email" className={`${inputClassName} w-full`} wrapperClassName="min-w-[150px] flex-1" />
               <label className="relative w-[180px] min-w-[180px] shrink-0">
                 <span className="sr-only">Your Budget</span>
                 <select
@@ -155,6 +158,7 @@ export default function SiteVisitBar() {
               <form onSubmit={submit} noValidate className="grid grid-cols-2 gap-3">
                 <Field name="name" placeholder="Name" autoComplete="name" error={errors.name} className={`${inputClassName} w-full`} />
                 <Field name="phone" placeholder="98765 43210" type="tel" inputMode="numeric" autoComplete="tel" maxLength={10} pattern="[0-9]{10}" countryCode error={errors.phone} className={`${inputClassName} w-full`} />
+                <Field name="email" placeholder="Email Address" type="email" inputMode="email" autoComplete="email" className={`${inputClassName} w-full`} />
                 <label className="relative col-span-2 block">
                   <span className="sr-only">Your Budget</span>
                   <select
