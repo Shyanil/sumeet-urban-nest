@@ -2,8 +2,9 @@
 
 import { useEffect, useState, type FormEvent } from "react";
 import { useRouter } from "next/navigation";
+import { getLeadTracking } from "@/lib/leadTracking";
 
-type Errors = Partial<Record<"name" | "phone" | "budget" | "bhk" | "pincode", string>>;
+type Errors = Partial<Record<"name" | "phone" | "budget" | "bhk" | "pincode" | "form", string>>;
 
 const inputClassName =
   "h-11 min-w-0 rounded-full border border-[#2B2623]/15 bg-white/85 px-4 text-xs text-[#2B2623] outline-none transition placeholder:text-[#2B2623]/45 focus:border-coral focus:ring-2 focus:ring-coral/15 lg:h-12 lg:text-sm xl:px-3";
@@ -37,7 +38,7 @@ export default function SiteVisitBar() {
     };
   }, []);
 
-  const submit = (event: FormEvent<HTMLFormElement>) => {
+  const submit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
     const name = String(data.get("name") ?? "").trim();
@@ -55,10 +56,17 @@ export default function SiteVisitBar() {
 
     setErrors(nextErrors);
     if (Object.keys(nextErrors).length === 0) {
-      setIsSubmitted(true);
-      window.setTimeout(() => {
+      const response = await fetch("/api/enquiry", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ fullName: name, phoneNumber: `+91${phone.slice(-10)}`, budget, configuration: bhk, locationPincode: pincode, form: "site-visit", ...getLeadTracking() }),
+      });
+      if (response.ok) {
+        setIsSubmitted(true);
         router.push("/thank-you");
-      }, 450);
+      } else {
+        setErrors({ form: "We could not submit your enquiry. Please try again." });
+      }
     }
   };
 
@@ -88,7 +96,7 @@ export default function SiteVisitBar() {
           ) : (
             <form onSubmit={submit} noValidate className="hidden min-w-0 flex-1 items-center gap-3 xl:flex">
               <Field name="name" placeholder="Name" autoComplete="name" error={errors.name} className={`${inputClassName} w-full`} wrapperClassName="min-w-[120px] flex-1" />
-              <Field name="phone" placeholder="Phone" type="tel" inputMode="tel" autoComplete="tel" error={errors.phone} className={`${inputClassName} w-full`} wrapperClassName="min-w-[120px] flex-1" />
+              <Field name="phone" placeholder="98765 43210" type="tel" inputMode="numeric" autoComplete="tel" maxLength={10} pattern="[0-9]{10}" countryCode error={errors.phone} className={`${inputClassName} w-full`} wrapperClassName="min-w-[120px] flex-1" />
               <label className="relative w-[180px] min-w-[180px] shrink-0">
                 <span className="sr-only">Your Budget</span>
                 <select
@@ -102,7 +110,7 @@ export default function SiteVisitBar() {
                   <option value="" disabled>Your Budget</option>
                   {configuration === "2-bohk" && <><option value="2-bohk-55-60">₹55L–₹60L</option><option value="2-bohk-60-65-plus">₹60L–₹65L+</option></>}
                   {configuration === "3-bohk" && <><option value="3-bohk-85-90">₹85L–₹90L</option><option value="3-bohk-90-95">₹90L–₹95L</option><option value="3-bohk-95-1cr-plus">₹95L–₹1Cr+</option></>}
-                  {configuration === "not-sure" && <><option value="2-bohk-55-60">2 BOHK: ₹55L–₹60L</option><option value="2-bohk-60-65-plus">2 BOHK: ₹60L–₹65L+</option><option value="3-bohk-85-90">3 BOHK: ₹85L–₹90L</option><option value="3-bohk-90-95">3 BOHK: ₹90L–₹95L</option><option value="3-bohk-95-1cr-plus">3 BOHK: ₹95L–₹1Cr+</option></>}
+                  {configuration === "not-sure" && <><option value="2-bohk-55-60">2 BHK: ₹55L–₹60L</option><option value="2-bohk-60-65-plus">2 BHK: ₹60L–₹65L+</option><option value="3-bohk-85-90">3 BHK: ₹85L–₹90L</option><option value="3-bohk-90-95">3 BHK: ₹90L–₹95L</option><option value="3-bohk-95-1cr-plus">3 BHK: ₹95L–₹1Cr+</option></>}
                 </select>
                 {errors.budget && <span className="mt-1 block pl-3 text-[9px] text-red-600 xl:absolute xl:left-3 xl:top-full xl:whitespace-nowrap xl:pl-0">{errors.budget}</span>}
               </label>
@@ -116,8 +124,8 @@ export default function SiteVisitBar() {
                   className={`${inputClassName} w-full appearance-none pr-7 ${errors.bhk ? "border-red-500" : ""}`}
                 >
                   <option value="" disabled>Select Configuration</option>
-                  <option value="2-bohk">2 BOHK</option>
-                  <option value="3-bohk">3 BOHK</option>
+                  <option value="2-bohk">2 BHK</option>
+                  <option value="3-bohk">3 BHK</option>
                   <option value="not-sure">Not Sure</option>
                 </select>
                 <span className="pointer-events-none absolute right-3 top-1/2 -translate-y-1/2 text-[#2B2623]/50">
@@ -146,7 +154,7 @@ export default function SiteVisitBar() {
             {isSubmitted ? <p className="py-6 text-center text-sm font-semibold text-[#2B2623]">Thank you. Our team will confirm your visit shortly.</p> : (
               <form onSubmit={submit} noValidate className="grid grid-cols-2 gap-3">
                 <Field name="name" placeholder="Name" autoComplete="name" error={errors.name} className={`${inputClassName} w-full`} />
-                <Field name="phone" placeholder="Phone" type="tel" inputMode="tel" autoComplete="tel" error={errors.phone} className={`${inputClassName} w-full`} />
+                <Field name="phone" placeholder="98765 43210" type="tel" inputMode="numeric" autoComplete="tel" maxLength={10} pattern="[0-9]{10}" countryCode error={errors.phone} className={`${inputClassName} w-full`} />
                 <label className="relative col-span-2 block">
                   <span className="sr-only">Your Budget</span>
                   <select
@@ -160,7 +168,7 @@ export default function SiteVisitBar() {
                     <option value="" disabled>Your Budget</option>
                     {configuration === "2-bohk" && <><option value="2-bohk-55-60">₹55L–₹60L</option><option value="2-bohk-60-65-plus">₹60L–₹65L+</option></>}
                     {configuration === "3-bohk" && <><option value="3-bohk-85-90">₹85L–₹90L</option><option value="3-bohk-90-95">₹90L–₹95L</option><option value="3-bohk-95-1cr-plus">₹95L–₹1Cr+</option></>}
-                    {configuration === "not-sure" && <><option value="2-bohk-55-60">2 BOHK: ₹55L–₹60L</option><option value="2-bohk-60-65-plus">2 BOHK: ₹60L–₹65L+</option><option value="3-bohk-85-90">3 BOHK: ₹85L–₹90L</option><option value="3-bohk-90-95">3 BOHK: ₹90L–₹95L</option><option value="3-bohk-95-1cr-plus">3 BOHK: ₹95L–₹1Cr+</option></>}
+                    {configuration === "not-sure" && <><option value="2-bohk-55-60">2 BHK: ₹55L–₹60L</option><option value="2-bohk-60-65-plus">2 BHK: ₹60L–₹65L+</option><option value="3-bohk-85-90">3 BHK: ₹85L–₹90L</option><option value="3-bohk-90-95">3 BHK: ₹90L–₹95L</option><option value="3-bohk-95-1cr-plus">3 BHK: ₹95L–₹1Cr+</option></>}
                   </select>
                   {errors.budget && <span className="mt-1 block pl-3 text-[9px] text-red-600">{errors.budget}</span>}
                 </label>
@@ -174,8 +182,8 @@ export default function SiteVisitBar() {
                     className={`${inputClassName} w-full appearance-none pr-8 ${errors.bhk ? "border-red-500" : ""}`}
                   >
                     <option value="" disabled>Select Configuration</option>
-                    <option value="2-bohk">2 BOHK</option>
-                    <option value="3-bohk">3 BOHK</option>
+                    <option value="2-bohk">2 BHK</option>
+                    <option value="3-bohk">3 BHK</option>
                     <option value="not-sure">Not Sure</option>
                   </select>
                   <span className="pointer-events-none absolute right-3.5 top-1/2 -translate-y-1/2 text-[#2B2623]/50">
@@ -199,11 +207,12 @@ export default function SiteVisitBar() {
   );
 }
 
-function Field({ error, className, wrapperClassName = "", ...props }: React.InputHTMLAttributes<HTMLInputElement> & { error?: string; wrapperClassName?: string }) {
+function Field({ error, className, wrapperClassName = "", countryCode = false, ...props }: React.InputHTMLAttributes<HTMLInputElement> & { error?: string; wrapperClassName?: string; countryCode?: boolean }) {
   return (
     <label className={`relative min-w-0 ${wrapperClassName}`}>
       <span className="sr-only">{props.placeholder}</span>
-      <input {...props} required aria-invalid={Boolean(error)} className={`${className} ${error ? "border-red-500" : ""}`} />
+      {countryCode && <span className="pointer-events-none absolute left-3 top-1/2 z-10 -translate-y-1/2 text-[10px] font-bold text-[#2B2623]/55">+91</span>}
+      <input {...props} required aria-invalid={Boolean(error)} className={`${className} ${countryCode ? "!pl-12" : ""} ${error ? "border-red-500" : ""}`} />
       {error && <span className="mt-1 block pl-3 text-[9px] leading-none text-red-600 xl:absolute xl:left-3 xl:top-full xl:whitespace-nowrap xl:pl-0">{error}</span>}
     </label>
   );

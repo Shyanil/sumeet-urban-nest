@@ -9,12 +9,12 @@ const heroSlides = [
     alt: "Sumeet Urban Nest exterior elevation",
   },
   {
-    src: "/images/exterior/swimming-pool.webp",
-    alt: "Rooftop swimming pool at Sumeet Urban Nest",
+    src: "/images/exterior/aerial-view.webp",
+    alt: "Aerial view of Sumeet Urban Nest",
   },
   {
-    src: "/images/exterior/temple-view.webp",
-    alt: "Temple and landscaped grounds at Sumeet Urban Nest",
+    src: "/images/exterior/gate-view.webp",
+    alt: "Entrance gate at Sumeet Urban Nest",
   },
 ];
 

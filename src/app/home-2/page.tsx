@@ -1,6 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
-import ConfigurationBudgetFields from "@/components/ConfigurationBudgetFields";
+import Home2LeadForm from "@/components/Home2LeadForm";
 
 export const metadata = {
   title: "Sumeet Urban Nest | Coming Soon in Raipur",
@@ -108,45 +108,7 @@ export default function Home2() {
                 Leave your details for pricing and availability.
               </p>
 
-              <form className="mt-5 space-y-3.5">
-                <div>
-                  <label htmlFor="home2-name" className="mb-1.5 block text-[11px] font-semibold text-[#514c46]">Full name</label>
-                  <input
-                    required
-                    id="home2-name"
-                    name="fullName"
-                    type="text"
-                    autoComplete="name"
-                    placeholder="Enter your name"
-                    className={heroFieldClassName}
-                  />
-                </div>
-                <div>
-                  <label htmlFor="home2-phone" className="mb-1.5 block text-[11px] font-semibold text-[#514c46]">Mobile number</label>
-                  <input
-                    required
-                    id="home2-phone"
-                    name="phoneNumber"
-                    type="tel"
-                    inputMode="tel"
-                    autoComplete="tel"
-                    placeholder="Enter your mobile number"
-                    className={heroFieldClassName}
-                  />
-                </div>
-                <ConfigurationBudgetFields fieldClassName={heroFieldClassName} />
-                <button
-                  type="submit"
-                  className="group flex min-h-13 w-full items-center justify-between rounded-lg bg-coral px-5 text-sm font-bold tracking-[0.04em] text-white shadow-[0_10px_24px_rgba(232,115,74,0.24)] transition hover:-translate-y-0.5 hover:bg-coral-dark focus-visible:outline-2 focus-visible:outline-offset-3 focus-visible:outline-coral sm:min-h-14 sm:px-6"
-                >
-                  REVEAL THE PRICE
-                  <span className="transition-transform group-hover:translate-x-1">&rarr;</span>
-                </button>
-                <p className="flex items-start justify-center gap-1.5 pt-1 text-center text-[10px] leading-4 text-[#8a8279]">
-                  <svg aria-hidden="true" viewBox="0 0 20 20" fill="none" stroke="currentColor" strokeWidth="1.5" className="mt-0.5 h-3.5 w-3.5 shrink-0"><rect x="4" y="8" width="12" height="9" rx="2"/><path d="M7 8V6a3 3 0 0 1 6 0v2"/></svg>
-                  By submitting, you agree to be contacted about this project.
-                </p>
-              </form>
+              <Home2LeadForm fieldClassName={heroFieldClassName} />
             </div>
           </div>
         </section>

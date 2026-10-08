@@ -9,6 +9,8 @@ import {
   type FormEvent,
   type ReactNode,
 } from "react";
+import { useRouter } from "next/navigation";
+import { getLeadTracking } from "@/lib/leadTracking";
 
 type EnquiryContextValue = {
   openEnquiry: () => void;
@@ -20,8 +22,11 @@ const fieldClassName =
   "h-12 w-full rounded-xl border border-[#eaded7] bg-[#fffaf7] px-4 text-sm text-[#302c2a] outline-none transition placeholder:text-[#9b918c] focus:border-coral focus:bg-white focus:ring-4 focus:ring-coral/10 sm:h-14 sm:text-[15px]";
 
 export function EnquiryProvider({ children }: { children: ReactNode }) {
+  const router = useRouter();
   const [isOpen, setIsOpen] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitError, setSubmitError] = useState("");
   const [configuration, setConfiguration] = useState("");
   const nameInputRef = useRef<HTMLInputElement>(null);
 
@@ -45,13 +50,40 @@ export function EnquiryProvider({ children }: { children: ReactNode }) {
 
   const openEnquiry = () => {
     setIsSubmitted(false);
+    setSubmitError("");
     setConfiguration("");
     setIsOpen(true);
   };
 
-  const submitEnquiry = (event: FormEvent<HTMLFormElement>) => {
+  const submitEnquiry = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    setIsSubmitted(true);
+    const formData = new FormData(event.currentTarget);
+    setIsSubmitting(true);
+    setSubmitError("");
+
+    try {
+      const response = await fetch("/api/enquiry", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          fullName: String(formData.get("fullName") ?? "").trim(),
+          phoneNumber: `+91${String(formData.get("phoneNumber") ?? "").replace(/\D/g, "").slice(-10)}`,
+          budget: String(formData.get("budget") ?? ""),
+          configuration: String(formData.get("interest") ?? ""),
+          locationPincode: String(formData.get("locationPincode") ?? "").trim(),
+          form: "enquiry-panel",
+          ...getLeadTracking(),
+        }),
+      });
+
+      if (!response.ok) throw new Error("Enquiry submission failed");
+      setIsSubmitted(true);
+      router.push("/thank-you");
+    } catch {
+      setSubmitError("We could not submit your enquiry. Please try again.");
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -142,6 +174,7 @@ export function EnquiryProvider({ children }: { children: ReactNode }) {
                 </div>
               ) : (
                 <form onSubmit={submitEnquiry} className="space-y-3.5 sm:space-y-4">
+                  {submitError && <p className="rounded-lg bg-red-50 px-3 py-2 text-sm text-red-600">{submitError}</p>}
                   <div>
                     <label htmlFor="sticky-full-name" className="sr-only">
                       Full Name
@@ -162,16 +195,21 @@ export function EnquiryProvider({ children }: { children: ReactNode }) {
                     <label htmlFor="sticky-phone" className="sr-only">
                       Phone Number
                     </label>
-                    <input
-                      required
-                      type="tel"
-                      id="sticky-phone"
-                      name="phoneNumber"
-                      autoComplete="tel"
-                      inputMode="tel"
-                      placeholder="Phone Number"
-                      className={fieldClassName}
-                    />
+                    <div className="relative">
+                      <span className="pointer-events-none absolute left-4 top-1/2 -translate-y-1/2 text-xs font-semibold text-[#302c2a]/55">+91</span>
+                      <input
+                        required
+                        type="tel"
+                        id="sticky-phone"
+                        name="phoneNumber"
+                        autoComplete="tel"
+                        inputMode="numeric"
+                        maxLength={10}
+                        pattern="[0-9]{10}"
+                        placeholder="98765 43210"
+                        className={`${fieldClassName} pl-13`}
+                      />
+                    </div>
                   </div>
 
                   <div>
@@ -191,7 +229,7 @@ export function EnquiryProvider({ children }: { children: ReactNode }) {
                         <option value="" disabled>Your Budget</option>
                         {configuration === "2-bohk" && <><option value="2-bohk-55-60">₹55L–₹60L</option><option value="2-bohk-60-65-plus">₹60L–₹65L+</option></>}
                         {configuration === "3-bohk" && <><option value="3-bohk-85-90">₹85L–₹90L</option><option value="3-bohk-90-95">₹90L–₹95L</option><option value="3-bohk-95-1cr-plus">₹95L–₹1Cr+</option></>}
-                        {configuration === "not-sure" && <><option value="2-bohk-55-60">2 BOHK: ₹55L–₹60L</option><option value="2-bohk-60-65-plus">2 BOHK: ₹60L–₹65L+</option><option value="3-bohk-85-90">3 BOHK: ₹85L–₹90L</option><option value="3-bohk-90-95">3 BOHK: ₹90L–₹95L</option><option value="3-bohk-95-1cr-plus">3 BOHK: ₹95L–₹1Cr+</option></>}
+                        {configuration === "not-sure" && <><option value="2-bohk-55-60">2 BHK: ₹55L–₹60L</option><option value="2-bohk-60-65-plus">2 BHK: ₹60L–₹65L+</option><option value="3-bohk-85-90">3 BHK: ₹85L–₹90L</option><option value="3-bohk-90-95">3 BHK: ₹90L–₹95L</option><option value="3-bohk-95-1cr-plus">3 BHK: ₹95L–₹1Cr+</option></>}
                       </select>
                       <span className="pointer-events-none absolute right-4 top-1/2 -translate-y-1/2 text-[#746b66]/60">
                         <svg className="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -217,8 +255,8 @@ export function EnquiryProvider({ children }: { children: ReactNode }) {
                         <option value="" disabled>
                           Select Configuration
                         </option>
-                        <option value="2-bohk">2 BOHK</option>
-                        <option value="3-bohk">3 BOHK</option>
+                        <option value="2-bohk">2 BHK</option>
+                        <option value="3-bohk">3 BHK</option>
                         <option value="not-sure">Not Sure</option>
                       </select>
                       <span className="pointer-events-none absolute right-4 top-1/2 -translate-y-1/2 text-[#746b66]/60">
@@ -246,9 +284,10 @@ export function EnquiryProvider({ children }: { children: ReactNode }) {
 
                   <button
                     type="submit"
+                    disabled={isSubmitting}
                     className="group flex min-h-13 w-full items-center justify-center gap-3 rounded-xl bg-coral px-6 text-sm font-bold tracking-[0.08em] text-white shadow-[0_12px_30px_rgba(232,115,74,0.25)] transition hover:-translate-y-0.5 hover:bg-coral-dark hover:shadow-[0_16px_34px_rgba(232,115,74,0.32)] sm:min-h-14 sm:text-[15px]"
                   >
-                    SUBMIT ENQUIRY
+                    {isSubmitting ? "SUBMITTING..." : "SUBMIT ENQUIRY"}
                     <span className="transition-transform group-hover:translate-x-1">&rarr;</span>
                   </button>
 

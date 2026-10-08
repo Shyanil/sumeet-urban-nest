@@ -3,8 +3,9 @@
 import Image from "next/image";
 import { useState, type FormEvent } from "react";
 import { useRouter } from "next/navigation";
+import { getLeadTracking } from "@/lib/leadTracking";
 
-type Errors = Partial<Record<"fullName" | "phoneNumber" | "budget" | "interest" | "locationPincode", string>>;
+type Errors = Partial<Record<"fullName" | "phoneNumber" | "budget" | "interest" | "locationPincode" | "form", string>>;
 
 export default function ContactSection() {
   const router = useRouter();
@@ -12,7 +13,7 @@ export default function ContactSection() {
   const [errors, setErrors] = useState<Errors>({});
   const [configuration, setConfiguration] = useState("");
 
-  const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
     const fullName = String(data.get("fullName") ?? "").trim();
@@ -31,9 +32,27 @@ export default function ContactSection() {
     setErrors(nextErrors);
     if (Object.keys(nextErrors).length === 0) {
       setIsSubmitting(true);
-      window.setTimeout(() => {
+      try {
+        const response = await fetch("/api/enquiry", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            fullName,
+            phoneNumber: `+91${phoneNumber.slice(-10)}`,
+            budget,
+            configuration: interest,
+            locationPincode,
+            form: "contact-section",
+            ...getLeadTracking(),
+          }),
+        });
+
+        if (!response.ok) throw new Error("Enquiry submission failed");
         router.push("/thank-you");
-      }, 400);
+      } catch {
+        setErrors({ form: "We could not submit your enquiry. Please try again." });
+        setIsSubmitting(false);
+      }
     }
   };
 
@@ -111,6 +130,7 @@ export default function ContactSection() {
             </div>
 
             <form onSubmit={handleSubmit} className="space-y-4 sm:space-y-4.5" noValidate>
+              {errors.form && <p className="rounded-lg bg-red-50 px-3 py-2 text-sm text-red-600">{errors.form}</p>}
               {/* Full Name */}
               <div>
                 <label htmlFor="contactFullName" className="mb-1 block text-xs font-semibold uppercase tracking-wider text-[#2B2623]">
@@ -168,7 +188,7 @@ export default function ContactSection() {
                     <option value="" disabled>Your Budget</option>
                     {configuration === "2-bohk" && <><option value="2-bohk-55-60">₹55L–₹60L</option><option value="2-bohk-60-65-plus">₹60L–₹65L+</option></>}
                     {configuration === "3-bohk" && <><option value="3-bohk-85-90">₹85L–₹90L</option><option value="3-bohk-90-95">₹90L–₹95L</option><option value="3-bohk-95-1cr-plus">₹95L–₹1Cr+</option></>}
-                    {configuration === "not-sure" && <><option value="2-bohk-55-60">2 BOHK: ₹55L–₹60L</option><option value="2-bohk-60-65-plus">2 BOHK: ₹60L–₹65L+</option><option value="3-bohk-85-90">3 BOHK: ₹85L–₹90L</option><option value="3-bohk-90-95">3 BOHK: ₹90L–₹95L</option><option value="3-bohk-95-1cr-plus">3 BOHK: ₹95L–₹1Cr+</option></>}
+                    {configuration === "not-sure" && <><option value="2-bohk-55-60">2 BHK: ₹55L–₹60L</option><option value="2-bohk-60-65-plus">2 BHK: ₹60L–₹65L+</option><option value="3-bohk-85-90">3 BHK: ₹85L–₹90L</option><option value="3-bohk-90-95">3 BHK: ₹90L–₹95L</option><option value="3-bohk-95-1cr-plus">3 BHK: ₹95L–₹1Cr+</option></>}
                   </select>
                   {errors.budget && <p className="mt-1 text-[11px] font-medium text-red-500">{errors.budget}</p>}
                 </div>
@@ -190,8 +210,8 @@ export default function ContactSection() {
                     }`}
                   >
                     <option value="" disabled>Select Configuration</option>
-                    <option value="2-bohk">2 BOHK</option>
-                    <option value="3-bohk">3 BOHK</option>
+                    <option value="2-bohk">2 BHK</option>
+                    <option value="3-bohk">3 BHK</option>
                     <option value="not-sure">Not Sure</option>
                   </select>
                   {errors.interest && <p className="mt-1 text-[11px] font-medium text-red-500">{errors.interest}</p>}
