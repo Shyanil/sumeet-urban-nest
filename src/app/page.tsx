@@ -2,7 +2,6 @@ import Image from "next/image";
 import Header from "@/components/Header";
 import HeroSection from "@/components/HeroSection";
 import OverviewSection from "@/components/OverviewSection";
-import WalkthroughSection from "@/components/WalkthroughSection";
 import AmenitiesSection from "@/components/AmenitiesSection";
 import GallerySection from "@/components/GallerySection";
 import LocationSection from "@/components/LocationSection";
@@ -23,7 +22,6 @@ export default function Home() {
         <Header />
         <HeroSection />
         <OverviewSection />
-        <WalkthroughSection />
         <AmenitiesSection />
         <PlanSection />
         <FloorPlanSection />

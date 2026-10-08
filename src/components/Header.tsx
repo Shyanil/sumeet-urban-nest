@@ -6,7 +6,6 @@ import { useEffect, useState } from "react";
 import { useEnquiry } from "@/components/EnquiryPanel";
 
 const navLinks = [
-  { name: "Walkthrough", href: "#walkthrough", id: "walkthrough" },
   { name: "Amenities", href: "#amenities", id: "amenities" },
   { name: "Gallery", href: "#gallery", id: "gallery" },
   { name: "Location", href: "#location", id: "location" },
@@ -31,9 +30,9 @@ export default function Header() {
       const getDocumentTop = (element: HTMLElement) =>
         element.getBoundingClientRect().top + window.scrollY;
 
-      // 1. If user is in the Hero or Overview section (above Walkthrough), no menu item should be highlighted
-      const walkthroughEl = document.getElementById("walkthrough");
-      if (!walkthroughEl || scrollY + window.innerHeight * 0.28 < getDocumentTop(walkthroughEl)) {
+      // If the user is above the first navigable section, no menu item is highlighted.
+      const amenitiesEl = document.getElementById("amenities");
+      if (!amenitiesEl || scrollY + window.innerHeight * 0.28 < getDocumentTop(amenitiesEl)) {
         setActiveSection("");
         return;
       }
