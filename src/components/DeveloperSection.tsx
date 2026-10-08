@@ -58,7 +58,7 @@ export default function DeveloperSection() {
   return (
     <section
       id="developer"
-      className="scroll-mt-20 overflow-hidden bg-[#FAF8F5] py-20 sm:py-24 md:py-28 lg:py-32"
+      className="scroll-mt-20 overflow-hidden bg-[#FAF8F5] pb-20 pt-12 sm:pb-24 sm:pt-14 md:pb-28 md:pt-16 lg:pb-32 lg:pt-20"
     >
       <div className="mx-auto w-full max-w-[1720px] px-6 sm:px-10 md:px-14 lg:px-20 xl:px-28 2xl:px-36">
         {/* Section Header */}
@@ -136,13 +136,13 @@ export default function DeveloperSection() {
               </div>
 
               {/* 4 Architectural Metric Counters */}
-              <div className="mt-10 grid grid-cols-3 gap-2 border-t border-[#2B2623]/8 pt-8 sm:gap-4">
+              <div className="mt-10 grid grid-cols-1 gap-3 border-t border-[#2B2623]/8 pt-8 sm:grid-cols-3 sm:gap-4">
                 {stats.map((s) => (
-                  <div key={s.label} className="rounded-xl bg-[#FAF8F5] p-2.5 text-left transition hover:bg-white hover:shadow-sm sm:p-4">
-                    <p className="text-xl font-light tracking-tight text-coral sm:text-3xl">
+                  <div key={s.label} className="rounded-xl bg-[#FAF8F5] p-4 text-left transition hover:bg-white hover:shadow-sm">
+                    <p className="text-2xl font-light tracking-tight text-coral sm:text-3xl">
                       {s.value}
                     </p>
-                    <p className="mt-1 whitespace-nowrap text-[8px] font-bold uppercase tracking-[0.03em] text-[#2B2623] sm:text-[10px] sm:tracking-[0.08em]">
+                    <p className="mt-1 whitespace-nowrap text-[10px] font-bold uppercase tracking-[0.08em] text-[#2B2623]">
                       {s.label}
                     </p>
                     <p className="mt-0.5 text-[10px] text-[#857d76]">

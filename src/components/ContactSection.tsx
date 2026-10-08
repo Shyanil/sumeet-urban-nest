@@ -4,6 +4,7 @@ import Image from "next/image";
 import { useState, type FormEvent } from "react";
 import { useRouter } from "next/navigation";
 import { getLeadTracking } from "@/lib/leadTracking";
+import SelectChevron from "@/components/SelectChevron";
 
 type Errors = Partial<Record<"fullName" | "phoneNumber" | "budget" | "interest" | "locationPincode" | "form", string>>;
 
@@ -59,7 +60,7 @@ export default function ContactSection() {
   return (
     <section
       id="contact"
-      className="scroll-mt-20 bg-[#F7F5F0] py-16 sm:py-20 md:py-24 lg:py-28"
+      className="scroll-mt-20 bg-[#F7F5F0] pt-16 pb-10 sm:pt-20 sm:pb-12 md:pt-24 md:pb-14 lg:pt-28 lg:pb-16"
     >
       <div className="mx-auto w-full max-w-[1720px] px-6 sm:px-10 md:px-14 lg:px-20 xl:px-28 2xl:px-36">
         {/* Section Header */}
@@ -176,20 +177,24 @@ export default function ContactSection() {
                   <label htmlFor="contactBudget" className="mb-1 block text-xs font-semibold uppercase tracking-wider text-[#2B2623]">
                     Your Budget <span className="text-coral">*</span>
                   </label>
+                  <div className="relative">
                   <select
-                    id="contactBudget"
-                    name="budget"
-                    key={configuration}
-                    disabled={!configuration}
-                    className={`h-12 w-full rounded-xl border bg-[#F8F7F4] px-4 text-sm text-[#2B2623] outline-none transition focus:bg-white focus:ring-2 focus:ring-coral/20 disabled:cursor-not-allowed disabled:opacity-55 ${
+                      id="contactBudget"
+                      name="budget"
+                      key={configuration}
+                      defaultValue=""
+                      disabled={!configuration}
+                    className={`h-12 w-full appearance-none rounded-xl border bg-[#F8F7F4] px-4 pr-12 text-sm text-[#2B2623] outline-none transition focus:bg-white focus:ring-2 focus:ring-coral/20 disabled:cursor-not-allowed disabled:opacity-55 ${
                       errors.budget ? "border-red-400 focus:border-red-500" : "border-[#2B2623]/15 focus:border-coral"
                     }`}
                   >
-                    <option value="" disabled>Your Budget</option>
+                    <option value="" disabled>Your Budget *</option>
                     {configuration === "2-bohk" && <><option value="2-bohk-55-60">₹55L–₹60L</option><option value="2-bohk-60-65-plus">₹60L–₹65L+</option></>}
                     {configuration === "3-bohk" && <><option value="3-bohk-85-90">₹85L–₹90L</option><option value="3-bohk-90-95">₹90L–₹95L</option><option value="3-bohk-95-1cr-plus">₹95L–₹1Cr+</option></>}
                     {configuration === "not-sure" && <><option value="2-bohk-55-60">2 BHK: ₹55L–₹60L</option><option value="2-bohk-60-65-plus">2 BHK: ₹60L–₹65L+</option><option value="3-bohk-85-90">3 BHK: ₹85L–₹90L</option><option value="3-bohk-90-95">3 BHK: ₹90L–₹95L</option><option value="3-bohk-95-1cr-plus">3 BHK: ₹95L–₹1Cr+</option></>}
                   </select>
+                  <SelectChevron />
+                  </div>
                   {errors.budget && <p className="mt-1 text-[11px] font-medium text-red-500">{errors.budget}</p>}
                 </div>
               </div>
@@ -200,12 +205,13 @@ export default function ContactSection() {
                   <label htmlFor="contactInterest" className="mb-1 block text-xs font-semibold uppercase tracking-wider text-[#2B2623]">
                     Select Configuration <span className="text-coral">*</span>
                   </label>
+                  <div className="relative">
                   <select
                     id="contactInterest"
                     name="interest"
                     value={configuration}
                     onChange={(event) => setConfiguration(event.target.value)}
-                    className={`h-12 w-full rounded-xl border bg-[#F8F7F4] px-4 text-sm text-[#2B2623] outline-none transition focus:bg-white focus:ring-2 focus:ring-coral/20 ${
+                    className={`h-12 w-full appearance-none rounded-xl border bg-[#F8F7F4] px-4 pr-12 text-sm text-[#2B2623] outline-none transition focus:bg-white focus:ring-2 focus:ring-coral/20 ${
                       errors.interest ? "border-red-400 focus:border-red-500" : "border-[#2B2623]/15 focus:border-coral"
                     }`}
                   >
@@ -214,6 +220,8 @@ export default function ContactSection() {
                     <option value="3-bohk">3 BHK</option>
                     <option value="not-sure">Not Sure</option>
                   </select>
+                  <SelectChevron />
+                  </div>
                   {errors.interest && <p className="mt-1 text-[11px] font-medium text-red-500">{errors.interest}</p>}
                 </div>
 
