@@ -78,7 +78,7 @@ export default function SiteVisitBar() {
     <aside className="fixed inset-x-3 bottom-3 z-[90] mx-auto max-w-[1540px] animate-[enquiry-sheet-in_340ms_cubic-bezier(0.22,1,0.36,1)] sm:inset-x-5 sm:bottom-5" aria-label="Book a site visit">
       <div className="overflow-hidden rounded-[26px] border border-white/50 bg-[#F8F7F3]/95 shadow-[0_18px_55px_rgba(43,38,35,0.24)] backdrop-blur-xl xl:rounded-full">
         <div className="relative flex min-h-[74px] items-center gap-3 px-4 py-3 sm:px-5 xl:px-4 xl:py-2">
-          <button type="button" onClick={() => setIsMobileOpen((open) => !open)} className="flex min-w-0 flex-1 items-center gap-3 text-left xl:pointer-events-none xl:w-[190px] xl:flex-none" aria-expanded={isMobileOpen}>
+          <button type="button" onClick={() => setIsMobileOpen((open) => !open)} className="flex h-11 w-11 shrink-0 items-center justify-center gap-3 text-left xl:pointer-events-none xl:h-auto xl:w-[190px] xl:justify-start" aria-expanded={isMobileOpen}>
             <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-coral/10 text-coral">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" className="h-5 w-5" aria-hidden="true"><path strokeLinecap="round" strokeLinejoin="round" d="M12 21s7-4.6 7-11a7 7 0 1 0-14 0c0 6.4 7 11 7 11Z"/><circle cx="12" cy="10" r="2.5"/></svg>
             </span>
@@ -88,7 +88,7 @@ export default function SiteVisitBar() {
             </span>
           </button>
 
-          <button type="button" onClick={() => setIsMobileOpen(true)} className="absolute left-1/2 -translate-x-1/2 rounded-full bg-coral px-5 py-3 text-[10px] font-bold tracking-[0.12em] text-white xl:hidden">DOWNLOAD BROCHURE</button>
+          <button type="button" onClick={() => setIsMobileOpen(true)} className="flex h-11 min-w-0 flex-1 items-center justify-center rounded-full bg-coral px-4 text-[10px] font-bold tracking-[0.12em] text-white shadow-[0_8px_20px_rgba(232,115,74,0.32)] transition active:scale-[0.98] xl:hidden">DOWNLOAD BROCHURE</button>
 
           {isSubmitted ? (
             <div className="hidden flex-1 items-center justify-center gap-3 text-sm font-semibold text-[#2B2623] xl:flex">
@@ -198,8 +198,8 @@ export default function SiteVisitBar() {
                   {errors.bhk && <span className="mt-1 block pl-3 text-[9px] text-red-600">{errors.bhk}</span>}
                 </label>
                 <Field name="pincode" placeholder="Pincode" inputMode="numeric" autoComplete="postal-code" error={errors.pincode} className={`${inputClassName} w-full`} />
-                <button type="submit" className="group col-span-2 flex h-12 items-center justify-between rounded-full bg-coral py-1.5 pl-6 pr-1.5 text-xs font-bold tracking-[0.16em] text-white shadow-[0_10px_26px_rgba(232,115,74,0.3)] transition active:scale-[0.99]">
-                  <span className="flex-1 text-center">CONFIRM</span>
+                <button type="submit" className="group col-span-2 flex h-12 items-center justify-between rounded-full bg-coral py-1.5 pl-6 pr-1.5 text-[11px] font-bold tracking-[0.13em] text-white shadow-[0_10px_26px_rgba(232,115,74,0.3)] transition active:scale-[0.99]">
+                  <span className="flex-1 text-center">DOWNLOAD BROCHURE</span>
                   <span className="flex h-9 w-9 items-center justify-center rounded-full bg-white/18 text-lg" aria-hidden="true">→</span>
                 </button>
               </form>
