@@ -153,16 +153,8 @@ export default function Header() {
             </button>
           </div>
 
-          {/* Mobile Right: Enquire Now Button + Hamburger */}
+          {/* Mobile Right: Hamburger */}
           <div className="flex items-center gap-2.5 sm:gap-3 lg:hidden">
-            <button
-              type="button"
-              onClick={openEnquiry}
-              className="whitespace-nowrap rounded-full bg-coral px-3.5 py-1.5 text-[10px] font-bold uppercase tracking-[0.08em] text-white shadow-[0_10px_26px_rgba(232,115,74,0.32)] transition hover:bg-coral-dark sm:px-4 sm:text-[10.5px]"
-            >
-              Enquire Now
-            </button>
-
             <button
               type="button"
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}

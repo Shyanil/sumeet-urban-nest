@@ -89,10 +89,10 @@ export default function HeroSection() {
             <div className="my-4 h-px bg-gradient-to-r from-white/20 via-white/10 to-transparent sm:my-5" />
 
             <h2 className="whitespace-nowrap text-[20px] font-light leading-none tracking-tight text-white min-[380px]:text-[22px] sm:text-[26px] xl:text-[28px]">
-              2 <span className="text-coral">&amp;</span> 3 BOHK Apartments
+              2 <span className="text-coral">&amp;</span> 3 BHK Apartments
             </h2>
             <p className="mt-2 text-[11px] leading-relaxed text-white/70 sm:mt-3 sm:text-xs">
-              Thoughtfully designed luxury residences
+              Thoughtfully designed luxury residences for BOHK Living
             </p>
           </div>
         </div>
