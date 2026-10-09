@@ -47,7 +47,7 @@ const landmarkProjects = [
 ];
 
 const stats = [
-  { value: "25+", label: "Years of Trust", detail: "Shaping Chhattisgarh's Skyline" },
+  { value: "15+", label: "Years of Experience", detail: "Creating Spaces That Inspire" },
   { value: "4+", label: "Landmark Addresses", detail: "Commercial & Residential Hubs" },
   { value: "1500+", label: "Happy Families", detail: "Building Homes, Creating Happiness" },
 ];

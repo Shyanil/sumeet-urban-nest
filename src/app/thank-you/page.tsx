@@ -1,5 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
+import LeadConversion from "@/components/LeadConversion";
 
 export const metadata = {
   title: "Thank You | Sumeet Urban Nest",
@@ -9,6 +10,7 @@ export const metadata = {
 export default function ThankYouPage() {
   return (
     <main className="relative isolate flex min-h-[100svh] items-center justify-center overflow-hidden bg-[#2B2623] px-6 py-12 text-white sm:px-10 sm:py-16">
+      <LeadConversion />
       <Image src="/images/exterior/hero-building.webp" alt="Sumeet Urban Nest architectural elevation" fill priority sizes="100vw" className="-z-20 object-cover object-center" />
       <div className="absolute inset-0 -z-10 bg-gradient-to-b from-black/65 via-black/75 to-black/85" />
       <div className="mx-auto flex w-full max-w-xl flex-col items-center text-center">

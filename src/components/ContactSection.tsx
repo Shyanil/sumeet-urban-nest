@@ -1,5 +1,7 @@
 "use client";
 
+import { useLeadSubmission } from "@/components/useLeadSubmission";
+
 import Image from "next/image";
 import { useState, type FormEvent } from "react";
 
@@ -9,6 +11,7 @@ import SelectChevron from "@/components/SelectChevron";
 type Errors = Partial<Record<"fullName" | "phoneNumber" | "budget" | "interest" | "locationPincode" | "form", string>>;
 
 export default function ContactSection() {
+  const submitLead = useLeadSubmission();
 
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [errors, setErrors] = useState<Errors>({});
@@ -34,10 +37,7 @@ export default function ContactSection() {
     if (Object.keys(nextErrors).length === 0) {
       setIsSubmitting(true);
       try {
-        const response = await fetch("/api/enquiry", {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({
+        const response = await submitLead({
             fullName,
             phoneNumber: `+91${phoneNumber.slice(-10)}`,
             budget,
@@ -45,8 +45,7 @@ export default function ContactSection() {
             locationPincode,
             form: "contact-section",
             ...getLeadTracking(),
-          }),
-        });
+          });
 
         if (!response.ok) throw new Error("Enquiry submission failed");
         redirectToThankYou();

@@ -1,11 +1,14 @@
 "use client";
 
+import { useLeadSubmission } from "@/components/useLeadSubmission";
+
 import { useState, type FormEvent } from "react";
 
 import ConfigurationBudgetFields from "@/components/ConfigurationBudgetFields";
 import { getLeadTracking, redirectToThankYou } from "@/lib/leadTracking";
 
 export default function Home2LeadForm({ fieldClassName }: { fieldClassName: string }) {
+  const submitLead = useLeadSubmission();
 
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [error, setError] = useState("");
@@ -23,18 +26,14 @@ export default function Home2LeadForm({ fieldClassName }: { fieldClassName: stri
     setIsSubmitting(true);
     setError("");
     try {
-      const response = await fetch("/api/enquiry", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
+      const response = await submitLead({
           fullName: String(data.get("fullName") ?? "").trim(),
           phoneNumber: `+91${phoneNumber.slice(-10)}`,
           configuration: String(data.get("interest") ?? ""),
           budget: String(data.get("budget") ?? ""),
           form: "home-2",
           ...getLeadTracking(),
-        }),
-      });
+        });
 
       if (!response.ok) throw new Error("Enquiry submission failed");
       redirectToThankYou();

@@ -251,7 +251,7 @@ export default function AmenitiesSection() {
   return (
     <section
       id="amenities"
-      className="relative scroll-mt-20 overflow-hidden bg-[#f7f4f1] py-20 text-[#1a1a1a] sm:py-24 md:py-28"
+      className="relative scroll-mt-20 overflow-hidden bg-[#f7f4f1] py-20 text-[#1a1a1a] sm:py-24 md:py-28 lg:py-20"
     >
       <div className="pointer-events-none absolute left-1/2 top-0 h-72 w-72 -translate-x-1/2 rounded-full bg-coral/10 blur-[110px]" />
 

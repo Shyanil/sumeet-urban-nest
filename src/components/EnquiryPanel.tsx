@@ -1,5 +1,7 @@
 "use client";
 
+import { useLeadSubmission } from "@/components/useLeadSubmission";
+
 import {
   createContext,
   useContext,
@@ -23,6 +25,7 @@ const fieldClassName =
   "h-12 w-full rounded-xl border border-[#eaded7] bg-[#fffaf7] px-4 text-sm text-[#302c2a] outline-none transition placeholder:text-[#9b918c] focus:border-coral focus:bg-white focus:ring-4 focus:ring-coral/10 sm:h-14 sm:text-[15px]";
 
 export function EnquiryProvider({ children }: { children: ReactNode }) {
+  const submitLead = useLeadSubmission();
 
   const [isOpen, setIsOpen] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
@@ -63,10 +66,7 @@ export function EnquiryProvider({ children }: { children: ReactNode }) {
     setSubmitError("");
 
     try {
-      const response = await fetch("/api/enquiry", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
+      const response = await submitLead({
           fullName: String(formData.get("fullName") ?? "").trim(),
           phoneNumber: `+91${String(formData.get("phoneNumber") ?? "").replace(/\D/g, "").slice(-10)}`,
           budget: String(formData.get("budget") ?? ""),
@@ -74,8 +74,7 @@ export function EnquiryProvider({ children }: { children: ReactNode }) {
           locationPincode: String(formData.get("locationPincode") ?? "").trim(),
           form: "enquiry-panel",
           ...getLeadTracking(),
-        }),
-      });
+        });
 
       if (!response.ok) throw new Error("Enquiry submission failed");
       setIsSubmitted(true);

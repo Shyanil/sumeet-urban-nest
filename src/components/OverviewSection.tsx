@@ -4,7 +4,7 @@ export default function OverviewSection() {
   return (
     <section
       id="overview"
-      className="relative isolate overflow-hidden bg-white py-20 sm:py-24 md:py-28 lg:py-32"
+      className="relative isolate overflow-hidden bg-white py-20 sm:py-24 md:py-28 lg:py-20"
     >
       <Image
         src="/images/exterior/amenities-rings.webp"

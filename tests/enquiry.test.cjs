@@ -1,19 +1,8 @@
 /* eslint-disable @typescript-eslint/no-require-imports -- CommonJS test harness loads transpiled TypeScript. */
 const assert = require("node:assert/strict");
-const fs = require("node:fs");
-const vm = require("node:vm");
 const { test } = require("node:test");
-const ts = require("typescript");
 const { NextResponse } = require("next/server");
-
-function load(file, globals) {
-  const output = ts.transpileModule(fs.readFileSync(file, "utf8"), {
-    compilerOptions: { module: ts.ModuleKind.CommonJS, target: ts.ScriptTarget.ES2020 },
-  }).outputText;
-  const exports = {};
-  vm.runInNewContext(output, { exports, require, Date, Intl, AbortSignal, URLSearchParams, console: { error() {} }, ...globals });
-  return exports;
-}
+const { load } = require("./helpers.cjs");
 
 const lead = {
   fullName: "Test Visitor", phoneNumber: "+919876543210", configuration: "2-bohk",
@@ -22,17 +11,19 @@ const lead = {
   referrer: "https://google.com/", utm_source: "google", utm_medium: "cpc",
   utm_campaign: "homes", utm_term: "apartments", utm_content: "creative-a",
   utm_id: "campaign-1", gclid: "click-1",
+  submissionId: "11111111-1111-4111-8111-111111111111",
 };
 
 function setup({ env = {}, databaseOk = true, webhookFails = false } = {}) {
   const calls = [];
   const handler = load("src/app/api/enquiry/route.ts", {
     require: (name) => name === "next/server" ? { NextResponse } : require(name),
-    process: { env: { SUPABASE_URL: "https://project.supabase.co", SUPABASE_ANON_KEY: "test-anon-key", ...env } },
+    process: { env: { SUPABASE_URL: "https://project.supabase.co", SUPABASE_ANON_KEY: "test-anon-key", LEAD_TRACKING_SECRET: "test-signing-key-that-is-at-least-32-characters", ...env } },
     fetch: async (url, options) => {
       calls.push({ url, options });
       if (calls.length > 1 && webhookFails) throw new Error("webhook unavailable");
-      return new Response(null, { status: databaseOk ? 201 : 403 });
+      const row = JSON.parse(options.body).p_lead;
+      return new Response(JSON.stringify(row ? { id: row.id, lead_type: row.lead_type, form_source: row.form_source, inserted: true } : {}), { status: databaseOk ? 201 : 403 });
     },
   });
   return { calls, POST: handler.POST };
@@ -48,21 +39,22 @@ test("every form inserts normalized lead and attribution before returning succes
     const result = await POST(request({ ...lead, form, locationPincode: form === "home-2" ? undefined : lead.locationPincode }));
     assert.equal(result.status, 200);
     assert.equal(calls.length, 1);
-    assert.equal(calls[0].url, "https://project.supabase.co/rest/v1/sumeeturbannest_leads");
-    assert.equal(calls[0].options.headers.Prefer, "return=minimal");
+    assert.equal(calls[0].url, "https://project.supabase.co/rest/v1/rpc/save_sumeeturbannest_lead");
     assert.equal(calls[0].options.headers.apikey, "test-anon-key");
     assert.equal(calls[0].options.headers.Authorization, "Bearer test-anon-key");
-    const row = JSON.parse(calls[0].options.body);
+    const row = JSON.parse(calls[0].options.body).p_lead;
     assert.equal(row.phone_number, "9876543210");
     assert.equal(row.configuration, "2 BHK");
     assert.equal(row.budget, "55L to 60L");
     assert.equal(row.form_source, form);
+    assert.equal(row.lead_type, "website_lead");
     assert.equal(row.landing_page_url, lead.landingPageUrl);
     assert.equal(row.location_pincode, form === "home-2" ? null : "492004");
     for (const key of ["utm_source", "utm_medium", "utm_campaign", "utm_term", "utm_content", "utm_id", "gclid"]) assert.equal(row[key], lead[key]);
     assert.ok(row.submission_date);
     assert.ok(row.submission_time);
     assert.match(result.headers.get("set-cookie"), /brochure_access=granted/);
+    assert.match(result.headers.get("set-cookie"), /sumeet_lead_receipt=/);
   }
 });
 

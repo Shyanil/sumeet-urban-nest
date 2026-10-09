@@ -77,7 +77,9 @@ export default function SpecificationsSection() {
   }, [isAutoPlaying, isHovered]);
 
   useEffect(() => {
-    stripRef.current?.scrollTo({ left: activeIndex * 170, behavior: "smooth" });
+    const strip = stripRef.current;
+    const activeTab = strip?.querySelector<HTMLButtonElement>('button[aria-pressed="true"]');
+    if (strip && activeTab) strip.scrollTo({ left: activeTab.offsetLeft, behavior: "smooth" });
   }, [activeIndex]);
 
   const handleTabClick = (index: number) => {
@@ -110,7 +112,7 @@ export default function SpecificationsSection() {
           ref={stripRef}
           onMouseEnter={() => setIsHovered(true)}
           onMouseLeave={() => setIsHovered(false)}
-          className="overflow-x-auto pb-3 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
+          className="relative overflow-x-auto pb-3 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
         >
           <div className="flex min-w-max border-y border-[#d9d0ca]">
             {specifications.map((item, index) => (
@@ -118,6 +120,7 @@ export default function SpecificationsSection() {
                 key={item.title}
                 type="button"
                 onClick={() => handleTabClick(index)}
+                aria-pressed={index === activeIndex}
                 className={`relative min-w-[150px] px-6 py-5 text-left text-sm font-semibold uppercase tracking-[0.12em] transition-colors sm:min-w-[190px] sm:text-base ${
                   index === activeIndex
                     ? "bg-[#2b2623] text-white"
@@ -179,6 +182,14 @@ export default function SpecificationsSection() {
               ))}
             </ul>
           </div>
+        </div>
+        <div className="mt-6 flex items-center justify-center gap-3">
+          <button type="button" aria-label="Previous specification" onClick={() => handleTabClick((activeIndex - 1 + specifications.length) % specifications.length)} className="flex h-11 w-11 items-center justify-center rounded-full border border-[#d9d0ca] bg-white text-[#2b2623] transition hover:border-coral hover:bg-coral hover:text-white">
+            <svg className="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" aria-hidden="true"><path strokeLinecap="round" strokeLinejoin="round" d="m14 6-6 6 6 6" /></svg>
+          </button>
+          <button type="button" aria-label="Next specification" onClick={() => handleTabClick((activeIndex + 1) % specifications.length)} className="flex h-11 w-11 items-center justify-center rounded-full border border-[#d9d0ca] bg-white text-[#2b2623] transition hover:border-coral hover:bg-coral hover:text-white">
+            <svg className="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" aria-hidden="true"><path strokeLinecap="round" strokeLinejoin="round" d="m10 6 6 6-6 6" /></svg>
+          </button>
         </div>
       </div>
     </section>

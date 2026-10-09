@@ -66,6 +66,11 @@ export default function Footer() {
           <p className="mt-3 text-xs text-[#aaa49c] md:text-sm">
             &copy; 2026 Sumeet Infraventures. All renderings are indicative and subject to change.
           </p>
+          <p className="mt-3 text-[10px] leading-relaxed text-[#8a847c]">
+            <a href="https://squashcode.com/" className="transition-colors hover:text-coral">
+              Developed and maintained by SquashCode
+            </a>
+          </p>
         </div>
       </div>
     </footer>

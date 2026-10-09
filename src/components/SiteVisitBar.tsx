@@ -1,5 +1,7 @@
 "use client";
 
+import { useLeadSubmission } from "@/components/useLeadSubmission";
+
 import { useEffect, useState, type FormEvent } from "react";
 
 import { getLeadTracking, redirectToThankYou } from "@/lib/leadTracking";
@@ -11,6 +13,7 @@ const inputClassName =
   "h-11 min-w-0 rounded-full border border-[#2B2623]/15 bg-white/85 px-4 text-xs text-[#2B2623] outline-none transition placeholder:text-[#2B2623]/45 focus:border-coral focus:ring-2 focus:ring-coral/15 lg:h-12 lg:text-sm xl:h-11 xl:text-[13px] xl:px-3";
 
 export default function SiteVisitBar() {
+  const submitLead = useLeadSubmission();
 
   const [isVisible, setIsVisible] = useState(false);
   const [isDismissed, setIsDismissed] = useState(false);
@@ -58,11 +61,7 @@ export default function SiteVisitBar() {
 
     setErrors(nextErrors);
     if (Object.keys(nextErrors).length === 0) {
-      const response = await fetch("/api/enquiry", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ fullName: name, phoneNumber: `+91${phone.slice(-10)}`, budget, configuration: bhk, locationPincode: pincode, form: "site-visit", ...getLeadTracking() }),
-      });
+      const response = await submitLead({ fullName: name, phoneNumber: `+91${phone.slice(-10)}`, budget, configuration: bhk, locationPincode: pincode, form: "site-visit", ...getLeadTracking() });
       if (response.ok) {
         setIsSubmitted(true);
         redirectToThankYou();

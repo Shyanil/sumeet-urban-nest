@@ -1,4 +1,5 @@
 import { NextResponse } from "next/server";
+import { createLeadReceipt, getSiteLeadType, isSubmissionId, leadCookieName, receiptLifetimeSeconds, sha256, validForms, type LeadForm } from "@/lib/leadConversion";
 
 function formatConfiguration(value: unknown) {
   const configuration = String(value ?? "").toLowerCase();
@@ -47,8 +48,9 @@ export async function POST(request: Request) {
   const supabaseUrl = process.env.SUPABASE_URL;
   const supabaseKey = process.env.SUPABASE_ANON_KEY;
   const webhookUrl = process.env.PABBLY_WEBHOOK_URL;
+  const trackingSecret = process.env.LEAD_TRACKING_SECRET;
 
-  if (!supabaseUrl || !supabaseKey) {
+  if (!supabaseUrl || !supabaseKey || !trackingSecret || trackingSecret.length < 32) {
     return NextResponse.json({ error: "Enquiry service is not configured." }, { status: 500 });
   }
 
@@ -64,15 +66,23 @@ export async function POST(request: Request) {
     const configuration = formatConfiguration(field(enquiry.configuration));
     const budget = formatBudget(field(enquiry.budget));
     const form = field(enquiry.form);
+    const submissionId = enquiry.submissionId;
     if (
       fullName.length < 2 || !/^[6-9]\d{9}$/.test(phoneNumber) || !budget ||
       !["2 BHK", "3 BHK", "Not Sure"].includes(configuration) ||
-      !["contact-section", "enquiry-panel", "site-visit", "home-2"].includes(form)
+      !validForms.includes(form as LeadForm) || !isSubmissionId(submissionId)
     ) {
       return NextResponse.json({ error: "Please complete the required enquiry fields." }, { status: 400 });
     }
     const submission = kolkataSubmissionTime();
+    const leadType = getSiteLeadType();
+    const receipt = await createLeadReceipt(submissionId, leadType, form as LeadForm, trackingSecret);
+    const submissionHash = await sha256(JSON.stringify([fullName, phoneNumber, configuration, budget, field(enquiry.locationPincode), form, leadType]));
     const lead = {
+      id: submissionId,
+      lead_type: leadType,
+      submission_hash: submissionHash,
+      conversion_claim_hash: await sha256(receipt),
       full_name: fullName,
       phone_number: phoneNumber,
       configuration,
@@ -89,15 +99,14 @@ export async function POST(request: Request) {
       submission_date: submission.submissionDate,
       submission_time: submission.submissionTime,
     };
-    const response = await fetch(`${supabaseUrl.replace(/\/$/, "")}/rest/v1/sumeeturbannest_leads`, {
+    const response = await fetch(`${supabaseUrl.replace(/\/$/, "")}/rest/v1/rpc/save_sumeeturbannest_lead`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
         apikey: supabaseKey,
         Authorization: `Bearer ${supabaseKey}`,
-        Prefer: "return=minimal",
       },
-      body: JSON.stringify(lead),
+      body: JSON.stringify({ p_lead: lead }),
       cache: "no-store",
       signal: AbortSignal.timeout(15000),
     });
@@ -105,14 +114,18 @@ export async function POST(request: Request) {
     if (!response.ok) {
       return NextResponse.json({ error: "Unable to submit enquiry." }, { status: 502 });
     }
+    const saved = await response.json();
+    if (!saved || saved.id !== submissionId || saved.lead_type !== leadType || saved.form_source !== form) {
+      return NextResponse.json({ error: "Submission could not be confirmed." }, { status: 409 });
+    }
 
-    if (webhookUrl) {
+    if (webhookUrl && saved.inserted === true) {
       // A notification failure must not reject a lead already saved to Supabase.
       try {
         const notification = await fetch(webhookUrl, {
           method: "POST",
           headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ ...enquiry, fullName, phoneNumber, configuration, budget, ...submission }),
+          body: JSON.stringify({ ...enquiry, fullName, phoneNumber, configuration, budget, lead_type: leadType, submissionId, ...submission }),
           cache: "no-store",
           signal: AbortSignal.timeout(5000),
         });
@@ -130,6 +143,14 @@ export async function POST(request: Request) {
       secure: process.env.NODE_ENV === "production",
       path: "/",
     });
+    result.cookies.set(leadCookieName, receipt, {
+      httpOnly: true,
+      maxAge: receiptLifetimeSeconds,
+      sameSite: "lax",
+      secure: process.env.NODE_ENV === "production",
+      path: "/api/lead-event",
+    });
+    result.headers.set("Cache-Control", "no-store");
     return result;
   } catch {
     return NextResponse.json({ error: "Unable to submit enquiry." }, { status: 500 });

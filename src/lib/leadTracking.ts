@@ -44,8 +44,8 @@ export function captureLeadTracking(): Record<string, string> {
 }
 
 export function redirectToThankYou() {
-  // A new document is intentional: GTM page-load conversion triggers need
-  // to initialize with /thank-you as the actual page URL.
+  // The server's HttpOnly receipt survives this navigation. A thank-you page
+  // view alone is NOT a lead; only /api/lead-event can authorize generate_lead.
   // eslint-disable-next-line @next/next/no-location-assign-relative-destination
   window.location.assign("/thank-you");
 }
