@@ -2,7 +2,6 @@
 
 import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
-import SectionCta from "@/components/SectionCta";
 
 const amenities = [
   { id: 1, name: "Entry/Exit", x: 82.4, y: 53.6 },
@@ -269,9 +268,6 @@ export default function PlanSection() {
         </div>
       </div>
       <MasterPlanExperience />
-      <div className="mt-8 text-center sm:mt-10">
-        <SectionCta />
-      </div>
       {fullscreen && <div className="fixed inset-0 z-[100] bg-[#2B2623]"><MasterPlanExperience fullscreen onClose={() => setFullscreen(false)} /></div>}
     </section>
   );
