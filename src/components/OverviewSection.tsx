@@ -19,7 +19,7 @@ export default function OverviewSection() {
         {/* Top Editorial Eyebrow */}
         <div className="mb-3 flex items-center justify-center gap-2.5 sm:mb-4 sm:gap-3">
           <span className="h-px w-6 bg-[#2c2b29]/25 sm:w-12" />
-          <span className="text-[10px] font-semibold uppercase tracking-[0.2em] text-[#2c2b29] sm:text-xs sm:tracking-[0.32em]">
+          <span className="section-eyebrow font-semibold uppercase text-[#2c2b29]">
             Project Overview · 01
           </span>
           <span className="h-px w-6 bg-[#2c2b29]/25 sm:w-12" />
@@ -30,8 +30,8 @@ export default function OverviewSection() {
           O V E R V I E W
         </h2>
 
-        <p className="mx-auto mt-6 max-w-[780px] text-lg font-light leading-relaxed text-[#2c2b29] sm:mt-8 sm:text-xl md:max-w-[980px] md:text-2xl md:leading-relaxed">
-          Introducing a new concept of modern living at Khamardih, Shankar Nagar, thoughtfully designed homes that bring together light, space, comfort and a more connected everyday lifestyle.
+        <p className="section-description mx-auto mt-6 max-w-[780px] font-light text-[#2c2b29] sm:mt-8 md:max-w-[980px]">
+          Introducing BOHK homes, a new concept of modern living at Khamardih, Shankar Nagar, thoughtfully designed to bring together light, space, comfort and a more connected everyday lifestyle.
         </p>
         <div className="mt-12 grid grid-cols-3 border-y border-[#2c2b29]/15 sm:mt-16">
           {[

@@ -1,12 +1,12 @@
 "use client";
 
 import { useState, type FormEvent } from "react";
-import { useRouter } from "next/navigation";
+
 import ConfigurationBudgetFields from "@/components/ConfigurationBudgetFields";
-import { getLeadTracking } from "@/lib/leadTracking";
+import { getLeadTracking, redirectToThankYou } from "@/lib/leadTracking";
 
 export default function Home2LeadForm({ fieldClassName }: { fieldClassName: string }) {
-  const router = useRouter();
+
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [error, setError] = useState("");
 
@@ -37,7 +37,7 @@ export default function Home2LeadForm({ fieldClassName }: { fieldClassName: stri
       });
 
       if (!response.ok) throw new Error("Enquiry submission failed");
-      router.push("/thank-you");
+      redirectToThankYou();
     } catch {
       setError("We could not submit your enquiry. Please try again.");
       setIsSubmitting(false);

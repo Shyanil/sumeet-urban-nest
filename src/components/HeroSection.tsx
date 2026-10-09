@@ -34,7 +34,7 @@ export default function HeroSection() {
   }, []);
 
   return (
-    <section id="hero" className="relative h-[100svh] min-h-[720px] max-h-[1100px] w-full overflow-hidden">
+    <section id="hero" className="relative h-[100svh] min-h-[720px] max-h-[1100px] w-full overflow-hidden max-md:min-h-0">
       {/* Hero background slider */}
       <div className="absolute inset-0">
         {heroSlides.map((slide, index) => (
@@ -49,35 +49,31 @@ export default function HeroSection() {
           </picture>
         ))}
         {/* Dark gradient overlay for text readability */}
-        <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/35 to-black/25" />
+        <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/35 to-black/25 max-md:from-black/75 max-md:via-black/25 max-md:to-black/10" />
       </div>
 
-      <div className="relative z-10 mx-auto flex h-full w-full max-w-[1720px] flex-col justify-end px-6 pb-13 pt-24 sm:px-10 sm:pb-20 sm:pt-28 md:px-14 lg:px-20 xl:px-28 2xl:px-36 xl:flex-row xl:items-end xl:justify-between xl:gap-10 xl:pb-24">
-        <div className="max-w-[660px] pb-6 xl:pb-0">
-          <h1 className="text-[clamp(1.2rem,5.8vw,2.4rem)] font-light leading-[1.12] tracking-[-0.025em] text-white sm:text-[clamp(1.35rem,6.5vw,3rem)] xl:text-[clamp(2.75rem,3.35vw,3.75rem)]">
-            <span className="block font-normal sm:whitespace-nowrap">
-              A peaceful corner within
-            </span>
-            <span className="block font-light sm:whitespace-nowrap">
-              your <span className="font-semibold text-coral">everyday</span> world.
-            </span>
+      <div className="relative z-10 mx-auto flex h-full w-full max-w-[1720px] flex-col justify-end px-6 pb-13 pt-24 sm:px-10 sm:pb-20 sm:pt-28 md:px-14 lg:px-20 xl:px-28 2xl:px-36 xl:flex-row xl:items-end xl:justify-between xl:gap-8 xl:pb-24">
+        <div className="min-w-0 w-full pb-6 xl:flex-1 xl:pb-0">
+          <h1 className="whitespace-nowrap text-[clamp(0.75rem,3.4vw,3rem)] font-light leading-[1.3] tracking-[-0.04em] text-white xl:text-[clamp(1.5rem,2.1vw,2.2rem)] max-md:whitespace-normal max-md:text-[clamp(1.125rem,5vw,1.75rem)] max-md:leading-[1.35] max-md:tracking-[-0.025em]">
+            <span className="font-normal max-md:block">Khamardih, Shankar Nagar&apos;s</span>{" "}
+            <span className="max-md:block">first <span className="font-semibold text-coral">BOHK homes</span> !</span>
           </h1>
         </div>
 
-        <div className="w-full max-w-[315px] shrink-0 sm:max-w-[380px] xl:max-w-[390px] 2xl:max-w-[420px]">
-          <div className="relative overflow-hidden rounded-2xl border border-white/20 bg-black/45 p-4 shadow-[0_24px_50px_rgba(0,0,0,0.45)] backdrop-blur-xl sm:p-6">
+        <div className="w-full max-w-[315px] shrink-0 sm:max-w-[380px] xl:max-w-[390px] 2xl:max-w-[420px] max-md:max-w-[280px]">
+          <div className="relative overflow-hidden rounded-2xl border border-white/20 bg-black/45 p-4 shadow-[0_24px_50px_rgba(0,0,0,0.45)] backdrop-blur-xl sm:p-6 max-md:p-3">
             <div
               aria-hidden="true"
               className="absolute inset-x-0 top-0 h-[2px] bg-gradient-to-r from-coral via-[#F0A566] to-transparent"
             />
 
-            <div className="flex items-start justify-between gap-4">
+            <div className="flex items-start justify-between gap-4 max-md:gap-2">
               <div className="flex items-start gap-2.5">
                 <span className="relative mt-1.5 flex h-2 w-2 shrink-0">
                   <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-coral opacity-75" />
                   <span className="relative inline-flex h-2 w-2 rounded-full bg-coral" />
                 </span>
-                <p className="text-[10px] font-semibold uppercase leading-relaxed tracking-[0.15em] text-white/90 sm:text-[11px] sm:tracking-[0.18em]">
+                <p className="text-[10px] font-semibold uppercase leading-relaxed tracking-[0.15em] text-white/90 sm:text-[11px] sm:tracking-[0.18em] max-md:text-[9px] max-md:tracking-[0.08em]">
                   Khamardih, Shankar Nagar
                 </p>
               </div>
@@ -86,12 +82,12 @@ export default function HeroSection() {
               </span>
             </div>
 
-            <div className="my-4 h-px bg-gradient-to-r from-white/20 via-white/10 to-transparent sm:my-5" />
+            <div className="my-4 h-px bg-gradient-to-r from-white/20 via-white/10 to-transparent sm:my-5 max-md:my-2.5" />
 
-            <h2 className="whitespace-nowrap text-[20px] font-light leading-none tracking-tight text-white min-[380px]:text-[22px] sm:text-[26px] xl:text-[28px]">
+            <h2 className="whitespace-nowrap text-[20px] font-light leading-none tracking-tight text-white min-[380px]:text-[22px] sm:text-[26px] xl:text-[28px] max-md:text-[17px]">
               2 <span className="text-coral">&amp;</span> 3 BHK Apartments
             </h2>
-            <p className="mt-2 text-[11px] leading-relaxed text-white/70 sm:mt-3 sm:text-xs">
+            <p className="mt-2 text-[11px] leading-relaxed text-white/70 sm:mt-3 sm:text-xs max-md:hidden">
               Thoughtfully designed luxury residences for BOHK Living
             </p>
           </div>

@@ -13,10 +13,10 @@ const distances = [
 
 export default function LocationSection() {
   return (
-    <section id="location" className="scroll-mt-20 bg-[#fff8f0] py-20 sm:py-24 md:py-28">
-      <div className="mx-auto w-full max-w-[1720px] px-6 sm:px-10 md:px-14 lg:px-20 xl:px-28 2xl:px-36">
+    <section id="location" className="scroll-mt-20 bg-[#fff8f0] py-16 sm:py-20 md:py-24">
+      <div className="mx-auto w-full max-w-[1600px] px-6 sm:px-10 md:px-14 lg:px-20 xl:px-28 2xl:px-36">
         <div className="grid w-full overflow-hidden rounded-[28px] bg-white shadow-[0_24px_70px_rgba(71,49,38,0.1)] lg:grid-cols-2 lg:rounded-[36px]">
-          <div className="relative min-h-[420px] w-full overflow-hidden bg-[#e9e8e4] sm:min-h-[560px] lg:min-h-[820px]">
+          <div className="relative min-h-[380px] w-full overflow-hidden bg-[#e9e8e4] sm:min-h-[500px] lg:min-h-[720px]">
           <iframe
             src={googleMapUrl}
             title="Sumeet Urban Nest location on Google Maps"
@@ -27,11 +27,12 @@ export default function LocationSection() {
           />
         </div>
 
-        <div className="px-6 py-12 sm:px-10 sm:py-14 lg:px-14 lg:py-16 xl:px-16">
+        <div className="flex flex-col justify-center px-6 py-10 sm:px-10 sm:py-12 lg:px-8 lg:py-12 xl:px-12">
+          <div className="flex flex-col gap-4 sm:gap-5">
           {/* Top Editorial Eyebrow */}
-          <div className="mb-3 flex items-center gap-3 sm:mb-4">
+          <div className="flex items-center gap-3">
             <span className="h-px w-8 bg-[#2c2b29]/25 sm:w-12" />
-            <span className="text-[10px] font-semibold uppercase tracking-[0.32em] text-[#2c2b29] sm:text-xs">
+            <span className="section-eyebrow font-semibold uppercase text-[#2c2b29]">
               Strategic Connectivity · 05
             </span>
           </div>
@@ -40,14 +41,15 @@ export default function LocationSection() {
             L O C A T I O N
           </h2>
 
-          <p className="mt-6 max-w-2xl text-sm leading-7 text-[#747474] sm:mt-7 md:text-base md:leading-8">
+          <p className="section-description max-w-2xl text-[#747474]">
             Sumeet Urban Nest is set in a location that keeps the city close
             without letting it close in on you. From healthcare and shopping
             to business hubs and daily commute points, everything stays
             comfortably accessible here.
           </p>
+          </div>
 
-          <div className="mt-10 border-t border-[#eadfd8] pt-8">
+          <div className="mt-8 border-t border-[#eadfd8] pt-6">
             <h3 className="mb-4 text-lg font-semibold text-[#2d2d2d] md:text-xl">
               Distance
             </h3>

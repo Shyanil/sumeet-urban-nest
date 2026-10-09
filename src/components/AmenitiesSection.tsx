@@ -3,25 +3,6 @@ import SectionCta from "@/components/SectionCta";
 
 const podiumAmenities = [
   {
-    name: "Walking / Jogging Track",
-    icon: (
-      <svg
-        className="h-11 w-11 text-[#D6AC70] md:h-12 md:w-12"
-        viewBox="0 0 48 48"
-        fill="none"
-        stroke="currentColor"
-        strokeWidth={1.6}
-        aria-hidden="true"
-      >
-        <rect x="4" y="12" width="40" height="24" rx="12" />
-        <rect x="10" y="16" width="28" height="16" rx="8" />
-        <rect x="16" y="20" width="16" height="8" rx="4" />
-        <line x1="24" y1="12" x2="24" y2="16" />
-        <line x1="24" y1="32" x2="24" y2="36" />
-      </svg>
-    ),
-  },
-  {
     name: "Landscaped Garden",
     icon: (
       <svg
@@ -228,29 +209,6 @@ const clubAmenities = [
     ),
   },
   {
-    name: "Kids' Play Zone",
-    icon: (
-      <svg
-        className="h-11 w-11 text-[#D6AC70] md:h-12 md:w-12"
-        viewBox="0 0 48 48"
-        fill="none"
-        stroke="currentColor"
-        strokeWidth={1.6}
-        aria-hidden="true"
-      >
-        <circle cx="16" cy="14" r="3.5" />
-        <circle cx="34" cy="14" r="3.5" />
-        <path d="M12 28v-6a4 4 0 014-4h2" />
-        <path d="M38 28v-6a4 4 0 00-4-4h-2" />
-        <rect x="20" y="30" width="8" height="8" />
-        <rect x="28" y="32" width="6" height="6" />
-        <circle cx="16" cy="38" r="2" />
-        <circle cx="22" cy="38" r="2" />
-        <line x1="8" y1="40" x2="40" y2="40" />
-      </svg>
-    ),
-  },
-  {
     name: "Swimming Pool",
     icon: (
       <svg
@@ -269,6 +227,24 @@ const clubAmenities = [
       </svg>
     ),
   },
+  {
+    name: "Yoga Room",
+    icon: (
+      <svg className="h-11 w-11 text-[#D6AC70] md:h-12 md:w-12" viewBox="0 0 48 48" fill="none" stroke="currentColor" strokeWidth={1.6} aria-hidden="true">
+        <circle cx="24" cy="10" r="4" />
+        <path strokeLinecap="round" strokeLinejoin="round" d="M24 14v12m-8-8 8 4 8-4M24 26l-12 8 12 6 12-6-12-8M12 34H6m30 0h6" />
+      </svg>
+    ),
+  },
+  {
+    name: "Mini Theatre",
+    icon: (
+      <svg className="h-11 w-11 text-[#D6AC70] md:h-12 md:w-12" viewBox="0 0 48 48" fill="none" stroke="currentColor" strokeWidth={1.6} aria-hidden="true">
+        <rect x="6" y="6" width="36" height="24" rx="2" />
+        <path strokeLinecap="round" strokeLinejoin="round" d="m20 12 10 6-10 6V12M10 36h10v6H10zm18 0h10v6H28z" />
+      </svg>
+    ),
+  },
 ];
 
 export default function AmenitiesSection() {
@@ -284,7 +260,7 @@ export default function AmenitiesSection() {
         <div className="mx-auto mb-10 max-w-[800px] text-center sm:mb-12 md:mb-16">
           <div className="mb-3 flex items-center justify-center gap-2.5 sm:mb-4 sm:gap-3">
             <span className="h-px w-6 bg-[#2c2b29]/25 sm:w-12" />
-            <span className="text-xs font-semibold uppercase tracking-[0.18em] text-[#2c2b29] sm:text-[15px] sm:tracking-[0.25em]">
+            <span className="section-eyebrow font-semibold uppercase text-[#2c2b29]">
               Curated Lifestyle · 03
             </span>
             <span className="h-px w-6 bg-[#2c2b29]/25 sm:w-12" />
@@ -294,7 +270,7 @@ export default function AmenitiesSection() {
             A M E N I T I E S
           </h2>
 
-          <p className="mx-auto mt-4 sm:mt-6 max-w-[680px] text-[15px] leading-relaxed text-[#6d625c]">
+          <p className="section-description mx-auto mt-4 sm:mt-6 max-w-[680px] text-[#6d625c]">
             From the courtyard to the podium greens up to rooftop skies, every
             space at Sumeet Urban Nest is designed to extend your day beyond the
             indoors.
@@ -308,7 +284,7 @@ export default function AmenitiesSection() {
               <Image src="/images/exterior/podium-kids-play.webp" alt="Podium and ground amenities" fill className="object-cover transition-transform duration-700 group-hover:scale-105" sizes="(max-width: 1024px) 100vw, 33vw" />
               <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/20 to-transparent" />
               <span className="absolute right-3.5 top-3.5 z-10 rounded-full border border-white/30 bg-black/45 px-3 py-1 text-xs font-semibold tracking-wide text-white shadow-sm backdrop-blur-md whitespace-nowrap sm:right-4 sm:top-4">
-                05 spaces
+                {String(podiumAmenities.length).padStart(2, "0")} spaces
               </span>
               <div className="absolute inset-x-0 bottom-0 p-4 sm:p-5 text-white">
                 <p className="mb-1 text-[10px] font-bold uppercase tracking-[0.22em] text-[#ffc79b]">
@@ -328,7 +304,7 @@ export default function AmenitiesSection() {
                   <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-[#f8f1e8] sm:h-12 sm:w-12 [&>svg]:h-7 [&>svg]:w-7 sm:[&>svg]:h-8 sm:[&>svg]:w-8">
                     {amenity.icon}
                   </div>
-                  <p className="text-[15px] font-medium leading-relaxed text-[#2c2b29]">
+                  <p className="section-description font-medium text-[#2c2b29]">
                     {amenity.name}
                   </p>
                 </div>
@@ -342,7 +318,7 @@ export default function AmenitiesSection() {
               <Image src="/images/exterior/terrace-sitting.webp" alt="Rooftop amenities" fill className="object-cover transition-transform duration-700 group-hover:scale-105" sizes="(max-width: 1024px) 100vw, 33vw" />
               <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/20 to-transparent" />
               <span className="absolute right-3.5 top-3.5 z-10 rounded-full border border-white/30 bg-black/45 px-3 py-1 text-xs font-semibold tracking-wide text-white shadow-sm backdrop-blur-md whitespace-nowrap sm:right-4 sm:top-4">
-                03 spaces
+                {String(rooftopAmenities.length).padStart(2, "0")} spaces
               </span>
               <div className="absolute inset-x-0 bottom-0 p-4 sm:p-5 text-white">
                 <p className="mb-1 text-[10px] font-bold uppercase tracking-[0.22em] text-[#ffc79b]">
@@ -362,7 +338,7 @@ export default function AmenitiesSection() {
                   <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-[#f8f1e8] sm:h-12 sm:w-12 [&>svg]:h-7 [&>svg]:w-7 sm:[&>svg]:h-8 sm:[&>svg]:w-8">
                     {amenity.icon}
                   </div>
-                  <p className="text-[15px] font-medium leading-relaxed text-[#2c2b29]">
+                  <p className="section-description font-medium text-[#2c2b29]">
                     {amenity.name}
                   </p>
                 </div>
@@ -376,7 +352,7 @@ export default function AmenitiesSection() {
               <Image src="/images/interior/community-hall.webp" alt="Club amenities" fill className="object-cover transition-transform duration-700 group-hover:scale-105" sizes="(max-width: 1024px) 100vw, 33vw" />
               <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/20 to-transparent" />
               <span className="absolute right-3.5 top-3.5 z-10 rounded-full border border-white/30 bg-black/45 px-3 py-1 text-xs font-semibold tracking-wide text-white shadow-sm backdrop-blur-md whitespace-nowrap sm:right-4 sm:top-4">
-                05 spaces
+                {String(clubAmenities.length).padStart(2, "0")} spaces
               </span>
               <div className="absolute inset-x-0 bottom-0 p-4 sm:p-5 text-white">
                 <p className="mb-1 text-[10px] font-bold uppercase tracking-[0.22em] text-[#ffc79b]">
@@ -396,7 +372,7 @@ export default function AmenitiesSection() {
                   <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-[#f8f1e8] sm:h-12 sm:w-12 [&>svg]:h-7 [&>svg]:w-7 sm:[&>svg]:h-8 sm:[&>svg]:w-8">
                     {amenity.icon}
                   </div>
-                  <p className="text-[15px] font-medium leading-relaxed text-[#2c2b29]">
+                  <p className="section-description font-medium text-[#2c2b29]">
                     {amenity.name}
                   </p>
                 </div>

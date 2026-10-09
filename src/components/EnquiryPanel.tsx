@@ -9,8 +9,8 @@ import {
   type FormEvent,
   type ReactNode,
 } from "react";
-import { useRouter } from "next/navigation";
-import { getLeadTracking } from "@/lib/leadTracking";
+
+import { getLeadTracking, redirectToThankYou } from "@/lib/leadTracking";
 import SelectChevron from "@/components/SelectChevron";
 
 type EnquiryContextValue = {
@@ -23,7 +23,7 @@ const fieldClassName =
   "h-12 w-full rounded-xl border border-[#eaded7] bg-[#fffaf7] px-4 text-sm text-[#302c2a] outline-none transition placeholder:text-[#9b918c] focus:border-coral focus:bg-white focus:ring-4 focus:ring-coral/10 sm:h-14 sm:text-[15px]";
 
 export function EnquiryProvider({ children }: { children: ReactNode }) {
-  const router = useRouter();
+
   const [isOpen, setIsOpen] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -79,7 +79,7 @@ export function EnquiryProvider({ children }: { children: ReactNode }) {
 
       if (!response.ok) throw new Error("Enquiry submission failed");
       setIsSubmitted(true);
-      router.push("/thank-you");
+      redirectToThankYou();
     } catch {
       setSubmitError("We could not submit your enquiry. Please try again.");
     } finally {

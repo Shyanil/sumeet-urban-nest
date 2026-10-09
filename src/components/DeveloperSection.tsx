@@ -37,19 +37,19 @@ const landmarkProjects = [
   {
     id: "04",
     name: "Sumeet Avenues",
-    category: "Urban Homes",
+    category: "Commercial Development",
     location: "Raipur, Chhattisgarh",
-    tagline: "Seamless Connectivity & Living",
+    tagline: "Seamless Connectivity for Business",
     description:
-      "Contemporary residential residences designed for effortless city transit, abundant natural daylight, and enduring comfort.",
-    badge: "Modern Residences",
+      "A commercial development designed for convenient city access and modern business needs.",
+    badge: "Commercial Spaces",
   },
 ];
 
 const stats = [
   { value: "25+", label: "Years of Trust", detail: "Shaping Chhattisgarh's Skyline" },
   { value: "4+", label: "Landmark Addresses", detail: "Commercial & Residential Hubs" },
-  { value: "1.76", label: "Acres Dedicated", detail: "Raipur’s 1st BOHK Enclave" },
+  { value: "1500+", label: "Happy Families", detail: "Building Homes, Creating Happiness" },
 ];
 
 export default function DeveloperSection() {
@@ -65,7 +65,7 @@ export default function DeveloperSection() {
         <div className="mx-auto mb-14 flex w-full max-w-[1100px] flex-col items-center justify-center text-center sm:mb-18">
           <div className="mb-3 flex items-center justify-center gap-3 sm:mb-4">
             <span className="h-px w-8 bg-[#2c2b29]/25 sm:w-12" />
-            <span className="text-[10px] font-semibold uppercase tracking-[0.32em] text-[#2c2b29] sm:text-xs">
+            <span className="section-eyebrow font-semibold uppercase text-[#2c2b29]">
               Legacy &amp; Trust · 10
             </span>
             <span className="h-px w-8 bg-[#2c2b29]/25 sm:w-12" />
@@ -75,7 +75,7 @@ export default function DeveloperSection() {
             A B O U T &nbsp; D E V E L O P E R
           </h2>
 
-          <p className="mx-auto mt-5 max-w-2xl text-xs font-light leading-relaxed text-[#736c66] sm:text-sm sm:leading-7">
+          <p className="section-description mx-auto mt-5 max-w-2xl font-light text-[#736c66]">
             A beacon of changing skylines and elevated lifestyles. Rooted in Raipur • Building enduring architectural landmarks for generations.
           </p>
         </div>
@@ -123,8 +123,8 @@ export default function DeveloperSection() {
 
             {/* Right: Vision Story & Metrics */}
             <div className="flex flex-col justify-between p-8 sm:p-10 lg:col-span-7 lg:p-14">
-              <div className="space-y-4 text-xs leading-relaxed text-[#615953] sm:text-sm sm:leading-7">
-                <p className="text-base font-normal text-[#2B2623] sm:text-lg">
+              <div className="section-description space-y-4 text-[#615953]">
+                <p className="font-normal text-[#2B2623]">
                   Sumeet Infracon Pvt. Ltd. is a Raipur-based real estate development company with a strong foothold in Chhattisgarh&apos;s growing property landscape.
                 </p>
                 <p>
@@ -145,9 +145,9 @@ export default function DeveloperSection() {
                     <p className="mt-1 whitespace-nowrap text-[10px] font-bold uppercase tracking-[0.08em] text-[#2B2623]">
                       {s.label}
                     </p>
-                    <p className="mt-0.5 text-[10px] text-[#857d76]">
+                    {s.detail && <p className="mt-0.5 text-[10px] text-[#857d76]">
                       {s.detail}
-                    </p>
+                    </p>}
                   </div>
                 ))}
               </div>
@@ -206,7 +206,7 @@ export default function DeveloperSection() {
                     </p>
 
                     {/* Description */}
-                    <p className="mt-3 text-xs leading-relaxed text-[#6E665E]">
+                    <p className="section-description mt-3 text-[#6E665E]">
                       {project.description}
                     </p>
                   </div>

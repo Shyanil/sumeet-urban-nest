@@ -22,8 +22,8 @@ export default function Home() {
         <HeroSection />
         <OverviewSection />
         <AmenitiesSection />
-        <PlanSection />
         <GallerySection />
+        <PlanSection />
         <SpecificationsSection />
         <LocationSection />
         <LayoutSection />

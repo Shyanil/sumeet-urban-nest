@@ -218,7 +218,7 @@ export default function GallerySection() {
             <h3 className="text-lg font-light tracking-wide text-white sm:text-2xl">
               {currentSlide.title}
             </h3>
-            <p className="mx-auto mt-1 max-w-[700px] text-xs text-white/70 sm:text-sm">
+            <p className="section-description mx-auto mt-1 max-w-[700px] text-white/70">
               {currentSlide.description}
             </p>
           </div>

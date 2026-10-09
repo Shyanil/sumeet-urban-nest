@@ -1,8 +1,8 @@
 "use client";
 
 import { useEffect, useState, type FormEvent } from "react";
-import { useRouter } from "next/navigation";
-import { getLeadTracking } from "@/lib/leadTracking";
+
+import { getLeadTracking, redirectToThankYou } from "@/lib/leadTracking";
 import SelectChevron from "@/components/SelectChevron";
 
 type Errors = Partial<Record<"name" | "phone" | "budget" | "bhk" | "pincode" | "form", string>>;
@@ -11,7 +11,7 @@ const inputClassName =
   "h-11 min-w-0 rounded-full border border-[#2B2623]/15 bg-white/85 px-4 text-xs text-[#2B2623] outline-none transition placeholder:text-[#2B2623]/45 focus:border-coral focus:ring-2 focus:ring-coral/15 lg:h-12 lg:text-sm xl:h-11 xl:text-[13px] xl:px-3";
 
 export default function SiteVisitBar() {
-  const router = useRouter();
+
   const [isVisible, setIsVisible] = useState(false);
   const [isDismissed, setIsDismissed] = useState(false);
   const [isMobileOpen, setIsMobileOpen] = useState(false);
@@ -65,7 +65,7 @@ export default function SiteVisitBar() {
       });
       if (response.ok) {
         setIsSubmitted(true);
-        router.push("/thank-you");
+        redirectToThankYou();
       } else {
         setErrors({ form: "We could not submit your enquiry. Please try again." });
       }
@@ -78,7 +78,7 @@ export default function SiteVisitBar() {
     <aside className="fixed inset-x-3 bottom-3 z-[90] mx-auto max-w-[1540px] animate-[enquiry-sheet-in_340ms_cubic-bezier(0.22,1,0.36,1)] sm:inset-x-5 sm:bottom-5 xl:max-w-[1440px]" aria-label="Book a site visit">
       <div className="overflow-hidden rounded-[26px] border border-white/50 bg-[#F8F7F3]/95 shadow-[0_18px_55px_rgba(43,38,35,0.24)] backdrop-blur-xl xl:overflow-visible xl:rounded-full">
         <div className="relative flex min-h-[74px] items-center gap-3 px-4 py-3 sm:px-5 xl:min-h-[66px] xl:gap-2.5 xl:px-3 xl:py-1.5">
-          <button type="button" onClick={() => setIsMobileOpen((open) => !open)} className="flex h-11 w-11 shrink-0 items-center justify-center gap-3 text-left xl:pointer-events-none xl:h-auto xl:w-[170px] xl:justify-start" aria-expanded={isMobileOpen}>
+          <button type="button" onClick={() => setIsMobileOpen((open) => !open)} className="hidden h-11 w-11 shrink-0 items-center justify-center gap-3 text-left md:flex xl:pointer-events-none xl:h-auto xl:w-[170px] xl:justify-start" aria-expanded={isMobileOpen}>
             <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-coral/10 text-coral">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" className="h-5 w-5" aria-hidden="true"><path strokeLinecap="round" strokeLinejoin="round" d="M12 21s7-4.6 7-11a7 7 0 1 0-14 0c0 6.4 7 11 7 11Z"/><circle cx="12" cy="10" r="2.5"/></svg>
             </span>
@@ -114,7 +114,7 @@ export default function SiteVisitBar() {
                   {configuration === "3-bohk" && <><option value="3-bohk-85-90">₹85L–₹90L</option><option value="3-bohk-90-95">₹90L–₹95L</option><option value="3-bohk-95-1cr-plus">₹95L–₹1Cr+</option></>}
                   {configuration === "not-sure" && <><option value="2-bohk-55-60">2 BHK: ₹55L–₹60L</option><option value="2-bohk-60-65-plus">2 BHK: ₹60L–₹65L+</option><option value="3-bohk-85-90">3 BHK: ₹85L–₹90L</option><option value="3-bohk-90-95">3 BHK: ₹90L–₹95L</option><option value="3-bohk-95-1cr-plus">3 BHK: ₹95L–₹1Cr+</option></>}
                 </select>
-                <SelectChevron />
+                <SelectChevron compact />
                 {errors.budget && <span className="mt-1 block pl-3 text-[9px] text-red-600 xl:absolute xl:left-3 xl:top-full xl:whitespace-nowrap xl:pl-0">{errors.budget}</span>}
               </label>
               <div className="relative order-3 w-[185px] min-w-[185px] shrink-0">
@@ -126,8 +126,8 @@ export default function SiteVisitBar() {
                   className={`${inputClassName} flex w-full items-center justify-between gap-2 text-left ${errors.bhk ? "border-red-500" : ""}`}
                 >
                   <span className={`whitespace-nowrap ${configuration ? "text-[#2B2623]" : "text-[#2B2623]/45"}`}>{configuration === "2-bohk" ? "2 BHK" : configuration === "3-bohk" ? "3 BHK" : configuration === "not-sure" ? "Not Sure" : "Select Configuration"}</span>
-                  <span className={`flex h-7 w-7 shrink-0 items-center justify-center rounded-full border border-coral/15 bg-coral/10 text-coral transition-transform ${isConfigurationOpen ? "rotate-180" : ""}`}>
-                    <svg className="h-3.5 w-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.25} d="m7 9 5 5 5-5" /></svg>
+                  <span className={`flex h-5 w-5 shrink-0 items-center justify-center rounded-full border border-coral/15 bg-coral/10 text-coral transition-transform ${isConfigurationOpen ? "rotate-180" : ""}`}>
+                    <svg className="h-3 w-3" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.25} d="m7 9 5 5 5-5" /></svg>
                   </span>
                 </button>
                 {isConfigurationOpen && (
@@ -182,7 +182,7 @@ export default function SiteVisitBar() {
                     {configuration === "3-bohk" && <><option value="3-bohk-85-90">₹85L–₹90L</option><option value="3-bohk-90-95">₹90L–₹95L</option><option value="3-bohk-95-1cr-plus">₹95L–₹1Cr+</option></>}
                     {configuration === "not-sure" && <><option value="2-bohk-55-60">2 BHK: ₹55L–₹60L</option><option value="2-bohk-60-65-plus">2 BHK: ₹60L–₹65L+</option><option value="3-bohk-85-90">3 BHK: ₹85L–₹90L</option><option value="3-bohk-90-95">3 BHK: ₹90L–₹95L</option><option value="3-bohk-95-1cr-plus">3 BHK: ₹95L–₹1Cr+</option></>}
                   </select>
-                  <SelectChevron className="right-3.5 top-1/2 -translate-y-1/2" />
+                  <SelectChevron compact className="right-3.5 top-1/2 -translate-y-1/2" />
                   {errors.budget && <span className="mt-1 block pl-3 text-[9px] text-red-600">{errors.budget}</span>}
                 </label>
                 <label className="relative order-3 col-span-2 block">
@@ -199,7 +199,7 @@ export default function SiteVisitBar() {
                     <option value="3-bohk">3 BHK</option>
                     <option value="not-sure">Not Sure</option>
                   </select>
-                  <SelectChevron className="right-3.5 top-1/2 -translate-y-1/2" />
+                  <SelectChevron compact className="right-3.5 top-1/2 -translate-y-1/2" />
                   {errors.bhk && <span className="mt-1 block pl-3 text-[9px] text-red-600">{errors.bhk}</span>}
                 </label>
                 <Field name="pincode" placeholder="Pincode" inputMode="numeric" autoComplete="postal-code" error={errors.pincode} className={`${inputClassName} w-full`} wrapperClassName="order-5" />

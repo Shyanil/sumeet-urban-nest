@@ -5,8 +5,8 @@ export default function Footer() {
   return (
     <footer className="border-t border-[#e8e4dc] bg-[#F8F7F3] py-12 md:py-16">
       <div className="mx-auto w-full max-w-[1720px] px-6 sm:px-10 md:px-14 lg:px-20 xl:px-28 2xl:px-36">
-        <div className="grid items-center gap-10 md:grid-cols-[1fr_1fr_auto] md:gap-14">
-          <div>
+        <div className="grid grid-cols-2 items-center gap-x-6 gap-y-8 md:grid-cols-[1fr_1fr_auto] md:gap-14">
+          <div className="order-1">
             <Link
               href="/"
               aria-label="Sumeet Urban Nest home"
@@ -17,18 +17,18 @@ export default function Footer() {
                 alt="Sumeet Urban Nest"
                 width={1921}
                 height={819}
-                className="h-auto w-[190px] object-contain md:w-[230px]"
-                sizes="(min-width: 768px) 230px, 190px"
+                className="h-auto w-[135px] max-w-full object-contain md:w-[230px]"
+                sizes="(min-width: 768px) 230px, 135px"
               />
             </Link>
 
-            <p className="mt-5 max-w-md text-sm font-light leading-7 text-[#8a8a8a] md:text-base">
+            <p className="mt-5 hidden max-w-md text-sm font-light leading-7 text-[#8a8a8a] md:block md:text-base">
               Khamardih, Shankar Nagar first BOHK Homes.
               <span className="block">Designed to open out your everyday.</span>
             </p>
           </div>
 
-          <div>
+          <div className="order-3 col-span-2 text-center md:order-2 md:col-span-1 md:text-left">
             <h2 className="mb-4 text-sm font-medium tracking-[0.48em] text-[#555555] md:text-base">
               CORPORATE
             </h2>
@@ -38,14 +38,14 @@ export default function Footer() {
             </address>
           </div>
 
-          <div className="flex md:justify-end">
+          <div className="order-2 flex justify-end md:order-3">
             <Image
               src="/images/interior/sumeet-infracon-logo.webp"
               alt="Sumeet Infracon"
               width={1268}
               height={1241}
-              className="h-auto w-[135px] object-contain md:w-[165px]"
-              sizes="(min-width: 768px) 165px, 135px"
+              className="h-auto w-[90px] max-w-full object-contain md:w-[165px]"
+              sizes="(min-width: 768px) 165px, 90px"
             />
           </div>
         </div>

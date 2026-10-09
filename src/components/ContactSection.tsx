@@ -2,14 +2,14 @@
 
 import Image from "next/image";
 import { useState, type FormEvent } from "react";
-import { useRouter } from "next/navigation";
-import { getLeadTracking } from "@/lib/leadTracking";
+
+import { getLeadTracking, redirectToThankYou } from "@/lib/leadTracking";
 import SelectChevron from "@/components/SelectChevron";
 
 type Errors = Partial<Record<"fullName" | "phoneNumber" | "budget" | "interest" | "locationPincode" | "form", string>>;
 
 export default function ContactSection() {
-  const router = useRouter();
+
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [errors, setErrors] = useState<Errors>({});
   const [configuration, setConfiguration] = useState("");
@@ -49,7 +49,7 @@ export default function ContactSection() {
         });
 
         if (!response.ok) throw new Error("Enquiry submission failed");
-        router.push("/thank-you");
+        redirectToThankYou();
       } catch {
         setErrors({ form: "We could not submit your enquiry. Please try again." });
         setIsSubmitting(false);
@@ -67,7 +67,7 @@ export default function ContactSection() {
         <div className="mx-auto mb-10 flex w-full max-w-[1100px] flex-col items-center justify-center text-center sm:mb-14">
           <div className="mb-3 flex items-center justify-center gap-3 sm:mb-4">
             <span className="h-px w-8 bg-[#2c2b29]/25 sm:w-12" />
-            <span className="text-[10px] font-semibold uppercase tracking-[0.32em] text-[#2c2b29] sm:text-xs">
+            <span className="section-eyebrow font-semibold uppercase text-[#2c2b29]">
               Private Enclave · 09
             </span>
             <span className="h-px w-8 bg-[#2c2b29]/25 sm:w-12" />
@@ -125,7 +125,7 @@ export default function ContactSection() {
               <h3 className="mt-1 text-2xl font-light tracking-tight text-[#2B2623] sm:text-3xl">
                 Request Exclusive Access
               </h3>
-              <p className="mt-2 text-xs leading-relaxed text-[#747474] sm:text-sm">
+              <p className="section-description mt-2 text-[#747474]">
                 Register below to schedule your private site walkthrough and receive the complete architectural brochure &amp; floor plans.
               </p>
             </div>
@@ -134,14 +134,14 @@ export default function ContactSection() {
               {errors.form && <p className="rounded-lg bg-red-50 px-3 py-2 text-sm text-red-600">{errors.form}</p>}
               {/* Full Name */}
               <div className="order-0 sm:col-span-2">
-                <label htmlFor="contactFullName" className="mb-1 block text-xs font-semibold uppercase tracking-wider text-[#2B2623]">
+                <label htmlFor="contactFullName" className="sr-only">
                   Full Name <span className="text-coral">*</span>
                 </label>
                 <input
                   type="text"
                   id="contactFullName"
                   name="fullName"
-                  placeholder="e.g. Rahul Sharma"
+                  placeholder="Full Name"
                   className={`h-12 w-full rounded-xl border bg-[#F8F7F4] px-4 text-sm text-[#2B2623] outline-none transition placeholder:text-[#2B2623]/40 focus:bg-white focus:ring-2 focus:ring-coral/20 ${
                     errors.fullName ? "border-red-400 focus:border-red-500" : "border-[#2B2623]/15 focus:border-coral"
                   }`}
@@ -152,7 +152,7 @@ export default function ContactSection() {
               {/* Phone & Budget Row */}
               <div className="contents">
                 <div className="order-1">
-                  <label htmlFor="contactPhoneNumber" className="mb-1 block text-xs font-semibold uppercase tracking-wider text-[#2B2623]">
+                  <label htmlFor="contactPhoneNumber" className="sr-only">
                     Mobile Number <span className="text-coral">*</span>
                   </label>
                   <div className="relative">
@@ -164,7 +164,7 @@ export default function ContactSection() {
                       id="contactPhoneNumber"
                       name="phoneNumber"
                       maxLength={10}
-                      placeholder="98765 43210"
+                      placeholder="Mobile Number"
                       className={`h-12 w-full rounded-xl border bg-[#F8F7F4] pl-13 pr-4 text-sm text-[#2B2623] outline-none transition placeholder:text-[#2B2623]/40 focus:bg-white focus:ring-2 focus:ring-coral/20 ${
                         errors.phoneNumber ? "border-red-400 focus:border-red-500" : "border-[#2B2623]/15 focus:border-coral"
                       }`}
@@ -174,7 +174,7 @@ export default function ContactSection() {
                 </div>
 
                 <div className="order-3">
-                  <label htmlFor="contactBudget" className="mb-1 block text-xs font-semibold uppercase tracking-wider text-[#2B2623]">
+                  <label htmlFor="contactBudget" className="sr-only">
                     Your Budget <span className="text-coral">*</span>
                   </label>
                   <div className="relative">
@@ -202,7 +202,7 @@ export default function ContactSection() {
               {/* Configuration & Pincode Row */}
               <div className="contents">
                 <div className="order-2">
-                  <label htmlFor="contactInterest" className="mb-1 block text-xs font-semibold uppercase tracking-wider text-[#2B2623]">
+                  <label htmlFor="contactInterest" className="sr-only">
                     Select Configuration <span className="text-coral">*</span>
                   </label>
                   <div className="relative">
@@ -226,7 +226,7 @@ export default function ContactSection() {
                 </div>
 
                 <div className="order-4">
-                  <label htmlFor="contactPincode" className="mb-1 block text-xs font-semibold uppercase tracking-wider text-[#2B2623]">
+                  <label htmlFor="contactPincode" className="sr-only">
                     Current Pincode <span className="text-coral">*</span>
                   </label>
                   <input
@@ -234,7 +234,7 @@ export default function ContactSection() {
                     id="contactPincode"
                     name="locationPincode"
                     maxLength={6}
-                    placeholder="e.g. 492004"
+                    placeholder="Current Pincode"
                     className={`h-12 w-full rounded-xl border bg-[#F8F7F4] px-4 text-sm text-[#2B2623] outline-none transition placeholder:text-[#2B2623]/40 focus:bg-white focus:ring-2 focus:ring-coral/20 ${
                       errors.locationPincode ? "border-red-400 focus:border-red-500" : "border-[#2B2623]/15 focus:border-coral"
                     }`}

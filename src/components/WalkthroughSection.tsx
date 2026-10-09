@@ -2,8 +2,10 @@
 
 import Image from "next/image";
 import { useEffect, useState } from "react";
+import { useEnquiry } from "@/components/EnquiryPanel";
 
 export default function WalkthroughSection() {
+  const { openEnquiry } = useEnquiry();
   const [isOpen, setIsOpen] = useState(false);
 
   useEffect(() => {
@@ -25,7 +27,7 @@ export default function WalkthroughSection() {
         <div className="mx-auto mb-10 max-w-[1100px] text-center sm:mb-14 md:mb-16">
           <div className="mb-3 flex items-center justify-center gap-2.5 sm:mb-4 sm:gap-3">
             <span className="h-px w-6 bg-[#2c2b29]/25 sm:w-12" />
-            <span className="text-[10px] font-semibold uppercase tracking-[0.2em] text-[#2c2b29] sm:text-xs sm:tracking-[0.32em]">
+            <span className="section-eyebrow font-semibold uppercase text-[#2c2b29]">
               Architectural Experience · 02
             </span>
             <span className="h-px w-6 bg-[#2c2b29]/25 sm:w-12" />
@@ -133,7 +135,7 @@ export default function WalkthroughSection() {
 
             {/* Right Editorial Narrative */}
             <div className="flex flex-col justify-between gap-4 md:col-span-5 md:pt-1">
-              <p className="text-sm font-normal leading-relaxed text-[#5c544e] sm:text-[15px] md:leading-relaxed">
+              <p className="section-description font-normal text-[#5c544e]">
                 Step into Raipur’s first BOHK residences through an elevated visual tour across 1.76 acres of lush landscaped podium greens, rooftop recreation, and skyward towers at Khamardih, Shankar Nagar.
               </p>
 
@@ -211,13 +213,13 @@ export default function WalkthroughSection() {
                 Ready to explore the project in person?
               </p>
               <div className="flex items-center gap-3">
-                <a
-                  href="#contact"
-                  onClick={() => setIsOpen(false)}
+                <button
+                  type="button"
+                  onClick={() => { setIsOpen(false); openEnquiry(); }}
                   className="rounded-full bg-coral px-6 py-2.5 text-xs font-semibold uppercase tracking-[0.16em] text-white transition hover:bg-coral-dark sm:text-sm"
                 >
                   Schedule Site Visit
-                </a>
+                </button>
                 <button
                   type="button"
                   onClick={() => setIsOpen(false)}

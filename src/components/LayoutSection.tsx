@@ -4,17 +4,17 @@ const blocks = [
   {
     name: "BLOCK A",
     units: "6 Units / Floor",
-    floors: "Typical 1st to 8th Floor",
+    floors: "Typical 1st to 9th Floor",
   },
   {
     name: "BLOCK B",
     units: "6 Units / Floor",
-    floors: "Typical 1st to 8th Floor",
+    floors: "Typical 1st to 9th Floor",
   },
   {
     name: "BLOCK C",
     units: "4 Units / Floor",
-    floors: "Typical 3rd to 7th Floor",
+    floors: "Typical 3rd to 9th Floor",
   },
 ];
 
@@ -26,7 +26,7 @@ export default function LayoutSection() {
         <div className="mx-auto mb-10 max-w-[850px] text-center sm:mb-12 md:mb-16">
           <div className="mb-3 flex items-center justify-center gap-2.5 sm:mb-4 sm:gap-3">
             <span className="h-px w-6 bg-[#2c2b29]/25 sm:w-12" />
-            <span className="text-[10px] font-semibold uppercase tracking-[0.2em] text-[#2c2b29] sm:text-xs sm:tracking-[0.32em]">
+            <span className="section-eyebrow font-semibold uppercase text-[#2c2b29]">
               Thoughtful Planning · 08
             </span>
             <span className="h-px w-6 bg-[#2c2b29]/25 sm:w-12" />
@@ -34,7 +34,7 @@ export default function LayoutSection() {
           <h2 className="whitespace-nowrap text-[11px] font-light uppercase tracking-[0.14em] text-coral min-[380px]:text-[13px] sm:text-2xl sm:tracking-[0.2em] md:text-3xl lg:text-4xl">
             O P E N E D &nbsp; O U T &nbsp; T O &nbsp; S P A C E
           </h2>
-          <p className="mx-auto mt-5 max-w-[620px] text-sm leading-7 text-[#6d625c] sm:text-[15px]">
+          <p className="section-description mx-auto mt-5 max-w-[620px] text-[#6d625c]">
             Three distinct towers, thoughtfully composed to bring light, privacy and openness into everyday living.
           </p>
         </div>

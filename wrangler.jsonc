@@ -4,6 +4,9 @@
   "main": ".open-next/worker.js",
   "compatibility_date": "2026-10-06",
   "compatibility_flags": ["nodejs_compat", "global_fetch_strictly_public"],
+  "vars": {
+    "SUPABASE_URL": "https://emzrahoqkuimiaxsqpnm.supabase.co"
+  },
   "observability": {
     "enabled": true
   },

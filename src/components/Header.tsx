@@ -7,8 +7,8 @@ import { useEnquiry } from "@/components/EnquiryPanel";
 
 const navLinks = [
   { name: "Amenities", href: "#amenities", id: "amenities" },
-  { name: "Master Plan", href: "#plan", id: "plan" },
   { name: "Gallery", href: "#gallery", id: "gallery" },
+  { name: "Master Plan", href: "#plan", id: "plan" },
   { name: "Specifications", href: "#specifications", id: "specifications" },
   { name: "Location", href: "#location", id: "location" },
   { name: "Contact", href: "#contact", id: "contact" },
@@ -88,8 +88,8 @@ export default function Header() {
       <header
         className={`fixed inset-x-0 top-0 z-50 transition-all duration-300 ${
           isScrolled
-            ? "border-b border-gray-100 bg-white/95 py-3 shadow-[0_4px_20px_rgba(0,0,0,0.06)] backdrop-blur-md"
-            : "bg-transparent py-4 sm:py-6"
+            ? "border-b border-gray-100 bg-white/95 py-3 shadow-[0_4px_20px_rgba(0,0,0,0.06)] backdrop-blur-md max-md:bg-white"
+            : "bg-transparent py-4 sm:py-6 max-md:border-b max-md:border-gray-100 max-md:bg-white max-md:py-3 max-md:shadow-[0_4px_20px_rgba(0,0,0,0.06)]"
         }`}
       >
         <div className="mx-auto flex w-full max-w-[1720px] items-center justify-between px-6 sm:px-10 md:px-14 lg:px-20 xl:px-28 2xl:px-36">
@@ -100,12 +100,20 @@ export default function Header() {
             className="shrink-0 transition-opacity hover:opacity-90"
           >
             <Image
+              src="/logo.webp"
+              alt="Sumeet Urban Nest"
+              width={1921}
+              height={819}
+              priority
+              className="h-auto w-[105px] min-[380px]:w-[115px] md:hidden"
+            />
+            <Image
               src={isScrolled ? "/logo.webp" : "/sumeet-urban-nest-logo-white.webp"}
               alt="Sumeet Urban Nest"
               width={1921}
               height={819}
               priority
-              className={`h-auto w-[105px] transition-all min-[380px]:w-[115px] sm:w-[122px] md:w-[125px] lg:w-[125px] xl:w-[130px] 2xl:w-[155px] ${!isScrolled ? "drop-shadow-[0_2px_5px_rgba(0,0,0,0.35)]" : ""}`}
+              className={`hidden h-auto w-[105px] transition-all min-[380px]:w-[115px] sm:w-[122px] md:block md:w-[125px] lg:w-[125px] xl:w-[130px] 2xl:w-[155px] ${!isScrolled ? "drop-shadow-[0_2px_5px_rgba(0,0,0,0.35)]" : ""}`}
             />
           </Link>
 
@@ -162,7 +170,7 @@ export default function Header() {
               className={`flex h-9 w-9 items-center justify-center rounded-lg border transition-colors ${
                 isScrolled
                   ? "border-gray-200 bg-gray-50 text-gray-800"
-                  : "border-white/30 bg-black/30 text-white backdrop-blur-sm"
+                  : "border-white/30 bg-black/30 text-white backdrop-blur-sm max-md:border-gray-200 max-md:bg-gray-50 max-md:text-gray-800"
               }`}
             >
               {isMobileMenuOpen ? (

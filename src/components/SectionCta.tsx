@@ -18,17 +18,9 @@ export default function SectionCta({ label = "Enquire Now" }: SectionCtaProps) {
     </>
   );
 
-  if (label === "Download Brochure") {
-    return <a href="/downloads/sumeet-urban-nest-brochure.pdf" download="Sumeet Urban Nest Brochure.pdf" className={buttonClassName}>{content}</a>;
-  }
-
-  if (label === "Schedule a Site Visit") {
-    return <a href="#contact" className={buttonClassName}>{content}</a>;
-  }
-
   return (
     <EnquiryButton
-      ariaLabel="Enquire about Sumeet Urban Nest"
+      ariaLabel={label}
       className={buttonClassName}
     >
       {content}

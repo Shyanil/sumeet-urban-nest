@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Montserrat } from "next/font/google";
 import Preloader from "@/components/Preloader";
+import LeadAttribution from "@/components/LeadAttribution";
 import "./globals.css";
 
 const montserrat = Montserrat({
@@ -86,6 +87,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
           />
         </noscript>
         {/* End Google Tag Manager (noscript) */}
+        <LeadAttribution />
         <Preloader />
         {children}
       </body>

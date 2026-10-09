@@ -32,7 +32,7 @@ const specifications = [
     title: "Plumbing",
     details: [
       "Single-lever diverter in the shower area",
-      "Metro-flush wall-hung WCs and countertop wash basin",
+      "Wall-hung WCs and countertop wash basin",
       "Electrical points for geyser, exhaust fan and mirror light",
     ],
   },
@@ -40,7 +40,7 @@ const specifications = [
     title: "Kitchen",
     details: [
       "Quartz full-body platform compatible with a modular kitchen",
-      "Provision for refrigerator, chimney, water purifier and microwave electrical points, with plumbing for kitchen sink mixer, water purifier and washing machine",
+      "Provision for refrigerator, chimney, water purifier and microwave electrical points, with plumbing for kitchen sink, water purifier and washing machine",
     ],
   },
   {
@@ -95,7 +95,7 @@ export default function SpecificationsSection() {
         <div className="mx-auto mb-10 max-w-[800px] text-center sm:mb-14">
           <div className="mb-3 flex items-center justify-center gap-3 sm:mb-4">
             <span className="h-px w-8 bg-[#2c2b29]/25 sm:w-12" />
-            <span className="text-[10px] font-semibold uppercase tracking-[0.32em] text-[#2c2b29] sm:text-xs">
+            <span className="section-eyebrow font-semibold uppercase text-[#2c2b29]">
               Craftsmanship &amp; Finish · 06
             </span>
             <span className="h-px w-8 bg-[#2c2b29]/25 sm:w-12" />
@@ -172,7 +172,7 @@ export default function SpecificationsSection() {
           <div className="flex items-center p-7 sm:p-9 lg:p-12">
             <ul key={activeIndex} className="w-full max-w-3xl animate-[luminaReveal_.35s_ease-out] space-y-4">
               {specifications[activeIndex].details.map((detail) => (
-                <li key={detail} className="flex gap-4 text-base leading-7 text-[#5e5752] sm:text-lg sm:leading-8">
+                <li key={detail} className="section-description flex gap-4 text-[#5e5752]">
                   <span className="mt-3 h-1.5 w-1.5 shrink-0 rounded-full bg-coral" aria-hidden="true" />
                   <span>{detail}</span>
                 </li>

@@ -5,20 +5,20 @@ import { useEffect, useRef, useState } from "react";
 
 const amenities = [
   { id: 1, name: "Entry/Exit", x: 82.4, y: 53.6 },
-  { id: 2, name: "Driveway", x: 36.9, y: 53.2 },
+  { id: 2, name: "Driveway", x: 35.5, y: 26.9, additionalMarkers: [{ x: 44, y: 54.2 }, { x: 78, y: 54.2 }] },
   { id: 3, name: "Temple", x: 78, y: 45 },
-  { id: 4, name: "Drop Off", x: 52, y: 53.2 },
+  { id: 4, name: "Drop Off", x: 63, y: 54.2, additionalMarkers: [{ x: 37.1, y: 72.9 }] },
   { id: 5, name: "Kids' Play Area", x: 17.6, y: 63.5 },
   { id: 6, name: "Pergola Seating Area", x: 16.5, y: 58 },
   { id: 7, name: "Pavilion", x: 16.9, y: 41.8 },
-  { id: 8, name: "Peripheral Greens", x: 24.7, y: 21.8 },
-  { id: 9, name: "Central Plaza", x: 26, y: 54 },
+  { id: 8, name: "Peripheral Greens", x: 21.8, y: 18.8, additionalMarkers: [{ x: 51.4, y: 23.1 }, { x: 27.6, y: 92.6 }] },
+  { id: 9, name: "Podium", x: 30.7, y: 53.3 },
   { id: 10, name: "Swimming Pool", x: 50.8, y: 46.3 },
   { id: 11, name: "Kids' Pool", x: 49.2, y: 42.6 },
   { id: 12, name: "Pool Deck", x: 53.5, y: 42.5 },
-  { id: 13, name: "Senior Citizens' Seating Zone", x: 42.5, y: 49.7 },
-  { id: 14, name: "Outdoor Seating Area", x: 49.2, y: 37.3 },
-  { id: 15, name: "Multipurpose Area", x: 53.5, y: 38 },
+  { id: 13, name: "Senior Citizens' Seating Zone", x: 44.7, y: 46.8 },
+  { id: 14, name: "Outdoor Seating Area", x: 51.5, y: 33.7 },
+  { id: 15, name: "Multipurpose Area", x: 54.8, y: 34.6 },
   { id: 16, name: "Lounge Area", x: 51.3, y: 40.2 },
   { id: 17, name: "Hobby Space", x: 58.3, y: 38 },
   { id: 18, name: "Changing Rooms", x: 58.5, y: 47.4 },
@@ -29,15 +29,26 @@ const amenities = [
   { id: 23, name: "Multipurpose Hall", x: 35.5, y: 35 },
 ];
 
+const mapMarkers = amenities.flatMap((amenity) =>
+  [{ x: amenity.x, y: amenity.y }, ...(amenity.additionalMarkers ?? [])].map((position, index) => ({
+    ...amenity,
+    ...position,
+    markerKey: `${amenity.id}-${index}`,
+  })),
+);
+
 function MasterPlanExperience({ fullscreen = false, onClose }: { fullscreen?: boolean; onClose?: () => void }) {
   const [activeAmenity, setActiveAmenity] = useState<number | null>(null);
+  const [activeMarker, setActiveMarker] = useState<{ id: number; x: number; y: number } | null>(null);
   const [legendOpen, setLegendOpen] = useState(false);
   const mapRef = useRef<HTMLDivElement>(null);
   const active = amenities.find((item) => item.id === activeAmenity);
+  const tooltipPosition = activeMarker?.id === activeAmenity ? activeMarker : active;
   const group1 = amenities.slice(0, 12);
   const group2 = amenities.slice(12);
 
   const selectFromLegend = (id: number) => {
+    setActiveMarker(null);
     setActiveAmenity(id);
     setLegendOpen(false);
     if (!fullscreen) {
@@ -51,9 +62,9 @@ function MasterPlanExperience({ fullscreen = false, onClose }: { fullscreen?: bo
       <button
         key={item.id}
         type="button"
-        onMouseEnter={() => setActiveAmenity(item.id)}
+        onMouseEnter={() => { setActiveMarker(null); setActiveAmenity(item.id); }}
         onMouseLeave={() => setActiveAmenity(null)}
-        onFocus={() => setActiveAmenity(item.id)}
+        onFocus={() => { setActiveMarker(null); setActiveAmenity(item.id); }}
         onBlur={() => setActiveAmenity(null)}
         onClick={() => selectFromLegend(item.id)}
         className={`flex h-[38px] xl:h-[42px] w-full items-center gap-2 border-b border-[#2B2623]/8 px-2.5 xl:px-3 text-left transition ${
@@ -85,19 +96,19 @@ function MasterPlanExperience({ fullscreen = false, onClose }: { fullscreen?: bo
         <Image src="/images/exterior/top-view.webp" alt="Sumeet Urban Nest aerial master plan" width={1920} height={1080} priority className="block h-auto w-full" sizes="100vw" />
         <div className="absolute left-3 top-3 bg-[#2B2623]/80 px-3 py-2 text-[10px] font-semibold uppercase tracking-[0.18em] text-white backdrop-blur-sm sm:left-5 sm:top-5 sm:text-xs">Aerial master plan</div>
 
-        {amenities.map((item) => {
+        {mapMarkers.map((item) => {
           const isActive = activeAmenity === item.id;
           return (
             <button
-              key={item.id}
+              key={item.markerKey}
               type="button"
               aria-label={item.name}
               style={{ left: `${item.x}%`, top: `${item.y}%` }}
-              onMouseEnter={() => setActiveAmenity(item.id)}
+              onMouseEnter={() => { setActiveMarker(item); setActiveAmenity(item.id); }}
               onMouseLeave={() => setActiveAmenity(null)}
-              onFocus={() => setActiveAmenity(item.id)}
+              onFocus={() => { setActiveMarker(item); setActiveAmenity(item.id); }}
               onBlur={() => setActiveAmenity(null)}
-              onClick={() => setActiveAmenity(isActive ? null : item.id)}
+              onClick={() => { setActiveMarker(item); setActiveAmenity(isActive ? null : item.id); }}
               className={`absolute flex h-5 w-5 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full border text-[8px] font-semibold text-white shadow-md transition duration-200 sm:h-7 sm:w-7 sm:text-[10px] lg:h-8 lg:w-8 lg:text-xs ${isActive ? "z-40 scale-125 border-white bg-coral ring-4 ring-coral/40" : "z-20 border-coral bg-[#2B2623] hover:scale-[1.15]"}`}
             >
               {String(item.id).padStart(2, "0")}
@@ -105,8 +116,8 @@ function MasterPlanExperience({ fullscreen = false, onClose }: { fullscreen?: bo
           );
         })}
 
-        {active && (
-          <div style={{ left: `${active.x}%`, top: `${active.y}%` }} className="pointer-events-none absolute z-30 hidden -translate-x-1/2 translate-y-6 whitespace-nowrap border border-coral/60 bg-[#2B2623]/95 px-3 py-2 text-[11px] font-medium text-white shadow-lg sm:block">
+        {active && tooltipPosition && (
+          <div style={{ left: `${tooltipPosition.x}%`, top: `${tooltipPosition.y}%` }} className="pointer-events-none absolute z-30 hidden -translate-x-1/2 translate-y-6 whitespace-nowrap border border-coral/60 bg-[#2B2623]/95 px-3 py-2 text-[11px] font-medium text-white shadow-lg sm:block">
             {active.name}
           </div>
         )}
@@ -243,12 +254,12 @@ export default function PlanSection() {
   return (
     <section id="plan" className="scroll-mt-20 bg-white pt-14 pb-4 md:pt-24 md:pb-10">
       <div className="mx-auto mb-10 w-full max-w-[1720px] px-6 sm:px-10 md:px-14 md:mb-14 lg:px-20 xl:px-28 2xl:px-36">
-        <div className="flex flex-col gap-5 sm:flex-row sm:items-end sm:justify-between">
+        <div className="flex items-end justify-between gap-3 sm:gap-5">
           <div>
             {/* Top Editorial Eyebrow */}
             <div className="mb-3 flex items-center gap-2.5 sm:mb-4 sm:gap-3">
               <span className="h-px w-6 bg-[#2c2b29]/25 sm:w-12" />
-              <span className="text-[10px] font-semibold uppercase tracking-[0.2em] text-[#2c2b29] sm:text-xs sm:tracking-[0.32em]">
+              <span className="section-eyebrow font-semibold uppercase text-[#2c2b29]">
                 Architectural Layout · 07
               </span>
             </div>
@@ -261,9 +272,13 @@ export default function PlanSection() {
           <button
             type="button"
             onClick={() => setFullscreen(true)}
-            className="self-start rounded-full border border-[#2B2623]/25 px-5 py-2.5 text-[10px] font-semibold uppercase tracking-[0.18em] text-[#2B2623] transition hover:border-coral hover:bg-coral hover:text-white sm:self-auto sm:text-xs"
+            aria-label="Expand fullscreen master plan"
+            className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full border border-[#2B2623]/25 text-[10px] font-semibold uppercase tracking-[0.18em] text-[#2B2623] transition hover:border-coral hover:bg-coral hover:text-white md:h-auto md:w-auto md:px-5 md:py-2.5 md:text-xs"
           >
-            Expand Fullscreen
+            <svg className="h-4 w-4 md:hidden" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" aria-hidden="true">
+              <path strokeLinecap="round" strokeLinejoin="round" d="M8 3H3v5m13-5h5v5M3 16v5h5m13-5v5h-5" />
+            </svg>
+            <span className="hidden md:inline">Expand Fullscreen</span>
           </button>
         </div>
       </div>
