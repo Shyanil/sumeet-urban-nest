@@ -25,6 +25,7 @@ Build the Cloudflare Worker locally with:
 npm run cf:build
 ```
 
-Cloudflare Workers Builds should use `npm run cf:build` as its build command
-and `npx wrangler preview` as its preview command for pull requests. Keep
-`main` as the production branch so commits to `dev` create previews for review.
+Cloudflare Workers Builds uses `npm run build` to generate both the Next.js
+output and the OpenNext Worker. Its preview command is `npx wrangler preview`.
+Keep `main` as the production branch so commits to `dev` create previews for
+review.
