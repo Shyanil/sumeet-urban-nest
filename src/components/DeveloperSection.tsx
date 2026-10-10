@@ -138,14 +138,14 @@ export default function DeveloperSection() {
               {/* 4 Architectural Metric Counters */}
               <div className="mt-10 grid grid-cols-1 gap-3 border-t border-[#2B2623]/8 pt-8 sm:grid-cols-3 sm:gap-4">
                 {stats.map((s) => (
-                  <div key={s.label} className="rounded-xl bg-[#FAF8F5] p-4 text-left transition hover:bg-white hover:shadow-sm">
+                  <div key={s.label} className="min-w-0 rounded-xl bg-[#FAF8F5] p-4 text-left transition hover:bg-white hover:shadow-sm">
                     <p className="text-2xl font-light tracking-tight text-coral sm:text-3xl">
                       {s.value}
                     </p>
-                    <p className="mt-1 whitespace-nowrap text-[10px] font-bold uppercase tracking-[0.08em] text-[#2B2623]">
+                    <p className="mt-1 break-words text-[10px] font-bold uppercase leading-relaxed tracking-[0.08em] text-[#2B2623]">
                       {s.label}
                     </p>
-                    {s.detail && <p className="mt-0.5 text-[10px] text-[#857d76]">
+                    {s.detail && <p className="mt-0.5 break-words text-[10px] leading-relaxed text-[#857d76]">
                       {s.detail}
                     </p>}
                   </div>
