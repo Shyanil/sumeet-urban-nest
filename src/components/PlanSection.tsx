@@ -260,11 +260,11 @@ export default function PlanSection() {
             <div className="mb-3 flex items-center gap-2.5 sm:mb-4 sm:gap-3">
               <span className="h-px w-6 bg-[#2c2b29]/25 sm:w-12" />
               <span className="section-eyebrow font-semibold uppercase text-[#2c2b29]">
-                Architectural Layout · 07
+                Architectural Layout · 04
               </span>
             </div>
 
-            <h2 className="text-[13px] min-[380px]:text-[15px] sm:text-2xl md:text-3xl lg:text-4xl font-light tracking-[0.14em] min-[380px]:tracking-[0.18em] sm:tracking-[0.28em] text-coral uppercase">
+            <h2 className="whitespace-nowrap text-base min-[380px]:text-lg sm:text-2xl md:text-3xl lg:text-4xl font-light tracking-[0.2em] sm:tracking-[0.28em] text-coral uppercase">
               M A S T E R &nbsp; P L A N
             </h2>
           </div>

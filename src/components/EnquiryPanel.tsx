@@ -16,8 +16,11 @@ import { getLeadTracking, redirectToThankYou } from "@/lib/leadTracking";
 import SelectChevron from "@/components/SelectChevron";
 
 type EnquiryContextValue = {
-  openEnquiry: () => void;
+  /** Opens the enquiry popup; `ctaLabel` becomes the popup's submit button text. */
+  openEnquiry: (ctaLabel?: string) => void;
 };
+
+const DEFAULT_SUBMIT_LABEL = "Submit Enquiry";
 
 const EnquiryContext = createContext<EnquiryContextValue | null>(null);
 
@@ -32,6 +35,7 @@ export function EnquiryProvider({ children }: { children: ReactNode }) {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitError, setSubmitError] = useState("");
   const [configuration, setConfiguration] = useState("");
+  const [submitLabel, setSubmitLabel] = useState(DEFAULT_SUBMIT_LABEL);
   const nameInputRef = useRef<HTMLInputElement>(null);
 
   useEffect(() => {
@@ -52,7 +56,8 @@ export function EnquiryProvider({ children }: { children: ReactNode }) {
     };
   }, [isOpen]);
 
-  const openEnquiry = () => {
+  const openEnquiry = (ctaLabel?: string) => {
+    setSubmitLabel(ctaLabel || DEFAULT_SUBMIT_LABEL);
     setIsSubmitted(false);
     setSubmitError("");
     setConfiguration("");
@@ -279,13 +284,8 @@ export function EnquiryProvider({ children }: { children: ReactNode }) {
                     disabled={isSubmitting}
                     className="group order-5 flex h-11 w-full items-center justify-center rounded-full bg-coral px-5 text-[10px] font-bold uppercase tracking-[0.08em] text-white shadow-[0_10px_26px_rgba(232,115,74,0.32)] transition duration-300 hover:-translate-y-0.5 hover:bg-coral-dark hover:shadow-[0_14px_30px_rgba(232,115,74,0.38)] focus:outline-none focus:ring-4 focus:ring-coral/20"
                   >
-                    {isSubmitting ? "SUBMITTING..." : "SUBMIT ENQUIRY"}
+                    {isSubmitting ? "Submitting..." : submitLabel}
                   </button>
-
-                  <p className="px-2 pt-1 text-center text-[10px] leading-4 text-[#9b918c] sm:text-[11px]">
-                    By submitting, you agree to be contacted about Sumeet Urban
-                    Nest.
-                  </p>
                 </form>
               )}
 
@@ -301,10 +301,12 @@ export function EnquiryButton({
   children,
   className,
   ariaLabel,
+  ctaLabel,
 }: {
   children: ReactNode;
   className?: string;
   ariaLabel?: string;
+  ctaLabel?: string;
 }) {
   const context = useContext(EnquiryContext);
 
@@ -315,7 +317,7 @@ export function EnquiryButton({
   return (
     <button
       type="button"
-      onClick={context.openEnquiry}
+      onClick={() => context.openEnquiry(ctaLabel)}
       aria-label={ariaLabel}
       className={className}
     >

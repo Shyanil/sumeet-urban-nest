@@ -154,7 +154,7 @@ export default function Header() {
 
             <button
               type="button"
-              onClick={openEnquiry}
+              onClick={() => openEnquiry("Enquire Now")}
               className="whitespace-nowrap rounded-full bg-coral px-4 py-1.5 text-[10px] font-bold uppercase tracking-[0.08em] text-white shadow-[0_10px_26px_rgba(232,115,74,0.32)] transition duration-300 hover:-translate-y-0.5 hover:bg-coral-dark hover:shadow-[0_14px_30px_rgba(232,115,74,0.38)] xl:px-5 xl:py-2 xl:text-[11px]"
             >
               Enquire Now
@@ -216,7 +216,7 @@ export default function Header() {
                 type="button"
                 onClick={() => {
                   setIsMobileMenuOpen(false);
-                  openEnquiry();
+                  openEnquiry("Enquire Now");
                 }}
                 className="mt-2 flex h-11 w-full items-center justify-center rounded-full bg-coral px-5 text-center text-[10px] font-bold uppercase tracking-[0.08em] text-white shadow-[0_10px_26px_rgba(232,115,74,0.32)] transition hover:bg-coral-dark"
               >

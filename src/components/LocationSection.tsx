@@ -16,7 +16,7 @@ export default function LocationSection() {
     <section id="location" className="scroll-mt-20 bg-[#fff8f0] py-16 sm:py-20 md:py-24">
       <div className="mx-auto w-full max-w-[1600px] px-6 sm:px-10 md:px-14 lg:px-20 xl:px-28 2xl:px-36">
         <div className="grid w-full overflow-hidden rounded-[28px] bg-white shadow-[0_24px_70px_rgba(71,49,38,0.1)] lg:grid-cols-2 lg:rounded-[36px]">
-          <div className="relative min-h-[380px] w-full overflow-hidden bg-[#e9e8e4] sm:min-h-[500px] lg:min-h-[720px]">
+          <div className="relative order-2 min-h-[380px] w-full overflow-hidden bg-[#e9e8e4] sm:min-h-[500px] lg:order-none lg:min-h-[720px]">
           <iframe
             src={googleMapUrl}
             title="Sumeet Urban Nest location on Google Maps"
@@ -34,11 +34,11 @@ export default function LocationSection() {
           <div className="flex items-center gap-3">
             <span className="h-px w-8 bg-[#2c2b29]/25 sm:w-12" />
             <span className="section-eyebrow font-semibold uppercase text-[#2c2b29]">
-              Strategic Connectivity · 05
+              Strategic Connectivity · 06
             </span>
           </div>
 
-          <h2 className="whitespace-nowrap text-base min-[380px]:text-lg sm:text-2xl md:text-3xl lg:text-4xl font-light tracking-[0.18em] sm:tracking-[0.24em] text-coral uppercase">
+          <h2 className="whitespace-nowrap text-base min-[380px]:text-lg sm:text-2xl md:text-3xl lg:text-4xl font-light tracking-[0.2em] sm:tracking-[0.28em] text-coral uppercase">
             L O C A T I O N
           </h2>
 
