@@ -67,13 +67,13 @@ export default function ContactSection() {
           <div className="mb-3 flex items-center justify-center gap-3 sm:mb-4">
             <span className="h-px w-8 bg-[#2c2b29]/25 sm:w-12" />
             <span className="section-eyebrow font-semibold uppercase text-[#2c2b29]">
-              Private Enclave · 09
+              Private Enclave · 08
             </span>
             <span className="h-px w-8 bg-[#2c2b29]/25 sm:w-12" />
           </div>
 
-          <h2 className="w-full text-center whitespace-nowrap text-[12px] min-[380px]:text-[14px] sm:text-xl md:text-2xl lg:text-3xl xl:text-4xl font-light tracking-[0.12em] min-[380px]:tracking-[0.16em] sm:tracking-[0.22em] text-coral uppercase pl-[0.12em]">
-            C O N N E C T &nbsp; W I T H &nbsp; U S
+          <h2 className="w-full text-center whitespace-nowrap text-base min-[380px]:text-lg sm:text-2xl md:text-3xl lg:text-4xl font-light tracking-[0.2em] sm:tracking-[0.28em] text-coral uppercase">
+            C O N T A C T &nbsp; U S
           </h2>
         </div>
 

@@ -27,12 +27,12 @@ export default function LayoutSection() {
           <div className="mb-3 flex items-center justify-center gap-2.5 sm:mb-4 sm:gap-3">
             <span className="h-px w-6 bg-[#2c2b29]/25 sm:w-12" />
             <span className="section-eyebrow font-semibold uppercase text-[#2c2b29]">
-              Thoughtful Planning · 08
+              Thoughtful Planning · 07
             </span>
             <span className="h-px w-6 bg-[#2c2b29]/25 sm:w-12" />
           </div>
-          <h2 className="whitespace-nowrap text-[11px] font-light uppercase tracking-[0.14em] text-coral min-[380px]:text-[13px] sm:text-2xl sm:tracking-[0.2em] md:text-3xl lg:text-4xl">
-            O P E N E D &nbsp; O U T &nbsp; T O &nbsp; S P A C E
+          <h2 className="whitespace-nowrap text-base min-[380px]:text-lg sm:text-2xl md:text-3xl lg:text-4xl font-light tracking-[0.2em] sm:tracking-[0.28em] text-coral uppercase">
+            T O W E R S
           </h2>
           <p className="section-description mx-auto mt-5 max-w-[620px] text-[#6d625c]">
             Three distinct towers, thoughtfully composed to bring light, privacy and openness into everyday living.

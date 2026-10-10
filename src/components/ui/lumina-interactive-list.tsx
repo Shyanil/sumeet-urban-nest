@@ -39,7 +39,7 @@ export function LuminaInteractiveList({
           <div className="mb-3 flex items-center justify-center gap-2.5 sm:mb-4 sm:gap-3">
             <span className="h-px w-6 bg-[#2c2b29]/25 sm:w-12" />
             <span className="section-eyebrow font-semibold uppercase text-[#2c2b29]">
-              Visual Portfolio · 04
+              Visual Portfolio · 03
             </span>
             <span className="h-px w-6 bg-[#2c2b29]/25 sm:w-12" />
           </div>
@@ -108,10 +108,10 @@ export function LuminaInteractiveList({
                 <span className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/10 to-transparent transition-colors group-hover:from-black/85" />
                 <span className="absolute inset-x-0 bottom-0 flex items-end justify-between gap-4 p-5 sm:p-6 max-md:gap-2 max-md:p-4">
                   <span className="min-w-0">
-                    <span className="mb-2 block text-[9px] font-semibold uppercase tracking-[0.24em] text-white/60">
+                    <span className="mb-2 block text-[11px] font-semibold uppercase tracking-[0.24em] text-white/70">
                       {String((originalIndex >= 0 ? originalIndex : index) + 1).padStart(2, "0")} · {slide.category?.toUpperCase() || "GALLERY"}
                     </span>
-                    <span className={`${isHero ? "text-2xl sm:text-3xl" : "text-lg"} block font-light tracking-wide text-white max-md:truncate max-md:text-xs max-md:tracking-normal`}>
+                    <span className={`${isHero ? "text-3xl sm:text-4xl" : "text-xl"} block font-light tracking-wide text-white max-md:truncate max-md:text-sm max-md:tracking-normal`}>
                       {slide.title}
                     </span>
                   </span>
