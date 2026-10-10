@@ -52,7 +52,7 @@ export default function HeroSection() {
         <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/35 to-black/25 max-md:from-black/75 max-md:via-black/25 max-md:to-black/10" />
       </div>
 
-      <div className="relative z-10 mx-auto flex h-full w-full max-w-[1720px] flex-col justify-end px-6 pb-13 pt-24 sm:px-10 sm:pb-20 sm:pt-28 md:px-14 lg:px-20 xl:px-28 2xl:px-36 xl:flex-row xl:items-end xl:justify-between xl:gap-8 xl:pb-24">
+      <div className="hero-content relative z-10 mx-auto flex h-full w-full max-w-[1720px] flex-col justify-end px-6 pb-13 pt-24 sm:px-10 sm:pb-20 sm:pt-28 md:px-14 lg:px-20 xl:px-28 2xl:px-36 xl:flex-row xl:items-end xl:justify-between xl:gap-8 xl:pb-24">
         <div className="min-w-0 w-full pb-6 xl:flex-1 xl:pb-0">
           <h1 className="whitespace-nowrap text-[clamp(0.75rem,3.4vw,3rem)] font-light leading-[1.3] tracking-[-0.04em] text-white xl:text-[clamp(1.5rem,2.1vw,2.2rem)] max-md:whitespace-normal max-md:text-[clamp(1.125rem,5vw,1.75rem)] max-md:leading-[1.35] max-md:tracking-[-0.025em]">
             <span className="font-normal max-md:block">Khamardih, Shankar Nagar&apos;s</span>{" "}
@@ -60,7 +60,7 @@ export default function HeroSection() {
           </h1>
         </div>
 
-        <div className="w-full max-w-[315px] shrink-0 sm:max-w-[380px] xl:max-w-[390px] 2xl:max-w-[420px] max-md:max-w-[280px]">
+        <div className="hero-info w-full max-w-[315px] shrink-0 sm:max-w-[380px] xl:max-w-[390px] 2xl:max-w-[420px] max-md:max-w-[280px]">
           <div className="relative overflow-hidden rounded-2xl border border-white/20 bg-black/45 p-4 shadow-[0_24px_50px_rgba(0,0,0,0.45)] backdrop-blur-xl sm:p-6 max-md:p-3">
             <div
               aria-hidden="true"

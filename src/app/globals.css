@@ -1,5 +1,68 @@
 @import "tailwindcss";
 
+/* Compact hero sizing for smaller laptop viewports. */
+@media (min-width: 1024px) and (max-width: 1439px) {
+  #hero .hero-content {
+    flex-direction: row;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 24px;
+    padding-inline: 40px;
+    padding-left: 80px;
+  }
+
+  #hero .hero-content > div:first-child {
+    flex: 1;
+    padding-bottom: 0;
+  }
+
+  #hero h1 {
+    font-size: clamp(20px, 1.75vw, 24px);
+  }
+
+  #hero .hero-info {
+    max-width: 320px;
+  }
+
+  #hero .hero-info > div {
+    padding: 18px;
+  }
+
+  #hero .hero-info h2 {
+    font-size: 22px;
+  }
+
+  #hero .hero-info p {
+    font-size: 10px;
+  }
+}
+
+@media (min-width: 1280px) and (max-width: 1439px) {
+  #hero .hero-content {
+    padding-left: 112px;
+  }
+}
+
+@media (min-width: 1024px) and (max-width: 1279px) {
+  .site-visit-bar > div {
+    border-radius: 26px;
+  }
+
+  .site-visit-bar .site-visit-form {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 12px;
+    padding-block: 12px;
+  }
+
+  .site-visit-form > label,
+  .site-visit-form > div,
+  .site-visit-form > button {
+    width: 100%;
+    min-width: 0;
+  }
+}
+
 @layer components {
   .section-eyebrow {
     font-size: 9px;

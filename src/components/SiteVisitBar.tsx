@@ -10,7 +10,7 @@ import SelectChevron from "@/components/SelectChevron";
 type Errors = Partial<Record<"name" | "phone" | "budget" | "bhk" | "pincode" | "form", string>>;
 
 const inputClassName =
-  "h-11 min-w-0 rounded-full border border-[#2B2623]/15 bg-white/85 px-4 text-xs text-[#2B2623] outline-none transition placeholder:text-[#2B2623]/45 focus:border-coral focus:ring-2 focus:ring-coral/15 lg:h-12 lg:text-sm xl:h-11 xl:text-[13px] xl:px-3";
+  "h-11 min-w-0 rounded-full border border-[#2B2623]/15 bg-white/85 px-4 text-xs text-[#2B2623] outline-none transition placeholder:text-[#2B2623]/45 focus:border-coral focus:ring-2 focus:ring-coral/15 lg:h-11 lg:text-[13px] lg:px-3";
 
 export default function SiteVisitBar() {
   const submitLead = useLeadSubmission();
@@ -74,28 +74,28 @@ export default function SiteVisitBar() {
   if (!isVisible || isDismissed) return null;
 
   return (
-    <aside className="fixed inset-x-3 bottom-3 z-[90] mx-auto max-w-[1540px] animate-[enquiry-sheet-in_340ms_cubic-bezier(0.22,1,0.36,1)] sm:inset-x-5 sm:bottom-5 xl:max-w-[1440px]" aria-label="Book a site visit">
-      <div className="overflow-hidden rounded-[26px] border border-white/50 bg-[#F8F7F3]/95 shadow-[0_18px_55px_rgba(43,38,35,0.24)] backdrop-blur-xl xl:overflow-visible xl:rounded-full">
-        <div className="relative flex min-h-[74px] items-center gap-3 px-4 py-3 sm:px-5 xl:min-h-[66px] xl:gap-2.5 xl:px-3 xl:py-1.5">
-          <button type="button" onClick={() => setIsMobileOpen((open) => !open)} className="hidden h-11 w-11 shrink-0 items-center justify-center gap-3 text-left md:flex xl:pointer-events-none xl:h-auto xl:w-[170px] xl:justify-start" aria-expanded={isMobileOpen}>
+    <aside className="site-visit-bar fixed inset-x-3 bottom-3 z-[90] mx-auto max-w-[1540px] animate-[enquiry-sheet-in_340ms_cubic-bezier(0.22,1,0.36,1)] sm:inset-x-5 sm:bottom-5 lg:max-w-[1440px]" aria-label="Book a site visit">
+      <div className="overflow-hidden rounded-[26px] border border-white/50 bg-[#F8F7F3]/95 shadow-[0_18px_55px_rgba(43,38,35,0.24)] backdrop-blur-xl lg:overflow-visible lg:rounded-full">
+        <div className="relative flex min-h-[74px] items-center gap-3 px-4 py-3 sm:px-5 lg:min-h-[66px] lg:gap-2.5 lg:px-3 lg:py-1.5">
+          <button type="button" onClick={() => setIsMobileOpen((open) => !open)} className="hidden h-11 w-11 shrink-0 items-center justify-center gap-3 text-left md:flex lg:pointer-events-none lg:h-auto lg:w-[170px] lg:justify-start" aria-expanded={isMobileOpen}>
             <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-coral/10 text-coral">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" className="h-5 w-5" aria-hidden="true"><path strokeLinecap="round" strokeLinejoin="round" d="M12 21s7-4.6 7-11a7 7 0 1 0-14 0c0 6.4 7 11 7 11Z"/><circle cx="12" cy="10" r="2.5"/></svg>
             </span>
             <span className="min-w-0">
-              <span className="hidden text-[11px] font-bold tracking-[0.2em] text-[#2B2623] xl:block">SITE VISIT</span>
-              <span className="mt-0.5 hidden text-[10px] text-[#2B2623]/55 xl:block">Book Priority Slot</span>
+              <span className="hidden text-[11px] font-bold tracking-[0.2em] text-[#2B2623] lg:block">SITE VISIT</span>
+              <span className="mt-0.5 hidden text-[10px] text-[#2B2623]/55 lg:block">Book Priority Slot</span>
             </span>
           </button>
 
-          <button type="button" onClick={() => setIsMobileOpen(true)} className="flex h-11 min-w-0 flex-1 items-center justify-center rounded-full bg-coral px-4 text-[10px] font-bold tracking-[0.12em] text-white shadow-[0_8px_20px_rgba(232,115,74,0.32)] transition active:scale-[0.98] xl:hidden">DOWNLOAD BROCHURE</button>
+          <button type="button" onClick={() => setIsMobileOpen(true)} className="flex h-11 min-w-0 flex-1 items-center justify-center rounded-full bg-coral px-4 text-[10px] font-bold tracking-[0.12em] text-white shadow-[0_8px_20px_rgba(232,115,74,0.32)] transition active:scale-[0.98] lg:hidden">DOWNLOAD BROCHURE</button>
 
           {isSubmitted ? (
-            <div className="hidden flex-1 items-center justify-center gap-3 text-sm font-semibold text-[#2B2623] xl:flex">
+            <div className="hidden flex-1 items-center justify-center gap-3 text-sm font-semibold text-[#2B2623] lg:flex">
               <span className="flex h-9 w-9 items-center justify-center rounded-full bg-coral/10 text-coral">✓</span>
               Thank you. Our team will confirm your visit shortly.
             </div>
           ) : (
-            <form onSubmit={submit} noValidate className="hidden min-w-0 flex-1 items-center gap-3 xl:flex">
+            <form onSubmit={submit} noValidate className="site-visit-form hidden min-w-0 flex-1 items-center gap-3 lg:flex">
               <Field name="name" placeholder="Name" autoComplete="name" error={errors.name} className={`${inputClassName} w-full`} wrapperClassName="min-w-[110px] flex-1" />
               <Field name="phone" placeholder="98765 43210" type="tel" inputMode="numeric" autoComplete="tel" maxLength={10} pattern="[0-9]{10}" countryCode error={errors.phone} className={`${inputClassName} w-full`} wrapperClassName="min-w-[110px] flex-1" />
               <label className="relative order-4 w-[165px] min-w-[165px] shrink-0">
@@ -114,7 +114,7 @@ export default function SiteVisitBar() {
                   {configuration === "not-sure" && <><option value="2-bohk-55-60">2 BHK: ₹55L–₹60L</option><option value="2-bohk-60-65-plus">2 BHK: ₹60L–₹65L+</option><option value="3-bohk-85-90">3 BHK: ₹85L–₹90L</option><option value="3-bohk-90-95">3 BHK: ₹90L–₹95L</option><option value="3-bohk-95-1cr-plus">3 BHK: ₹95L–₹1Cr+</option></>}
                 </select>
                 <SelectChevron compact />
-                {errors.budget && <span className="mt-1 block pl-3 text-[9px] text-red-600 xl:absolute xl:left-3 xl:top-full xl:whitespace-nowrap xl:pl-0">{errors.budget}</span>}
+                {errors.budget && <span className="mt-1 block pl-3 text-[9px] text-red-600 lg:absolute lg:left-3 lg:top-full lg:whitespace-nowrap lg:pl-0">{errors.budget}</span>}
               </label>
               <div className="relative order-3 w-[185px] min-w-[185px] shrink-0">
                 <button
@@ -145,12 +145,12 @@ export default function SiteVisitBar() {
                     ))}
                   </div>
                 )}
-                {errors.bhk && <span className="mt-1 block pl-3 text-[9px] text-red-600 xl:absolute xl:left-3 xl:top-full xl:whitespace-nowrap xl:pl-0">{errors.bhk}</span>}
+                {errors.bhk && <span className="mt-1 block pl-3 text-[9px] text-red-600 lg:absolute lg:left-3 lg:top-full lg:whitespace-nowrap lg:pl-0">{errors.bhk}</span>}
               </div>
               <Field name="pincode" placeholder="Pincode" inputMode="numeric" autoComplete="postal-code" error={errors.pincode} className={`${inputClassName} w-full`} wrapperClassName="order-5 w-[108px] min-w-[108px] shrink-0" />
               <button
                 type="submit"
-                className="group order-6 flex h-12 w-[210px] shrink-0 items-center justify-center whitespace-nowrap rounded-full bg-coral px-5 text-[10px] font-bold tracking-[0.08em] text-white shadow-[0_10px_26px_rgba(232,115,74,0.32)] transition duration-300 hover:-translate-y-0.5 hover:bg-coral-dark hover:shadow-[0_14px_30px_rgba(232,115,74,0.38)] focus:outline-none focus:ring-4 focus:ring-coral/20 xl:h-11 xl:w-[190px] xl:px-4"
+                className="group order-6 flex h-12 w-[210px] shrink-0 items-center justify-center whitespace-nowrap rounded-full bg-coral px-5 text-[10px] font-bold tracking-[0.08em] text-white shadow-[0_10px_26px_rgba(232,115,74,0.32)] transition duration-300 hover:-translate-y-0.5 hover:bg-coral-dark hover:shadow-[0_14px_30px_rgba(232,115,74,0.38)] focus:outline-none focus:ring-4 focus:ring-coral/20 lg:h-11 lg:w-[190px] lg:px-4"
               >
                 DOWNLOAD BROCHURE
               </button>
@@ -161,7 +161,7 @@ export default function SiteVisitBar() {
         </div>
 
         {isMobileOpen && (
-          <div className="border-t border-[#2B2623]/10 px-4 pb-5 pt-3 xl:hidden">
+          <div className="border-t border-[#2B2623]/10 px-4 pb-5 pt-3 lg:hidden">
             {isSubmitted ? <p className="py-6 text-center text-sm font-semibold text-[#2B2623]">Thank you. Our team will confirm your visit shortly.</p> : (
               <form onSubmit={submit} noValidate className="grid grid-cols-2 gap-3">
                 <Field name="name" placeholder="Name" autoComplete="name" error={errors.name} className={`${inputClassName} w-full`} />
@@ -220,7 +220,7 @@ function Field({ error, className, wrapperClassName = "", countryCode = false, .
       <span className="sr-only">{props.placeholder}</span>
       {countryCode && <span className="pointer-events-none absolute left-3 top-1/2 z-10 -translate-y-1/2 text-[10px] font-bold text-[#2B2623]/55">+91</span>}
       <input {...props} required aria-invalid={Boolean(error)} className={`${className} ${countryCode ? "!pl-12" : ""} ${error ? "border-red-500" : ""}`} />
-      {error && <span className="mt-1 block pl-3 text-[9px] leading-none text-red-600 xl:absolute xl:left-3 xl:top-full xl:whitespace-nowrap xl:pl-0">{error}</span>}
+      {error && <span className="mt-1 block pl-3 text-[9px] leading-none text-red-600 lg:absolute lg:left-3 lg:top-full lg:whitespace-nowrap lg:pl-0">{error}</span>}
     </label>
   );
 }
