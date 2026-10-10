@@ -1,5 +1,5 @@
 const googleMapUrl =
-  "https://www.google.com/maps?q=Sumeet%20Urban%20Nest%2C%20Khamardih%2C%20Shri%20Ram%20Nagar%2C%20Anupam%20Nagar%2C%20Raipur%2C%20Chhattisgarh%20492004&z=17&output=embed";
+  "https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d708.0936506810683!2d81.6740626!3d21.2556491!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3a28dd7d5b577cbb%3A0xc053073222c4a135!2sSumeet%20Urban%20Nest!5e0!3m2!1sen!2sin!4v1791615200475!5m2!1sen!2sin";
 
 const distances = [
   { place: "Expressway", distance: "1.8 km" },
@@ -21,6 +21,7 @@ export default function LocationSection() {
             src={googleMapUrl}
             title="Sumeet Urban Nest location on Google Maps"
             className="absolute inset-0 h-full w-full border-0"
+            style={{ colorScheme: "light" }}
             allowFullScreen
             loading="lazy"
             referrerPolicy="strict-origin-when-cross-origin"
