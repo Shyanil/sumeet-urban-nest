@@ -17,9 +17,14 @@ Open [http://localhost:3000](http://localhost:3000).
 npm run build
 ```
 
-## Netlify deployment
+## Cloudflare build
 
-The repository includes `netlify.toml` with the production build command and
-publish directory. Connect the GitHub repository to Netlify and deploy from the
-`main` branch. New pushes to `main` will trigger automatic deployments when
-continuous deployment is enabled in Netlify.
+Build the Cloudflare Worker locally with:
+
+```bash
+npm run cf:build
+```
+
+Cloudflare Workers Builds should use `npm run cf:build` as its build command
+and `npx wrangler preview` as its preview command for pull requests. Keep
+`main` as the production branch so commits to `dev` create previews for review.
